@@ -8,8 +8,8 @@ class DialogflowApi:
     '''
 
     def __init__(self, developer_token=None, client_token=None):
-        self._developer_token = os.getenv('DEV_ACCESS_TOKEN')
-        self._client_token = os.getenv('CLIENT_ACCESS_TOKEN')
+        self._developer_token = developer_token
+        self._client_token = client_token
         self.version = '20150910'
         self._base_url = 'https://api.dialogflow.com/v1/'
 

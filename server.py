@@ -4,35 +4,18 @@
 
 import asyncio
 import websockets
-import sqlite3
 import json
 from dialogflow_v1 import DialogflowApi
-
-sqlite_file = '/home/jim/Documents/sqlite3/chat'
-table_name = 'chat'
-conn = sqlite3.connect(sqlite_file)
-c = conn.cursor()
+from flow_manager import flow_control
 
 async def hello(websocket, path):
-    while True:
-        name = await websocket.recv()
+    clientJson = await websocket.recv()
+    print(f"< {clientJson}")
 
-        print(f"< {name}")
+    greeting = flow_control(clientJson)
 
-        a = DialogflowApi()
-        r = a.post_query(name)
-        data = r.json()
-        greeting = data['result']['fulfillment']['speech']
-
-        try:
-            c.execute('INSERT INTO chat VALUES (?, ?)', [name, greeting])
-        except sqlite3.IntegrityError:
-            print('ERROR: ID already exists in PRIMARY KEY column')
-
-        conn.commit()
-
-        await websocket.send(greeting)
-        print(f"> {greeting}")
+    await websocket.send(greeting)
+    print(f"> {greeting}")
 
 start_server = websockets.serve(hello, 'localhost', 8765)
 

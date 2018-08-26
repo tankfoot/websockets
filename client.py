@@ -4,16 +4,24 @@
 
 import asyncio
 import websockets
+import json
 
-async def query():
+quest = {
+            'currentPage': None,
+            'query': None
+        }
+
+async def hello():
     async with websockets.connect(
             'ws://localhost:8765') as websocket:
-        name = input("Query here: ")
 
-        await websocket.send(name)
-        print(f"> {name}")
+        quest['currentPage'] = input("What's the current page? ")
+        quest['query'] = input("Query:")
+
+
+        await websocket.send(json.dumps(quest))
 
         greeting = await websocket.recv()
         print(f"< {greeting}")
 
-asyncio.get_event_loop().run_until_complete(query())
+asyncio.get_event_loop().run_until_complete(hello())

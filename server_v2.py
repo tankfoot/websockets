@@ -8,8 +8,8 @@ import sqlite3
 import json
 from dialogflow_v1 import DialogflowApi
 
-sqlite_file = '/home/jim/Documents/sqlite3/chat'
-table_name = 'chat'
+sqlite_file = '/home/jim/Documents/sqlite3/dialogflow'
+table_name = 'dialogflow'
 conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
@@ -24,9 +24,15 @@ async def ws_server(websocket, path):
         a = DialogflowApi()
         r = a.post_query(in_data)
         response = r.json()
+        print(response)
         out_data = response['result']['fulfillment']['speech']
+        if 'intentName' in response['result']['metadata']:
+            intent_name = response['result']['metadata']['intentName']
+        else:
+            intent_name = 'None'
+        intent_score = response['result']['score']
 
-        c.execute('INSERT INTO chat VALUES (?, ?)', [in_data, out_data])
+        c.execute('INSERT INTO dialogflow VALUES (?, ?, ?, ?)', [in_data, intent_name, intent_score, out_data])
         conn.commit()
 
         await websocket.send(out_data)
