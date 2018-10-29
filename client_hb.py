@@ -16,9 +16,9 @@ async def hello():
             name = input("What's your name? ")
 
             await websocket.send(name)
-            print(f"> {name}")
+            print("> {}".format(name))
 
             greeting = await websocket.recv()
-            print(f"< {greeting}")
+            print("< {}".format(greeting))
 
 asyncio.get_event_loop().run_until_complete(hello())

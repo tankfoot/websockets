@@ -24,10 +24,10 @@ async def ws_server(ws, path):
                 print('disconnect')
                 break
         else:
-            greeting = f"Hello {in_data}!"
+            greeting = "Hello {}!".format(in_data)
 
             await ws.send(greeting)
-            print(f"> {greeting}")
+            print("> {}".format(greeting))
 
 start_server = websockets.serve(ws_server, 'localhost', 8765, extra_headers = headers)
 
