@@ -4,9 +4,15 @@
 
 import asyncio
 import websockets
+import json
+import time
 
-headers = {'controllerId': 0,
-           'applicationId': 1
+data_format = {
+                'header':[0, 0, 0, 0, time.time(), 3, 0],
+                'data':{
+                        'speech': None,
+                        'entity': None
+                }
 }
 
 async def ws_server(ws, path):
@@ -20,16 +26,14 @@ async def ws_server(ws, path):
                 await asyncio.wait_for(pong_waiter, timeout=10)
             except asyncio.TimeoutError:
                 #No response to ping in 10 seconds, disconnect
-                ws.send('disconnect')
-                print('disconnect')
-                break
+                print('timeout')
         else:
-            greeting = "Hello {}!".format(in_data)
+            data_format['data']['speech'] = in_data
+            data_format['header'][6] = len(in_data)
+            await ws.send(json.dumps(data_format))
+            print(json.dumps(data_format))
 
-            await ws.send(greeting)
-            print("> {}".format(greeting))
-
-start_server = websockets.serve(ws_server, 'localhost', 8765, extra_headers = headers)
+start_server = websockets.serve(ws_server, 'localhost', 8765)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
