@@ -5,12 +5,9 @@
 import asyncio
 import websockets
 
-headers = {'controllerId' : 1,
-           'applicationId' : 0}
-
 async def hello():
     async with websockets.connect(
-            'ws://localhost:8765', extra_headers = headers) as websocket:
+            'ws://178.128.181.252/ws/') as websocket:
         
         while True:
             name = input("What's your name? ")
