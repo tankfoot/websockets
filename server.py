@@ -5,19 +5,36 @@
 import asyncio
 import websockets
 import json
-from dialogflow_v1 import DialogflowApi
-from flow_manager import flow_control
+import time
+from dialogflow_v2 import DialogflowApi
 
-async def hello(websocket, path):
-    clientJson = await websocket.recv()
-    print(f"< {clientJson}")
+data_format = {
+                'header':[0, 0, 0, 0, int(time.time()), 3, 0],
+                'data':{
+                        'speech': None,
+                        'entity': None
+                }
+}
 
-    greeting = flow_control(clientJson)
+async def ws_server(ws, path):
+    while True:
+        try:
+            in_data = await ws.recv()
+            data_format['data']['speech'] = in_data
+            data_format['header'][6] = len(in_data)
 
-    await websocket.send(greeting)
-    print(f"> {greeting}")
-
-start_server = websockets.serve(hello, 'localhost', 8765)
+            a = DialogflowApi()
+            response = a.text_query('Navigation')
+            print(response.json())
+            await ws.send(json.dumps(data_format))
+            print(json.dumps(data_format))
+        
+        except websocket.exceptions.ConnectionClosed:
+            print('disconnected')
+            break
+            
+start_server = websockets.serve(ws_server, 'localhost', 8765)
+print('Start listening:')
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
