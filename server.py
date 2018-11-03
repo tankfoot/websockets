@@ -20,16 +20,23 @@ async def ws_server(ws, path):
     while True:
         try:
             in_data = await ws.recv()
-            data_format['data']['speech'] = in_data
-            data_format['header'][6] = len(in_data)
 
             a = DialogflowApi()
-            response = a.text_query('Navigation')
+            response = a.text_query(in_data)
             print(response.json())
+
+            data = response.json()
+            data_format['data']['speech'] = data['queryResult']['fulfillmentText']
+            data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+
+            if 'parameters' in data['queryResult']:
+                data_format['data']['entity'] = data['queryResult']['parameters']
+            else:
+                data_format['data']['entity'] = None
+            
             await ws.send(json.dumps(data_format))
-            print(json.dumps(data_format))
         
-        except websocket.exceptions.ConnectionClosed:
+        except websockets.exceptions.ConnectionClosed:
             print('disconnected')
             break
             

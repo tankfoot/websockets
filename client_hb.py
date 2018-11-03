@@ -11,13 +11,14 @@ headers = {'controllerId' : 1,
 async def hello():
     async with websockets.connect(
             'ws://localhost:8765', extra_headers = headers) as websocket:
-        
-        name = input("What's your name? ")
 
-        await websocket.send(name)
-        print("> {}".format(name))
+        while True:
+            name = input("What's your name? ")
 
-        greeting = await websocket.recv()
-        print("< {}".format(greeting))
+            await websocket.send(name)
+            print("> {}".format(name))
+
+            greeting = await websocket.recv()
+            print("< {}".format(greeting))
 
 asyncio.get_event_loop().run_until_complete(hello())
