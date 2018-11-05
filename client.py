@@ -9,7 +9,8 @@ import json
 quest = {
             'header': [1,2,3,4,5,6,7],
             'data':{
-                'query': None
+                'query': None,
+                'entity': None
             }
         }
 
