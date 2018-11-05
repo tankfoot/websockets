@@ -20,19 +20,30 @@ async def ws_server(ws, path):
     while True:
         try:
             in_data = await ws.recv()
+            print(in_data)
+            data = json.loads(in_data)
+            try:
+                header = data['header']
+                query = data['data']['query']
+            except KeyError:
+                print('KeyError')
+                break
 
             a = DialogflowApi()
-            response = a.text_query(in_data)
+            response = a.text_query(query)
             print(response.json())
 
             data = response.json()
-            data_format['data']['speech'] = data['queryResult']['fulfillmentText']
-            data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+            try:
+                data_format['data']['speech'] = data['queryResult']['fulfillmentText']
+                data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+            except KeyError:
+                data_format['data']['speech'] = 'KeyError'
 
-            if 'parameters' in data['queryResult']:
+            try:
                 data_format['data']['entity'] = data['queryResult']['parameters']
-            else:
-                data_format['data']['entity'] = None
+            except KeyError:
+                print('No Entity detected')
             
             await ws.send(json.dumps(data_format))
         
