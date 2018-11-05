@@ -7,16 +7,18 @@ import websockets
 import json
 
 quest = {
-            'currentPage': None,
-            'query': None
+            'header': [1,2,3,4,5,6,7],
+            'data': {
+                'query': None,
+                'entity': None
+            }
         }
 
 async def hello():
     async with websockets.connect(
-            'ws://localhost:8765') as websocket:
+            'ws://178.128.181.252/ws/') as websocket:
 
-        quest['currentPage'] = input("What's the current page? ")
-        quest['query'] = input("Query:")
+        quest['data']['query'] = input("Query:")
 
 
         await websocket.send(json.dumps(quest))
