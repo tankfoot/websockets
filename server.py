@@ -21,12 +21,16 @@ async def ws_server(ws, path):
         try:
             in_data = await ws.recv()
             print(in_data)
-            data = json.loads(in_data)
+            in_json = json.loads(in_data)
             try:
-                header = data['header']
-                query = data['data']['query']
+                header = in_json['header']
+                query = in_json['data']['query']
+                data_format['header'][0] = in_json['header'][0]
+                data_format['header'][1] = in_json['header'][1]
+                data_format['header'][2] = in_json['header'][2]
+                data_format['header'][3] = in_json['header'][2]
             except KeyError:
-                print('KeyError')
+                print('in_data: KeyError')
                 break
 
             a = DialogflowApi()
@@ -37,10 +41,6 @@ async def ws_server(ws, path):
             try:
                 data_format['data']['speech'] = data['queryResult']['fulfillmentText']
                 data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
-                data_format['header'][0] = data['header'][0]
-                data_format['header'][1] = data['header'][1]
-                data_format['header'][2] = data['header'][2]
-                data_format['header'][3] = data['header'][2]
             except KeyError:
                 data_format['data']['speech'] = 'KeyError'
 
