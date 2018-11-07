@@ -24,6 +24,7 @@ async def ws_server(ws, path):
             in_json = json.loads(in_data)
             try:
                 header = in_json['header']
+                print(header)
                 query = in_json['data']['query']
                 data_format['header'][0] = in_json['header'][0]
                 data_format['header'][1] = in_json['header'][1]
