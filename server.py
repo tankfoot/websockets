@@ -37,6 +37,10 @@ async def ws_server(ws, path):
             try:
                 data_format['data']['speech'] = data['queryResult']['fulfillmentText']
                 data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+                data_format['header'][0] = data['header'][0]
+                data_format['header'][1] = data['header'][1]
+                data_format['header'][2] = data['header'][2]
+                data_format['header'][3] = data['header'][2]
             except KeyError:
                 data_format['data']['speech'] = 'KeyError'
 
