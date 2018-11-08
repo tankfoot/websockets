@@ -59,10 +59,18 @@ def manager(data):
         data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
     except KeyError:
         data_format['data']['speech'] = 'KeyError'
-
-    if data['queryResult']['intent']['displayName'] == 'waze.nav.explicit':
-        data_format['header'][3] = 1100
-
+    
+    try:
+        if data['queryResult']['intent']['displayName'] == 'waze.nav.explicit':
+            data_format['header'][3] = 1100
+        if data['queryResult']['allRequiredParamsPresent'] == True:
+            if data['queryResult']['intent']['displayName'] == 'waze.report_police':
+                data_format['header'][3] = 1300
+            if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
+                data_format['header'][3] = 1300
+    except KeyError:
+        print('intent Key Error')
+    
     try:
         data_format['data']['entity'] = data['queryResult']['parameters']
     except KeyError:
