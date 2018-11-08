@@ -61,7 +61,7 @@ def manager(data):
         data_format['data']['speech'] = 'KeyError'
 
     if data['queryResult']['intent']['displayName'] == 'waze.nav.explicit':
-        data_format['header'][3] = 2000
+        data_format['header'][3] = 1100
 
     try:
         data_format['data']['entity'] = data['queryResult']['parameters']
