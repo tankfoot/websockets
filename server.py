@@ -4,7 +4,6 @@
 
 import asyncio
 import websockets
-import json
 import time
 from main import manager
 
@@ -20,7 +19,6 @@ async def ws_server(ws, path):
     while True:
         try:
             in_data = await ws.recv()
-
             out_data = manager(in_data)
             await ws.send(out_data)
         

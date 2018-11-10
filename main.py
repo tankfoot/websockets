@@ -11,13 +11,23 @@ data_format = {
                 }
 }
 
+level_map = {
+    'mapView': 1000,
+    'report': 1200,
+    'report_traffic': 1210,
+    'report_police': 1220,
+    'report_crash': 1230,
+    'report_hazard': 1240
+
+}
+
 class Waze(object):
     pass
 
 
 user = Waze()
 
-states = ['first', 'second', 'third', 'fourth']
+states = ['1000', '1100', '1200', 'fourth']
 
 transitions = [
     {'trigger': 'navigation', 'source': 'first', 'dest': 'second'},
@@ -61,6 +71,8 @@ def manager(data):
         data_format['data']['speech'] = 'KeyError'
     
     try:
+        if data['queryResult']['intent']['displayName'] == 'waze.report':
+            data_format['header'][3] = 1200
         if data['queryResult']['intent']['displayName'] == 'waze.nav.explicit':
             data_format['header'][3] = 1100
         if data['queryResult']['allRequiredParamsPresent'] == True:
@@ -68,6 +80,14 @@ def manager(data):
                 data_format['header'][3] = 1300
             if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
                 data_format['header'][3] = 1300
+            if data['queryResult']['intent']['displayName'] == 'waze.report_crash':
+                data_format['header'][3] = 1300
+            if data['queryResult']['intent']['displayName'] == 'waze.location':
+                data_format['header'][3] = 1100
+            if data['queryResult']['intent']['displayName'] == 'waze.address':
+                data_format['header'][3] = 1100
+            if data['queryResult']['intent']['displayName'] == 'waze.city':
+                data_format['header'][3] = 1100
     except KeyError:
         print('intent Key Error')
     

@@ -5,9 +5,10 @@
 import asyncio
 import websockets
 import json
+import time
 
 quest = {
-            'header': [1,2,3,4,5,6,7],
+            'header': [1111, 1, 1000, int(time.time()), 3, 0],
             'data':{
                 'query': None,
                 'entity': None
