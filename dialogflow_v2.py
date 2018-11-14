@@ -1,4 +1,3 @@
-import os
 import requests
 import json
 from subprocess import getoutput

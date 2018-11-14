@@ -2,14 +2,17 @@ from core import Machine
 from dialogflow_v2 import DialogflowApi
 import json
 import time
+import logging
 
 data_format = {
-                'header':[0, 0, 0, 0, int(time.time()), 3, 0],
-                'data':{
+                'header': [0, 0, 0, 0, int(time.time()), 3, 0],
+                'data': {
                         'speech': None,
                         'entity': None
                 }
 }
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 level_map = {
     'mapView': 1000,
@@ -18,8 +21,8 @@ level_map = {
     'report_police': 1220,
     'report_crash': 1230,
     'report_hazard': 1240
-
 }
+
 
 class Waze(object):
     pass
@@ -27,7 +30,7 @@ class Waze(object):
 
 user = Waze()
 
-states = ['1000', '1100', '1200', 'fourth']
+states = ['1000', '1100', '1200']
 
 transitions = [
     {'trigger': 'navigation', 'source': 'first', 'dest': 'second'},
@@ -58,7 +61,7 @@ def manager(data):
     except KeyError:
         print('in_data: KeyError')
 
-    a = DialogflowApi()
+    a = DialogflowApi(session_id=data_json['header'][0])
     response = a.text_query(query)
     print(response.json())
 
@@ -75,7 +78,7 @@ def manager(data):
             data_format['header'][3] = 1200
         if data['queryResult']['intent']['displayName'] == 'waze.nav.explicit':
             data_format['header'][3] = 1100
-        if data['queryResult']['allRequiredParamsPresent'] == True:
+        if data['queryResult']['allRequiredParamsPresent']:
             if data['queryResult']['intent']['displayName'] == 'waze.report_police':
                 data_format['header'][3] = 1300
             if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':

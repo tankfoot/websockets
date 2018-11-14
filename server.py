@@ -4,22 +4,28 @@
 
 import asyncio
 import websockets
-import time
+import logging
+import datetime
 from main import manager
 
-data_format = {
-                'header':[0, 0, 0, 0, int(time.time()), 3, 0],
-                'data':{
-                        'speech': None,
-                        'entity': None
-                }
-}
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 async def ws_server(ws, path):
+
+    now = datetime.datetime.now()
+    fh = logging.FileHandler('log/waze-{}'.format(now.strftime("%Y-%m-%d %H:%M:%S")))
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
+
     while True:
         try:
             in_data = await ws.recv()
             out_data = manager(in_data)
+            logger.info(in_data)
+            logger.info(out_data)
             await ws.send(out_data)
         
         except websockets.exceptions.ConnectionClosed:

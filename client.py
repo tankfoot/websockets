@@ -19,12 +19,13 @@ async def hello():
     async with websockets.connect(
             'ws://localhost:8765') as websocket:
 
-        quest['data']['query'] = input("Query:")
+        while True:
+            quest['data']['query'] = input("Query:")
 
 
-        await websocket.send(json.dumps(quest))
+            await websocket.send(json.dumps(quest))
 
-        greeting = await websocket.recv()
-        print(f"< {greeting}")
+            greeting = await websocket.recv()
+            print(f"< {greeting}")
 
 asyncio.get_event_loop().run_until_complete(hello())

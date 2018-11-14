@@ -1,0 +1,6 @@
+2018-11-13 17:38:58,605 - __main__ - INFO - {"header": [1111, 1, 1000, 1542159531, 3, 0], "data": {"query": "report for traffic", "entity": null}}
+2018-11-13 17:38:58,605 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1542159481, 3, 46], "data": {"speech": "Is the traffic moderate, heavy, or standstill?", "entity": {"report-type": "traffic", "traffic-type": ""}}}
+2018-11-13 17:39:02,803 - __main__ - INFO - {"header": [1111, 1, 1000, 1542159531, 3, 0], "data": {"query": "heavy", "entity": null}}
+2018-11-13 17:39:02,803 - __main__ - INFO - {"header": [1111, 1, 1000, 1300, 1542159481, 3, 28], "data": {"speech": "Okay, Heavy traffic reported", "entity": {"report-type": "traffic", "traffic-type": "Heavy"}}}
+2018-11-13 17:39:11,206 - __main__ - INFO - {"header": [1111, 1, 1000, 1542159531, 3, 0], "data": {"query": "thank you", "entity": null}}
+2018-11-13 17:39:11,206 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1542159481, 3, 25], "data": {"speech": "It's my pleasure to help.", "entity": {}}}
