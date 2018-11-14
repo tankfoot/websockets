@@ -51,8 +51,6 @@ def manager(data):
     data_json = json.loads(data)
 
     try:
-        header = data_json['header']
-        print(header)
         query = data_json['data']['query']
         data_format['header'][0] = data_json['header'][0]
         data_format['header'][1] = data_json['header'][1]
@@ -63,7 +61,6 @@ def manager(data):
 
     a = DialogflowApi(session_id=data_json['header'][0])
     response = a.text_query(query)
-    print(response.json())
 
     data = response.json()
 

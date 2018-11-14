@@ -52,6 +52,7 @@ class DialogflowApi:
                 }
             }
         }
+        logger.info(self._query_url)
         logger.info(json.dumps(data))
         response = requests.post(self._query_url, headers=self._header, data=json.dumps(data))
         logger.info(response.json())

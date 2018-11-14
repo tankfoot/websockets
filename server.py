@@ -6,6 +6,7 @@ import asyncio
 import websockets
 import logging
 import datetime
+import json
 from main import manager
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -23,14 +24,17 @@ async def ws_server(ws, path):
     while True:
         try:
             in_data = await ws.recv()
-            out_data = manager(in_data)
             logger.info(in_data)
-            logger.info(out_data)
-            await ws.send(out_data)
+            in_data_json = json.loads(in_data)
         
         except websockets.exceptions.ConnectionClosed:
-            print('disconnected')
+            print('user {} disconnected'.format(in_data_json['header'][0]))
             break
+
+        out_data = manager(in_data)
+        logger.info(out_data)
+        print(out_data)
+        await ws.send(out_data)
             
 start_server = websockets.serve(ws_server, 'localhost', 8765)
 print('Start listening:')
