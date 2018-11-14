@@ -1,0 +1,10 @@
+2018-11-14 11:32:55,061 - dialogflow_v2 - INFO - {"queryInput": {"text": {"text": "hello", "languageCode": "en"}}}
+2018-11-14 11:32:55,525 - dialogflow_v2 - INFO - <Response [200]>
+2018-11-14 11:33:07,890 - dialogflow_v2 - INFO - {"queryInput": {"text": {"text": "i am here", "languageCode": "en"}}}
+2018-11-14 11:33:08,549 - dialogflow_v2 - INFO - <Response [200]>
+2018-11-14 11:33:29,329 - dialogflow_v2 - INFO - {"queryInput": {"text": {"text": "can you give me some navigation to san jose", "languageCode": "en"}}}
+2018-11-14 11:33:30,045 - dialogflow_v2 - INFO - <Response [200]>
+2018-11-14 11:33:39,364 - dialogflow_v2 - INFO - {"queryInput": {"text": {"text": "navigate to san jose", "languageCode": "en"}}}
+2018-11-14 11:33:39,722 - dialogflow_v2 - INFO - <Response [200]>
+2018-11-14 11:33:47,504 - dialogflow_v2 - INFO - {"queryInput": {"text": {"text": "byebye", "languageCode": "en"}}}
+2018-11-14 11:33:47,931 - dialogflow_v2 - INFO - <Response [200]>

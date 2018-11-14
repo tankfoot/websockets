@@ -2,13 +2,24 @@ import requests
 import json
 from subprocess import getoutput
 import base64
+import logging
+import datetime
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+now = datetime.datetime.now()
+fh = logging.FileHandler('dflog/waze-df-{}'.format(now.strftime("%Y-%m-%d %H:%M:%S")))
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
 
 class DialogflowApi:
     '''
     Interface to dialogflow apiv2 request
     '''
 
-    def __init__(self, auth_token=None, project_id=None, session_id='123'):
+    def __init__(self, session_id='123'):
         self._auth_token = getoutput("gcloud auth application-default print-access-token")
         self._project_id = getoutput("gcloud config get-value project")
         self._base_url = 'https://dialogflow.googleapis.com/v2/'
@@ -41,7 +52,9 @@ class DialogflowApi:
                 }
             }
         }
+        logger.info(json.dumps(data))
         response = requests.post(self._query_url, headers=self._header, data=json.dumps(data))
+        logger.info(response.json())
         return response
 
     def audio_query(self, path):
