@@ -25,14 +25,13 @@ async def ws_server(ws, path):
         try:
             in_data = await ws.recv()
             logger.info(in_data)
-            in_data_json = json.loads(in_data)
             out_data = manager(in_data)
             logger.info(out_data)
             print(out_data)
             await ws.send(out_data)
         
         except websockets.exceptions.ConnectionClosed:
-            print('user {} disconnected'.format(in_data_json['header'][0]))
+            print('user disconnected')
             break
             
 start_server = websockets.serve(ws_server, 'localhost', 8765)
