@@ -75,6 +75,8 @@ def manager(data):
             data_format['header'][3] = 1200
         if data['queryResult']['intent']['displayName'] == 'waze.nav.explicit':
             data_format['header'][3] = 1100
+        if data['queryResult']['intent']['displayName'] == 'waze.stop':
+            data_format['header'][3] = 1000
         if data['queryResult']['allRequiredParamsPresent']:
             if data['queryResult']['intent']['displayName'] == 'waze.report_police':
                 data_format['header'][3] = 1300
