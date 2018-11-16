@@ -2,16 +2,7 @@ import requests
 import json
 from subprocess import getoutput
 import base64
-import logging
-import datetime
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-now = datetime.datetime.now()
-fh = logging.FileHandler('dflog/waze-df-{}'.format(now.strftime("%Y-%m-%d %H:%M:%S")))
-fh.setFormatter(formatter)
-logger.addHandler(fh)
 
 
 class DialogflowApi:
@@ -26,7 +17,6 @@ class DialogflowApi:
         self._session_id = session_id
 
     '''Header Handling'''
-
     @property
     def _header(self):
         if self._auth_token is None:
@@ -41,8 +31,7 @@ class DialogflowApi:
             raise ValueError('No gcloud project opened.')
         return '{}projects/{}/agent/sessions/{}:detectIntent'.format(self._base_url, self._project_id, self._session_id)
 
-
-    '''Query '''
+    '''Query'''
     def text_query(self, query):
         data = {
             "queryInput": {
@@ -52,10 +41,7 @@ class DialogflowApi:
                 }
             }
         }
-        logger.info(self._query_url)
-        logger.info(json.dumps(data))
         response = requests.post(self._query_url, headers=self._header, data=json.dumps(data))
-        logger.info(response.json())
         return response
 
     def audio_query(self, path):

@@ -6,7 +6,6 @@ import asyncio
 import websockets
 import logging
 import datetime
-import json
 from main import manager
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')

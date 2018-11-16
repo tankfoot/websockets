@@ -2,6 +2,7 @@ from core import Machine
 from dialogflow_v2 import DialogflowApi
 import json
 import time
+import datetime
 import logging
 
 data_format = {
@@ -13,6 +14,12 @@ data_format = {
 }
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+now = datetime.datetime.now()
+dffh = logging.FileHandler('dflog/waze-df-{}'.format(now.strftime("%Y-%m-%d %H:%M:%S")))
+dffh.setFormatter(formatter)
+logger.addHandler(dffh)
 
 level_map = {
     'mapView': 1000,
@@ -61,8 +68,8 @@ def manager(data):
 
     a = DialogflowApi(session_id=data_json['header'][0])
     response = a.text_query(query)
-
     data = response.json()
+    logger.info(data)
 
     try:
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
