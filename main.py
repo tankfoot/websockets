@@ -17,7 +17,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 now = datetime.datetime.now()
-dffh = logging.FileHandler('dflog/waze-df-{}'.format(now.strftime("%Y-%m-%d %H:%M:%S")))
+dffh = logging.FileHandler('dflog/waze-df-log')
 dffh.setFormatter(formatter)
 logger.addHandler(dffh)
 
