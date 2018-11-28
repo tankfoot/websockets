@@ -5,20 +5,17 @@
 import asyncio
 import websockets
 import logging
-import datetime
 from main import manager
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+fh = logging.FileHandler('log/manager.log')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
 
 
 async def ws_server(ws, path):
-
-    now = datetime.datetime.now()
-    fh = logging.FileHandler('log/waze-{}'.format(now.strftime("%Y-%m-%d %H:%M:%S")))
-    fh.setFormatter(formatter)
-    logger.addHandler(fh)
 
     while True:
         try:
