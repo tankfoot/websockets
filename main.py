@@ -48,6 +48,37 @@ transitions = [
 machine = Machine(model=user, states=states, transitions=transitions, initial='first')
 
 
+stopwords = {'themselves', 't', 'why', 'o', 'into', 'to', 'her', "should've",
+             'when', 'ours', 're', 'other', 'doesn', "hadn't", 'ourselves',
+             'its', 'it', 'are', 'because', 'more', "you've", 'be', 'your',
+             'that', 'will', 'how', 'after', 'our', 'at', 'm', 'yourself',
+             'his', 'any', 'where', 'she', "you'd", 'has', 'wouldn', 'each',
+             'up', 'myself', 'theirs', 'what', 'couldn', 'above', 'shan',
+             'by', 'y', 'but', "isn't", "it's", 'only', 'these', 'further',
+             'haven', 'their', "weren't", "wasn't", 'who', 'wasn', 'doing',
+             'while', 'off', 'some', 'over', 'own', 'himself', 'them', 'hasn',
+             'down', 'am', 'won', 'hadn', 'didn', 'did', 'for', 'mustn',
+             'through', 'having', 'than', 'about', 'which', 'should', 'been',
+             'few', "aren't", 'my', 'we', "won't", 'i', 'with', 'don', "you're",
+             'this', 'needn', 'during', 'an', 'until', 'very', 'from', 'herself',
+             'or', 'once', 'no', 'such', "you'll", 'the', 'so', 'hers', 'was',
+             "shouldn't", 'a', 'under', 'they', 'do', 'both', 'not', 'against',
+             's', 'on', 'same', 'most', 'too', 'just', 've', "mightn't", 'before',
+             'here', 'in', 'out', 'then', 'as', 'being', 'nor', 'mightn', 'he', 'ma',
+             "needn't", 'now', 'yours', 'and', 'below', 'is', 'yourselves', 'aren',
+             "mustn't", 'd', 'itself', 'him', 'me', "wouldn't", 'if', "shan't", "she's",
+             'does', "didn't", 'you', "don't", 'ain', 'can', "hasn't", 'there', 'weren',
+             "couldn't", 'were', 'whom', 'of', "haven't", 'have', 'shouldn', "doesn't",
+             'all', 'those', 'isn', 'again', 'had', 'between', 'll', "that'll"}
+
+
+def remove_stopwords(sentence):
+    sentence_token = sentence.split(' ')
+    filtered_token = [w for w in sentence_token if not w in stopwords]
+    filtered_sentence = ' '.join(filtered_token)
+
+    return filtered_sentence
+
 def manager(data):
     """
     :type data: String
@@ -80,7 +111,7 @@ def manager(data):
     try:
         if data['queryResult']['intent']['displayName'] == 'waze.report':
             data_format['header'][3] = 1200
-        if data['queryResult']['intent']['displayName'] == 'waze.nav.explicit':
+        if data['queryResult']['intent']['displayName'] == 'waze.any':
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.stop':
             data_format['header'][3] = 1000
@@ -107,7 +138,7 @@ def manager(data):
             if v:
                 data_format['data']['entity'][k] = v
                 if k == 'any':
-                    data_format['data']['entity']['search'] = data_format['data']['entity']['any']
+                    data_format['data']['entity']['search'] = remove_stopwords(data_format['data']['entity']['any'])
                     del data_format['data']['entity']['any']
 
     except KeyError:
