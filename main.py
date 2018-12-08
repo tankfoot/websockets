@@ -9,7 +9,7 @@ data_format = {
                 'header': [0, 0, 0, 0, int(time.time()), 3, 0],
                 'data': {
                         'speech': None,
-                        'entity': None
+                        'entity': {}
                 }
 }
 
@@ -101,7 +101,15 @@ def manager(data):
         print('intent Key Error')
     
     try:
-        data_format['data']['entity'] = data['queryResult']['parameters']
+        entity_all = data['queryResult']['parameters']
+        data_format['data']['entity'] = {}
+        for k, v in entity_all.items():
+            if v:
+                data_format['data']['entity'][k] = v
+                if k == 'any':
+                    data_format['data']['entity']['search'] = data_format['data']['entity']['any']
+                    del data_format['data']['entity']['any']
+
     except KeyError:
         print('No Entity detected')
 
