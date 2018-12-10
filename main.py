@@ -116,17 +116,9 @@ def manager(data):
         if data['queryResult']['intent']['displayName'] == 'waze.stop':
             data_format['header'][3] = 1000
         if data['queryResult']['allRequiredParamsPresent']:
-            if data['queryResult']['intent']['displayName'] == 'waze.report_police':
-                data_format['header'][3] = 1300
-            if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
-                data_format['header'][3] = 1300
-            if data['queryResult']['intent']['displayName'] == 'waze.report_crash':
-                data_format['header'][3] = 1300
-            if data['queryResult']['intent']['displayName'] == 'waze.location':
-                data_format['header'][3] = 1100
-            if data['queryResult']['intent']['displayName'] == 'waze.address':
-                data_format['header'][3] = 1100
-            if data['queryResult']['intent']['displayName'] == 'waze.city':
+            if data['queryResult']['intent']['displayName'] == 'waze.addstop':
+                data_format['header'][3] = 1010
+            if data['queryResult']['intent']['displayName'] == 'waze.choose':
                 data_format['header'][3] = 1100
     except KeyError:
         print('intent Key Error')
