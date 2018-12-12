@@ -31,6 +31,12 @@ class DialogflowApi:
             raise ValueError('No gcloud project opened.')
         return '{}projects/{}/agent/sessions/{}:detectIntent'.format(self._base_url, self._project_id, self._session_id)
 
+    @property
+    def _delete_url(self):
+        if self._project_id is None:
+            raise ValueError('No gcloud project opened.')
+        return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id)
+
     '''Query'''
     def text_query(self, query):
         data = {
@@ -59,4 +65,9 @@ class DialogflowApi:
             "inputAudio": speech_content
         }
         response = requests.post(self._query_url, headers=self._header, data=json.dumps(data))
+        return response
+
+    def delete_context(self):
+        data = {}
+        response = requests.delete(self._delete_url, data=json.dumps(data))
         return response

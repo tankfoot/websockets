@@ -79,6 +79,7 @@ def remove_stopwords(sentence):
 
     return filtered_sentence
 
+
 def manager(data):
     """
     :type data: String
@@ -113,9 +114,14 @@ def manager(data):
             data_format['header'][3] = 1200
         if data['queryResult']['intent']['displayName'] == 'waze.any':
             data_format['header'][3] = 1100
+        if data['queryResult']['intent']['displayName'] == 'waze.navigation_all':
+            data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.stop':
             data_format['header'][3] = 1000
         if data['queryResult']['intent']['displayName'] == 'waze.addstop':
+            if data_json['header'][2] == 1200:
+                data_format['data']['speech'] = 'Sorry, Waze can only add one stop.'
+                a.delete_context()
             data_format['header'][3] = 1010
         if data['queryResult']['intent']['displayName'] == 'waze.choose':
             data_format['header'][3] = 1100
