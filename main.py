@@ -111,7 +111,7 @@ def manager(data):
     
     try:
         if data['queryResult']['intent']['displayName'] == 'waze.report':
-            data_format['header'][3] = 1200
+            data_format['header'][3] = 1020
         if data['queryResult']['intent']['displayName'] == 'waze.any':
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.navigation_all':
