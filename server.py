@@ -5,6 +5,7 @@
 import asyncio
 import websockets
 import logging
+import time
 from main import manager
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -27,7 +28,7 @@ async def ws_server(ws, path):
             await ws.send(out_data)
         
         except websockets.exceptions.ConnectionClosed:
-            print('user disconnected')
+            print('{}: user disconnected'.format(int(time.time())))
             break
             
 start_server = websockets.serve(ws_server, 'localhost', 8765)
