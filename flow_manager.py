@@ -4,7 +4,7 @@ from dialogflow_v1 import DialogflowApi
 token_list = {
               'main_page': 'f06ad886f01f4053b13e58116580a090',
               'list_page': '0695ab771d6442b6b94281981042838b',
-              'detail_page':'a75f9e59d9b7482d8ba89ef198e509ad',
+              'detail_page': 'a75f9e59d9b7482d8ba89ef198e509ad',
               'confirm_page': '0e4800ee137944d7a196997baae98102'
               }
 

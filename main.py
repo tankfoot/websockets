@@ -1,4 +1,3 @@
-from core import Machine
 from dialogflow_v2 import DialogflowApi
 import json
 import time
@@ -29,24 +28,6 @@ level_map = {
     'report_crash': 1230,
     'report_hazard': 1240
 }
-
-
-class Waze(object):
-    pass
-
-
-user = Waze()
-
-states = ['1000', '1100', '1200']
-
-transitions = [
-    {'trigger': 'navigation', 'source': 'first', 'dest': 'second'},
-    {'trigger': 'navigation_cancel', 'source': 'second', 'dest': 'first'}
-]
-
-
-machine = Machine(model=user, states=states, transitions=transitions, initial='first')
-
 
 stopwords = {'themselves', 't', 'why', 'o', 'into', 'to', 'her', "should've",
              'when', 'ours', 're', 'other', 'doesn', "hadn't", 'ourselves',
