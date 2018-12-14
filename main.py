@@ -47,7 +47,7 @@ stopwords = {'themselves', 't', 'why', 'o', 'into', 'to', 'her', "should've",
 
 def remove_stopwords(sentence):
     sentence_token = sentence.split(' ')
-    filtered_token = [w for w in sentence_token if not w in stopwords]
+    filtered_token = [w for w in sentence_token if w not in stopwords]
     filtered_sentence = ' '.join(filtered_token)
 
     return filtered_sentence
