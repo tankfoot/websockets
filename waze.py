@@ -1,5 +1,7 @@
 import time
 import json
+import logging
+import datetime
 from dialogflow_v2 import DialogflowApi
 
 
@@ -10,6 +12,14 @@ data_format = {
                         'entity': {}
                 }
 }
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+now = datetime.datetime.now()
+dffh = logging.FileHandler('dflog/waze-df-log')
+dffh.setFormatter(formatter)
+logger.addHandler(dffh)
 
 stopwords = {'themselves', 't', 'why', 'o', 'into', 'to', 'her', "should've",
              'when', 'ours', 're', 'other', 'doesn', "hadn't", 'ourselves',
