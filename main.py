@@ -44,20 +44,12 @@ stopwords = {'themselves', 't', 'why', 'o', 'into', 'to', 'her', "should've",
              "couldn't", 'were', 'whom', 'of', "haven't", 'have', 'shouldn', "doesn't",
              'all', 'those', 'isn', 'again', 'had', 'between', 'll', "that'll"}
 
-
-def remove_stopwords(sentence):
-    sentence_token = sentence.split(' ')
-    filtered_token = [w for w in sentence_token if w not in stopwords]
-    filtered_sentence = ' '.join(filtered_token)
-
-    return filtered_sentence
-
-
 def manager(data):
     """
     :type data: String
     :rtype: String
     """
+    logger.info(data)
     data_json = json.loads(data)
 
     try:
