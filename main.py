@@ -58,8 +58,6 @@ def manager(data):
     :type data: String
     :rtype: String
     """
-
-    print(data)
     data_json = json.loads(data)
 
     try:
@@ -78,52 +76,17 @@ def manager(data):
         data = response.json()
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
         data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+        result = json.dumps(data_format)
+
+    elif data_json['header'][1] == 1:
+        try:
+            from waze import waze
+            getoutput("gcloud config set project maps-75922")
+            result = waze(data)
+            logger.info(result)
+        except ImportError:
+            raise ImportError('Import Waze fail')
 
     else:
-        getoutput("gcloud config set project maps-75922")
-        waze = DialogflowApi(session_id=data_json['header'][0])
-        response = waze.text_query(query)
-        data = response.json()
-        logger.info(data)
-
-        try:
-            data_format['data']['speech'] = data['queryResult']['fulfillmentText']
-            data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
-        except KeyError:
-            data_format['data']['speech'] = 'KeyError'
-
-        try:
-            if data['queryResult']['intent']['displayName'] == 'waze.report':
-                data_format['header'][3] = 1020
-            if data['queryResult']['intent']['displayName'] == 'waze.any':
-                data_format['header'][3] = 1100
-            if data['queryResult']['intent']['displayName'] == 'waze.navigation_all':
-                data_format['header'][3] = 1100
-            if data['queryResult']['intent']['displayName'] == 'waze.stop':
-                data_format['header'][3] = 1000
-            if data['queryResult']['intent']['displayName'] == 'waze.addstop':
-                if data_json['header'][2] == 1200:
-                    data_format['data']['speech'] = 'Sorry, Waze can only add one stop.'
-                    waze.delete_context()
-                data_format['header'][3] = 1010
-            if data['queryResult']['intent']['displayName'] == 'waze.choose':
-                data_format['header'][3] = 1100
-            if data['queryResult']['allRequiredParamsPresent']:
-                pass
-        except KeyError:
-            print('intent Key Error')
-
-        try:
-            entity_all = data['queryResult']['parameters']
-            data_format['data']['entity'] = {}
-            for k, v in entity_all.items():
-                if v:
-                    data_format['data']['entity'][k] = v
-                    if k == 'any':
-                        data_format['data']['entity']['search'] = remove_stopwords(data_format['data']['entity']['any'])
-                        del data_format['data']['entity']['any']
-
-        except KeyError:
-            print('No Entity detected')
-
-    return json.dumps(data_format)
+        print('level Error')
+    return result

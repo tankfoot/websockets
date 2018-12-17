@@ -21,7 +21,7 @@ async def hello():
             'ws://localhost:8765') as websocket:
 
         while True:
-            quest['header'][1] = int(input("level:"))
+            #quest['header'][1] = int(input("level:"))
             quest['data']['query'] = input("Query:")
 
             await websocket.send(json.dumps(quest))
