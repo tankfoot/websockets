@@ -55,6 +55,7 @@ def remove_stopwords(sentence):
 
 def waze(data):
     data_json = json.loads(data)
+    print(data)
     try:
         query = data_json['data']['query']
         data_format['header'][0] = data_json['header'][0]

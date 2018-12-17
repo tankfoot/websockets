@@ -13,7 +13,6 @@ def manager(data):
         try:
             from container import container
             getoutput("gcloud config set project container-a3c3c")
-            print('level 0')
             result = container(data)
         except ImportError:
             raise ImportError('Import container fail')
@@ -22,7 +21,6 @@ def manager(data):
         try:
             from waze import waze
             getoutput("gcloud config set project maps-75922")
-            print('level 1')
             result = waze(data)
         except ImportError:
             raise ImportError('Import Waze fail')
