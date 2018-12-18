@@ -8,7 +8,7 @@ import json
 import time
 
 quest = {
-            'header': [1111, 0, 1000, int(time.time()), 3, 0],
+            'header': [1111, 1, 1000, int(time.time()), 3, 0],
             'data': {
                 'query': None,
                 'entity': None
