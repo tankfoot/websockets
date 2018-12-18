@@ -1,0 +1,219 @@
+2018-12-15 23:32:25,221 - __main__ - INFO - {"header": [1111, 0, 1000, 1544945541, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-15 23:33:13,248 - __main__ - INFO - {"header": [1111, 1, 1000, 1544945591, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-15 23:33:17,370 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1544945374, 3, 0], "data": {"speech": "KeyError", "entity": {}}}
+2018-12-15 23:36:00,132 - __main__ - INFO - {"header": [1111, 1, 1000, 1544945755, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-15 23:36:02,024 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1544945747, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-15 23:36:08,564 - __main__ - INFO - {"header": [1111, 0, 1000, 1544945755, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-15 23:36:10,046 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1544945747, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 18:04:09,804 - __main__ - INFO - {"header": [1111, 1, 1000, 1545012246, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 18:04:45,502 - __main__ - INFO - {"header": [1111, 1, 1000, 1545012282, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 18:04:47,195 - __main__ - INFO - None
+2018-12-16 18:05:00,812 - __main__ - INFO - {"header": [1111, 0, 1000, 1545012297, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 18:05:03,067 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545012279, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 18:32:05,108 - __main__ - INFO - {"header": [1111, 0, 1000, 1545013921, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 18:32:06,714 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545013915, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 18:32:10,363 - __main__ - INFO - {"header": [1111, 1, 1000, 1545013921, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 18:32:11,971 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545013930, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:04:23,420 - __main__ - INFO - {"header": [1111, 1, 1000, 1545015835, 3, 0], "data": {"query": "navigation to san francisco history museum", "entity": null}}
+2018-12-16 19:04:25,720 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545015863, 3, 46], "data": {"speech": "okay, navigate to san francisco history museum", "entity": {"search": "san francisco history museum"}}}
+2018-12-16 19:06:24,889 - __main__ - INFO - {"header": [1111, 1, 1000, 1545015980, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:06:26,554 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:07:15,489 - __main__ - INFO - {"header": [1111, 1, 1000, 1545016032, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:07:17,140 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:07:32,825 - __main__ - INFO - {"header": [1111, 1, 1000, 1545016032, 3, 0], "data": {"query": "navigate to san jose museum", "entity": null}}
+2018-12-16 19:07:34,548 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545015863, 3, 33], "data": {"speech": "okay, navigate to san jose museum", "entity": {"search": "san jose museum"}}}
+2018-12-16 19:07:51,560 - __main__ - INFO - {"header": [1111, 1, 1000, 1545016032, 3, 0], "data": {"query": "report police hidden", "entity": null}}
+2018-12-16 19:07:53,390 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 26], "data": {"speech": "Ok, Hidden police reported", "entity": {"report-type": "police", "police-type": "Hidden"}}}
+2018-12-16 19:08:10,127 - __main__ - INFO - {"header": [1111, 1, 1000, 1545016032, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:08:12,437 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:08:19,951 - __main__ - INFO - {"header": [1111, 1, 1000, 1545016032, 3, 0], "data": {"query": "navigate to san jose", "entity": null}}
+2018-12-16 19:08:21,427 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545015863, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 19:09:56,259 - __main__ - INFO - {"header": [1111, 1, 1000, 1545016193, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:09:57,749 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545016196, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:24:18,611 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017056, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:24:20,579 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545016196, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:24:27,527 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017056, 3, 0], "data": {"query": "navigate to san jose", "entity": null}}
+2018-12-16 19:24:29,000 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545016196, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 19:25:26,252 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017124, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:25:27,701 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:25:33,105 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017124, 3, 0], "data": {"query": "navigate to san jose", "entity": null}}
+2018-12-16 19:25:34,522 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 19:25:43,207 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017124, 3, 0], "data": {"query": "report for police", "entity": null}}
+2018-12-16 19:25:44,633 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 51], "data": {"speech": "Is the police visible, hidden, or on the other side", "entity": {"report-type": "police"}}}
+2018-12-16 19:25:48,048 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017124, 3, 0], "data": {"query": "visible", "entity": null}}
+2018-12-16 19:25:49,558 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 27], "data": {"speech": "Ok, Visible police reported", "entity": {"police-type": "Visible", "report-type": "police"}}}
+2018-12-16 19:26:04,879 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017124, 3, 0], "data": {"query": "navigate to work", "entity": null}}
+2018-12-16 19:26:06,736 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 22], "data": {"speech": "okay, navigate to work", "entity": {"favourite": "work"}}}
+2018-12-16 19:27:17,797 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017235, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:27:19,204 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:27:44,068 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017235, 3, 0], "data": {"query": "search for walmart", "entity": null}}
+2018-12-16 19:27:45,500 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 19:27:48,716 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017235, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 19:27:50,142 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:27:58,988 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017235, 3, 0], "data": {"query": "stop by san jose", "entity": null}}
+2018-12-16 19:28:00,448 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 19:28:09,052 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017235, 3, 0], "data": {"query": "second", "entity": null}}
+2018-12-16 19:28:10,497 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "Okay, choose 2 without ads", "entity": {"ordinal": 2}}}
+2018-12-16 19:30:18,463 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017416, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:30:19,901 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:30:43,799 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017416, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:30:45,502 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:30:55,710 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017416, 3, 0], "data": {"query": "san jose", "entity": null}}
+2018-12-16 19:30:57,217 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 15], "data": {"speech": "Can you repeat?", "entity": {}}}
+2018-12-16 19:31:04,190 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017416, 3, 0], "data": {"query": "search for san jose", "entity": null}}
+2018-12-16 19:31:05,612 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 19:31:09,598 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017416, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 19:31:11,029 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:31:18,654 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017416, 3, 0], "data": {"query": "stop by walmart", "entity": null}}
+2018-12-16 19:31:20,073 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 19:31:47,061 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017416, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:31:48,436 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:34:23,956 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:34:26,251 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:34:34,179 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "where am i", "entity": null}}
+2018-12-16 19:34:35,614 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 29], "data": {"speech": "Here is your current location", "entity": {}}}
+2018-12-16 19:34:43,681 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "go home", "entity": null}}
+2018-12-16 19:34:45,104 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 22], "data": {"speech": "okay, navigate to home", "entity": {"favourite": "home"}}}
+2018-12-16 19:34:50,220 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "stop by walmart", "entity": null}}
+2018-12-16 19:34:51,949 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 19:35:01,504 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "second", "entity": null}}
+2018-12-16 19:35:02,906 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 2 without ads", "entity": {"ordinal": 2}}}
+2018-12-16 19:35:05,888 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:35:07,288 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:35:14,255 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "stop by san jose", "entity": null}}
+2018-12-16 19:35:15,647 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 19:35:18,746 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "dirst", "entity": null}}
+2018-12-16 19:35:20,259 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 24], "data": {"speech": "Sorry I don't understand", "entity": {}}}
+2018-12-16 19:35:25,709 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 19:35:27,092 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:35:36,377 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "stop by target", "entity": null}}
+2018-12-16 19:35:37,780 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 41], "data": {"speech": "Okay, which target do you want to choose?", "entity": {"search": "target"}}}
+2018-12-16 19:35:44,121 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 19:35:45,516 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:35:52,681 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "stop by Target", "entity": null}}
+2018-12-16 19:35:54,080 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 41], "data": {"speech": "Okay, which Target do you want to choose?", "entity": {"search": "Target"}}}
+2018-12-16 19:35:57,462 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 19:35:58,845 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:36:06,843 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "report police", "entity": null}}
+2018-12-16 19:36:08,234 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 51], "data": {"speech": "Is the police visible, hidden, or on the other side", "entity": {"report-type": "police"}}}
+2018-12-16 19:36:10,675 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "hidden", "entity": null}}
+2018-12-16 19:36:12,057 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 26], "data": {"speech": "Ok, Hidden police reported", "entity": {"report-type": "police", "police-type": "Hidden"}}}
+2018-12-16 19:36:23,712 - __main__ - INFO - {"header": [1111, 1, 1000, 1545017662, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:36:25,102 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:40:39,671 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:40:41,146 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 19:40:51,240 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "navigate to san jose", "entity": null}}
+2018-12-16 19:40:53,128 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 15], "data": {"speech": "Okay, open Waze", "entity": {}}}
+2018-12-16 19:41:07,296 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "open Opentable", "entity": null}}
+2018-12-16 19:41:08,739 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 25], "data": {"speech": "Sorry, I don't understand", "entity": {}}}
+2018-12-16 19:41:13,780 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "open table", "entity": null}}
+2018-12-16 19:41:15,451 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 20], "data": {"speech": "Okay, Open openTable", "entity": {}}}
+2018-12-16 19:41:24,078 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "call mum", "entity": null}}
+2018-12-16 19:41:25,714 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 25], "data": {"speech": "What is the phone-number?", "entity": {}}}
+2018-12-16 19:41:31,715 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "3430203333", "entity": null}}
+2018-12-16 19:41:33,160 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 21], "data": {"speech": "Okay, Call 3430203333", "entity": {}}}
+2018-12-16 19:42:07,122 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 19:42:08,534 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 19:42:22,472 - __main__ - INFO - {"header": [1111, 0, 1000, 1545018038, 3, 0], "data": {"query": "text message", "entity": null}}
+2018-12-16 19:42:24,164 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545017657, 3, 22], "data": {"speech": "Okay, open Message app", "entity": {}}}
+2018-12-16 20:19:05,768 - __main__ - INFO - {"header": [1111, 0, 1000, 1545020343, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:19:07,441 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545020337, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 20:19:46,875 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020384, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:19:48,378 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:20:01,987 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020384, 3, 0], "data": {"query": "navigate to san jose", "entity": null}}
+2018-12-16 20:20:03,465 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020386, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 20:20:14,235 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020384, 3, 0], "data": {"query": "stop by walmart", "entity": null}}
+2018-12-16 20:20:15,707 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545020386, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 20:20:19,507 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020384, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 20:20:21,007 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020386, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 20:20:37,331 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020384, 3, 0], "data": {"query": "stop by santa clara", "entity": null}}
+2018-12-16 20:20:38,807 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545020386, 3, 46], "data": {"speech": "Okay, which santa clara do you want to choose?", "entity": {"search": "santa clara"}}}
+2018-12-16 20:20:44,483 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020384, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 20:20:45,967 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020386, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 20:21:18,700 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020384, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:21:20,188 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:21:33,215 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020491, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:21:34,680 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:21:49,792 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020491, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:21:51,358 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:22:06,556 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020491, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:22:08,001 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:22:27,450 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020491, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:22:28,910 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:23:58,284 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020636, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:23:59,800 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020638, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:24:19,649 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020636, 3, 0], "data": {"query": "navigate to wade county", "entity": null}}
+2018-12-16 20:24:21,120 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020638, 3, 29], "data": {"speech": "okay, navigate to wade county", "entity": {"search": "wade county"}}}
+2018-12-16 20:24:52,250 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020636, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:24:53,672 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020638, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:27:36,111 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020853, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:27:37,523 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:27:45,023 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020853, 3, 0], "data": {"query": "this is jim", "entity": null}}
+2018-12-16 20:27:46,604 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 23], "data": {"speech": "Can you say that again?", "entity": {}}}
+2018-12-16 20:27:54,980 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020853, 3, 0], "data": {"query": "can you navigate to san jose", "entity": null}}
+2018-12-16 20:27:56,397 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 33], "data": {"speech": "okay, navigate to navigate to san", "entity": {"search": "navigate san"}}}
+2018-12-16 20:28:19,975 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020853, 3, 0], "data": {"query": "navigate to san jose history museum", "entity": null}}
+2018-12-16 20:28:21,418 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 41], "data": {"speech": "okay, navigate to san jose history museum", "entity": {"search": "san jose history museum"}}}
+2018-12-16 20:29:05,785 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020942, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:29:07,204 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:29:21,477 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020942, 3, 0], "data": {"query": "navigate to san jose history museum", "entity": null}}
+2018-12-16 20:29:22,913 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 41], "data": {"speech": "okay, navigate to san jose history museum", "entity": {"search": "san jose history museum"}}}
+2018-12-16 20:29:39,569 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020942, 3, 0], "data": {"query": "stop by walmart", "entity": null}}
+2018-12-16 20:29:40,979 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545020856, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 20:29:58,016 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020942, 3, 0], "data": {"query": "stop by san jose", "entity": null}}
+2018-12-16 20:29:59,424 - __main__ - INFO - {"header": [1111, 1, 1000, 1010, 1545020856, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 20:30:04,434 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020942, 3, 0], "data": {"query": "first", "entity": null}}
+2018-12-16 20:30:05,850 - __main__ - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 20:30:19,722 - __main__ - INFO - {"header": [1111, 1, 1000, 1545020942, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:30:21,126 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:31:23,348 - __main__ - INFO - {"header": [1111, 0, 1000, 1545021081, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 20:31:24,924 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545020810, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 20:31:32,750 - __main__ - INFO - {"header": [1111, 0, 1000, 1545021081, 3, 0], "data": {"query": "cal 922", "entity": null}}
+2018-12-16 20:31:34,191 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545020810, 3, 25], "data": {"speech": "Sorry, I don't understand", "entity": {}}}
+2018-12-16 20:31:39,694 - __main__ - INFO - {"header": [1111, 0, 1000, 1545021081, 3, 0], "data": {"query": "call 922", "entity": null}}
+2018-12-16 20:31:41,096 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545020810, 3, 14], "data": {"speech": "Okay, Call 922", "entity": {}}}
+2018-12-16 20:31:50,343 - __main__ - INFO - {"header": [1111, 0, 1000, 1545021081, 3, 0], "data": {"query": "call 7378288888", "entity": null}}
+2018-12-16 20:31:51,768 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545020810, 3, 21], "data": {"speech": "Okay, Call 7378288888", "entity": {}}}
+2018-12-16 20:42:01,668 - __main__ - INFO - {"header": [1111, 0, 1000, 1545021720, 3, 0], "data": {"query": "helo", "entity": null}}
+2018-12-16 20:42:03,146 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545020810, 3, 25], "data": {"speech": "Sorry, I don't understand", "entity": {}}}
+2018-12-16 20:42:10,727 - __main__ - INFO - {"header": [1111, 0, 1000, 1545021720, 3, 0], "data": {"query": "navigate to san jose", "entity": null}}
+2018-12-16 20:42:12,413 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545020810, 3, 15], "data": {"speech": "Okay, open Waze", "entity": {}}}
+2018-12-16 22:06:41,856 - __main__ - INFO - {"header": [1111, 0, 1000, 1545026800, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 22:06:43,342 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545026794, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-16 22:06:51,311 - __main__ - INFO - {"header": [1111, 0, 1000, 1545026800, 3, 0], "data": {"query": "navigation", "entity": null}}
+2018-12-16 22:06:52,705 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545026794, 3, 15], "data": {"speech": "Okay, open Waze", "entity": {}}}
+2018-12-16 22:06:59,407 - __main__ - INFO - {"header": [1111, 0, 1000, 1545026800, 3, 0], "data": {"query": "thank you", "entity": null}}
+2018-12-16 22:07:00,842 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545026794, 3, 25], "data": {"speech": "Sorry, I don't understand", "entity": {}}}
+2018-12-17 12:22:55,037 - __main__ - INFO - {"header": [1111, 0, 1000, 1545078173, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 12:22:55,578 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545078175, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 12:23:04,891 - __main__ - INFO - {"header": [1111, 0, 1000, 1545078173, 3, 0], "data": {"query": "navigation", "entity": null}}
+2018-12-17 12:23:05,214 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545078175, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 12:23:33,842 - __main__ - INFO - {"header": [1111, 1, 1000, 1545078212, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 12:23:35,682 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545078213, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-17 14:23:02,053 - __main__ - INFO - {"header": [1111, 1, 1000, 1545085380, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:23:03,928 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545078213, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-17 14:23:30,325 - __main__ - INFO - {"header": [1111, 0, 1000, 1545085408, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:23:30,643 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545078175, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:25:30,953 - __main__ - INFO - {"header": [1111, 0, 1000, 1545085529, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:25:31,283 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545078175, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:27:44,125 - __main__ - INFO - {"header": [1111, 0, 1000, 1545085662, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:27:44,506 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545085664, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:28:09,549 - __main__ - INFO - {"header": [1111, 0, 1000, 1545085662, 3, 0], "data": {"query": "play some music", "entity": null}}
+2018-12-17 14:28:09,868 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545085664, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:28:52,350 - __main__ - INFO - {"header": [1111, 0, 1000, 1545085731, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:28:52,730 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545085732, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:30:28,358 - __main__ - INFO - {"header": [1111, 0, 1000, 1545085826, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:30:28,744 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545085828, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:33:20,846 - __main__ - INFO - {"header": [1111, 0, 1000, 1545085998, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:33:21,234 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545086000, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:35:35,131 - __main__ - INFO - {"header": [1111, 0, 1000, 1545086133, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:36:03,821 - __main__ - INFO - {"header": [1111, 0, 1000, 1545086162, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:36:04,206 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545086163, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:39:37,300 - __main__ - INFO - {"header": [1111, 0, 1000, 1545086375, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:39:37,682 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545086377, 3, 0], "data": {"speech": null, "entity": {}}}
+2018-12-17 14:41:15,905 - __main__ - INFO - {"header": [1111, 0, 1000, 1545086474, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 14:41:17,851 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545086475, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-17 17:05:37,342 - __main__ - INFO - {"header": [1111, 0, 1000, 1545095135, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 17:05:38,869 - __main__ - INFO - {"header": [1111, 0, 1000, 1000, 1545095137, 3, 26], "data": {"speech": "Hi, This is VUI controller", "entity": {}}}
+2018-12-17 17:06:11,230 - __main__ - INFO - {"header": [1111, 1, 1000, 1545095169, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-17 17:06:12,607 - __main__ - INFO - {"header": [1111, 1, 1000, 1000, 1545095171, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}

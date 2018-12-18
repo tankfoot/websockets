@@ -7,7 +7,7 @@ import websockets
 import json
 
 quest = {
-            'header': [1,2,3,4,5,6],
+            'header': [1,0,0,1,1,1],
             'data': {
                 'query': None,
                 'entity': None

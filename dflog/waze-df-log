@@ -1,0 +1,72 @@
+2018-12-15 23:33:17,370 - main - INFO - {'error': {'code': 401, 'message': 'Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.', 'status': 'UNAUTHENTICATED'}}
+2018-12-15 23:36:02,024 - main - INFO - {'responseId': 'f4f39207-a90a-4d71-913b-04b57d0cdd3b', 'queryResult': {'queryText': 'hello', 'parameters': {}, 'allRequiredParamsPresent': True, 'fulfillmentText': 'Hi! I am Waze.', 'fulfillmentMessages': [{'text': {'text': ['Hi! I am Waze.']}}], 'intent': {'name': 'projects/maps-75922/agent/intents/dee97aa1-e9b1-4f61-b144-fb0453d52584', 'displayName': 'Default Welcome Intent'}, 'intentDetectionConfidence': 1, 'languageCode': 'en'}}
+2018-12-16 19:04:25,720 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545015863, 3, 46], "data": {"speech": "okay, navigate to san francisco history museum", "entity": {"search": "san francisco history museum"}}}
+2018-12-16 19:06:26,554 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:07:17,140 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:07:34,548 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545015863, 3, 33], "data": {"speech": "okay, navigate to san jose museum", "entity": {"search": "san jose museum"}}}
+2018-12-16 19:07:53,390 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 26], "data": {"speech": "Ok, Hidden police reported", "entity": {"report-type": "police", "police-type": "Hidden"}}}
+2018-12-16 19:08:12,437 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545015863, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:08:21,427 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545015863, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 19:09:57,749 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545016196, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:24:20,579 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545016196, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:24:29,000 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545016196, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 19:25:27,700 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:25:34,521 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 19:25:44,633 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 51], "data": {"speech": "Is the police visible, hidden, or on the other side", "entity": {"report-type": "police"}}}
+2018-12-16 19:25:49,558 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 27], "data": {"speech": "Ok, Visible police reported", "entity": {"police-type": "Visible", "report-type": "police"}}}
+2018-12-16 19:26:06,736 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 22], "data": {"speech": "okay, navigate to work", "entity": {"favourite": "work"}}}
+2018-12-16 19:27:19,204 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:27:45,500 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 19:27:50,142 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:28:00,447 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 19:28:10,497 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "Okay, choose 2 without ads", "entity": {"ordinal": 2}}}
+2018-12-16 19:30:19,901 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:30:45,501 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:30:57,216 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 15], "data": {"speech": "Can you repeat?", "entity": {}}}
+2018-12-16 19:31:05,612 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 19:31:11,028 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017126, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:31:20,073 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017126, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 19:31:48,436 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017126, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:34:26,251 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:34:35,614 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 29], "data": {"speech": "Here is your current location", "entity": {}}}
+2018-12-16 19:34:45,103 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 22], "data": {"speech": "okay, navigate to home", "entity": {"favourite": "home"}}}
+2018-12-16 19:34:51,949 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 19:35:02,906 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 2 without ads", "entity": {"ordinal": 2}}}
+2018-12-16 19:35:07,285 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 19:35:15,647 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 19:35:20,259 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 24], "data": {"speech": "Sorry I don't understand", "entity": {}}}
+2018-12-16 19:35:27,092 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:35:37,780 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 41], "data": {"speech": "Okay, which target do you want to choose?", "entity": {"search": "target"}}}
+2018-12-16 19:35:45,515 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:35:54,079 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545017663, 3, 41], "data": {"speech": "Okay, which Target do you want to choose?", "entity": {"search": "Target"}}}
+2018-12-16 19:35:58,844 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545017663, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 19:36:08,234 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 51], "data": {"speech": "Is the police visible, hidden, or on the other side", "entity": {"report-type": "police"}}}
+2018-12-16 19:36:12,057 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 26], "data": {"speech": "Ok, Hidden police reported", "entity": {"report-type": "police", "police-type": "Hidden"}}}
+2018-12-16 19:36:25,102 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545017663, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:19:48,378 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:20:03,465 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020386, 3, 26], "data": {"speech": "okay, navigate to san jose", "entity": {"search": "san jose"}}}
+2018-12-16 20:20:15,707 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545020386, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 20:20:21,007 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020386, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 20:20:38,807 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545020386, 3, 46], "data": {"speech": "Okay, which santa clara do you want to choose?", "entity": {"search": "santa clara"}}}
+2018-12-16 20:20:45,967 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020386, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 20:21:20,188 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:21:34,680 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:21:51,358 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:22:08,001 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:22:28,910 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020386, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:23:59,800 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020638, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:24:21,120 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020638, 3, 29], "data": {"speech": "okay, navigate to wade county", "entity": {"search": "wade county"}}}
+2018-12-16 20:24:53,672 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020638, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:27:37,523 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:27:46,604 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 23], "data": {"speech": "Can you say that again?", "entity": {}}}
+2018-12-16 20:27:56,397 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 33], "data": {"speech": "okay, navigate to navigate to san", "entity": {"search": "navigate san"}}}
+2018-12-16 20:28:21,417 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 41], "data": {"speech": "okay, navigate to san jose history museum", "entity": {"search": "san jose history museum"}}}
+2018-12-16 20:29:07,204 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 20:29:22,913 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 41], "data": {"speech": "okay, navigate to san jose history museum", "entity": {"search": "san jose history museum"}}}
+2018-12-16 20:29:40,979 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545020856, 3, 42], "data": {"speech": "Okay, which walmart do you want to choose?", "entity": {"search": "walmart"}}}
+2018-12-16 20:29:59,424 - main - INFO - {"header": [1111, 1, 1000, 1010, 1545020856, 3, 43], "data": {"speech": "Okay, which san jose do you want to choose?", "entity": {"search": "san jose"}}}
+2018-12-16 20:30:05,849 - main - INFO - {"header": [1111, 1, 1000, 1100, 1545020856, 3, 26], "data": {"speech": "Okay, choose 1 without ads", "entity": {"ordinal": 1}}}
+2018-12-16 20:30:21,126 - main - INFO - {"header": [1111, 1, 1000, 1000, 1545020856, 3, 14], "data": {"speech": "Hi! I am Waze.", "entity": {}}}
+2018-12-16 22:06:41,856 - main - INFO - {"header": [1111, 0, 1000, 1545026800, 3, 0], "data": {"query": "hello", "entity": null}}
+2018-12-16 22:06:51,312 - main - INFO - {"header": [1111, 0, 1000, 1545026800, 3, 0], "data": {"query": "navigation", "entity": null}}
+2018-12-16 22:06:59,408 - main - INFO - {"header": [1111, 0, 1000, 1545026800, 3, 0], "data": {"query": "thank you", "entity": null}}
