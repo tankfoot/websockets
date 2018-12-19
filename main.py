@@ -9,7 +9,7 @@ def manager(data):
     """
     data_json = json.loads(data)
 
-    if data_json['header'][1] == 0 or 3:
+    if data_json['header'][1] == 0:
         try:
             from container import container
             getoutput("gcloud config set project container-a3c3c")
@@ -32,6 +32,14 @@ def manager(data):
             result = opentable(data)
         except ImportError:
             raise ImportError('Import OpenTable fail')
+
+    elif data_json['header'][1] == 3:
+        try:
+            from container import container
+            getoutput("gcloud config set project container-a3c3c")
+            result = container(data)
+        except ImportError:
+            raise ImportError('Import container fail')
 
     else:
         print('level Error')
