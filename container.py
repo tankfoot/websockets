@@ -41,10 +41,13 @@ def container(data):
             data_format['header'][3] = 4000
         if data['queryResult']['intent']['displayName'] == 'container.music':
             data_format['header'][3] = 5000
-        if data['queryResult']['allRequiredParamsPresent']:
-            pass
     except KeyError:
         print('intent Key Error')
 
+    try:
+        if data['queryResult']['allRequiredParamsPresent']:
+            data_format['header'][3] = 3100
+    except KeyError:
+        pass
     data_format['data']['entity'] = data['queryResult']['parameters']
     return json.dumps(data_format)
