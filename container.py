@@ -46,7 +46,8 @@ def container(data):
 
     try:
         if data['queryResult']['allRequiredParamsPresent']:
-            data_format['header'][3] = 3100
+            if data['queryResult']['intent']['displayName'] == 'container.phone':
+                data_format['header'][3] = 3100
     except KeyError:
         pass
     data_format['data']['entity'] = data['queryResult']['parameters']
