@@ -26,8 +26,14 @@ def manager(data):
             raise ImportError('Import Waze fail')
 
     elif data_json['header'][1] == 2:
-        print('openTable')
+        try:
+            from opentable import opentable
+            getoutput("gcloud config set project open-table-2")
+            result = opentable(data)
+        except ImportError:
+            raise ImportError('Import OpenTable fail')
 
     else:
         print('level Error')
+        result = data
     return result

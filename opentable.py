@@ -1,6 +1,7 @@
-import json
 import time
+import json
 from dialogflow_v2 import DialogflowApi
+
 
 data_format = {
                 'header': [0, 0, 0, 0, int(time.time()), 3, 0],
@@ -11,7 +12,7 @@ data_format = {
 }
 
 
-def container(data):
+def opentable(data):
     data_json = json.loads(data)
     print(data)
     try:
@@ -23,24 +24,15 @@ def container(data):
     except KeyError:
         print('in_data: KeyError')
 
-    c = DialogflowApi(session_id=data_json['header'][0])
-    response = c.text_query(query)
+    w = DialogflowApi(session_id=data_json['header'][0])
+    response = w.text_query(query)
     data = response.json()
 
-    data_format['data']['speech'] = data['queryResult']['fulfillmentText']
-    data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
-
     try:
-        if data['queryResult']['intent']['displayName'] == 'container.navigation':
-            data_format['header'][1] = 1
-        if data['queryResult']['intent']['displayName'] == 'container.opentable':
-            data_format['header'][1] = 2
-        if data['queryResult']['intent']['displayName'] == 'container.music':
-            data_format['header'][1] = 3
-        if data['queryResult']['allRequiredParamsPresent']:
-            pass
+        data_format['data']['speech'] = data['queryResult']['fulfillmentText']
+        data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
     except KeyError:
-        print('intent Key Error')
+        data_format['data']['speech'] = 'KeyError'
 
     data_format['data']['entity'] = data['queryResult']['parameters']
     return json.dumps(data_format)
