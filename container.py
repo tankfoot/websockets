@@ -35,8 +35,12 @@ def container(data):
             data_format['header'][1] = 1
         if data['queryResult']['intent']['displayName'] == 'container.opentable':
             data_format['header'][1] = 2
-        if data['queryResult']['intent']['displayName'] == 'container.music':
+        if data['queryResult']['intent']['displayName'] == 'container.phone':
             data_format['header'][1] = 3
+        if data['queryResult']['intent']['displayName'] == 'container.text':
+            data_format['header'][1] = 4
+        if data['queryResult']['intent']['displayName'] == 'container.music':
+            data_format['header'][1] = 5
         if data['queryResult']['allRequiredParamsPresent']:
             pass
     except KeyError:
