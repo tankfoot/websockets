@@ -38,7 +38,7 @@ def container(data):
         if data['queryResult']['intent']['displayName'] == 'container.phone':
             data_format['header'][3] = 3000
         if data['queryResult']['intent']['displayName'] == 'container.text':
-            data_format['header'][3] = 4000
+            data_format['header'][3] = 4100
         if data['queryResult']['intent']['displayName'] == 'container.music':
             data_format['header'][3] = 5000
     except KeyError:
@@ -48,6 +48,8 @@ def container(data):
         if data['queryResult']['allRequiredParamsPresent']:
             if data['queryResult']['intent']['displayName'] == 'container.phone':
                 data_format['header'][3] = 3100
+            if data['queryResult']['intent']['displayName'] == 'container.text':
+                data_format['header'][3] = 4200
     except KeyError:
         pass
     data_format['data']['entity'] = data['queryResult']['parameters']

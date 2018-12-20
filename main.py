@@ -41,6 +41,14 @@ def manager(data):
         except ImportError:
             raise ImportError('Import container fail')
 
+    elif data_json['header'][1] == 4:
+        try:
+            from app.container import container
+            getoutput("gcloud config set project container-a3c3c")
+            result = container(data)
+        except ImportError:
+            raise ImportError('Import container fail')
+
     else:
         print('level Error')
         result = data
