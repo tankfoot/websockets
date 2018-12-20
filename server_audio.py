@@ -7,7 +7,7 @@ import websockets
 import sqlite3
 import json
 import wave
-from dialogflow_v2 import DialogflowApi
+from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 # sqlite_file = '/home/jim/Documents/sqlite3/chat'
 # table_name = 'chat'

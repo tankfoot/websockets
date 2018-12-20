@@ -2,7 +2,7 @@ import time
 import json
 import logging
 import datetime
-from dialogflow_v2 import DialogflowApi
+from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 
 data_format = {

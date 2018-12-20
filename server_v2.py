@@ -6,7 +6,7 @@ import asyncio
 import websockets
 import sqlite3
 import json
-from dialogflow_v1 import DialogflowApi
+from dialogflow_api.dialogflow_v1 import DialogflowApi
 
 sqlite_file = '/home/jim/Documents/sqlite3/dialogflow'
 table_name = 'dialogflow'

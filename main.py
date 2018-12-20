@@ -11,7 +11,7 @@ def manager(data):
 
     if data_json['header'][1] == 0:
         try:
-            from container import container
+            from app.container import container
             getoutput("gcloud config set project container-a3c3c")
             result = container(data)
         except ImportError:
@@ -19,7 +19,7 @@ def manager(data):
 
     elif data_json['header'][1] == 1:
         try:
-            from waze import waze
+            from app.waze import waze
             getoutput("gcloud config set project maps-75922")
             result = waze(data)
         except ImportError:
@@ -27,7 +27,7 @@ def manager(data):
 
     elif data_json['header'][1] == 2:
         try:
-            from opentable import opentable
+            from app.opentable import opentable
             getoutput("gcloud config set project open-table-2")
             result = opentable(data)
         except ImportError:
@@ -35,7 +35,7 @@ def manager(data):
 
     elif data_json['header'][1] == 3:
         try:
-            from container import container
+            from app.container import container
             getoutput("gcloud config set project container-a3c3c")
             result = container(data)
         except ImportError:

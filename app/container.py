@@ -1,6 +1,6 @@
 import json
 import time
-from dialogflow_v2 import DialogflowApi
+from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 data_format = {
                 'header': [0, 0, 0, 0, int(time.time()), 3, 0],

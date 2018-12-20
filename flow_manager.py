@@ -1,5 +1,5 @@
 import json
-from dialogflow_v1 import DialogflowApi
+from dialogflow_api.dialogflow_v1 import DialogflowApi
 
 token_list = {
               'main_page': 'f06ad886f01f4053b13e58116580a090',
