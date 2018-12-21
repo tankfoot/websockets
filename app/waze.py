@@ -4,7 +4,6 @@ import logging
 import datetime
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
-
 data_format = {
                 'header': [0, 0, 0, 0, int(time.time()), 3, 0],
                 'data': {
@@ -13,6 +12,7 @@ data_format = {
                 }
 }
 
+GLOBAL_VAR = 1000
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -55,6 +55,7 @@ def remove_stopwords(sentence):
 
 def waze(data):
     data_json = json.loads(data)
+    global GLOBAL_VAR
     print(data)
     try:
         query = data_json['data']['query']
@@ -78,9 +79,24 @@ def waze(data):
     try:
         if data['queryResult']['intent']['displayName'] == 'waze.report':
             data_format['header'][3] = 1020
+            GLOBAL_VAR = data_format['header'][2]
+        if data['queryResult']['intent']['displayName'] == 'waze.report_police':
+            data_format['header'][3] = 1020
+            if data_format['header'][2] != 1020:
+                GLOBAL_VAR = data_format['header'][2]
+        if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
+            data_format['header'][3] = 1020
+            if data_format['header'][2] != 1020:
+                GLOBAL_VAR = data_format['header'][2]
+        if data['queryResult']['intent']['displayName'] == 'waze.report_crash':
+            data_format['header'][3] = 1020
+            if data_format['header'][2] != 1020:
+                GLOBAL_VAR = data_format['header'][2]
         if data['queryResult']['intent']['displayName'] == 'waze.any':
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.navigation_all':
+            data_format['header'][3] = 1100
+        if data['queryResult']['intent']['displayName'] == 'waze.favourite':
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.stop':
             data_format['header'][3] = 1000
@@ -91,10 +107,19 @@ def waze(data):
             data_format['header'][3] = 1010
         if data['queryResult']['intent']['displayName'] == 'waze.choose':
             data_format['header'][3] = 1100
-        if data['queryResult']['allRequiredParamsPresent']:
-            pass
     except KeyError:
         print('intent Key Error')
+
+    try:
+        if data['queryResult']['allRequiredParamsPresent']:
+            if data['queryResult']['intent']['displayName'] == 'waze.report_police':
+                data_format['header'][3] = GLOBAL_VAR
+            if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
+                data_format['header'][3] = GLOBAL_VAR
+            if data['queryResult']['intent']['displayName'] == 'waze.report_crash':
+                data_format['header'][3] = GLOBAL_VAR
+    except KeyError:
+        pass
 
     try:
         entity_all = data['queryResult']['parameters']
