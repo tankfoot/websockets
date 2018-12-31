@@ -74,7 +74,7 @@ def waze(data):
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
         data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
     except KeyError:
-        data_format['data']['speech'] = 'KeyError'
+        data_format['data']['speech'] = 'No Talk back implemented'
 
     try:
         if data['queryResult']['intent']['displayName'] == 'waze.report':
@@ -119,6 +119,7 @@ def waze(data):
             if data['queryResult']['intent']['displayName'] == 'waze.report_crash':
                 data_format['header'][3] = GLOBAL_VAR
     except KeyError:
+        print('Required Params not shown')
         pass
 
     try:
