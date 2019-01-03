@@ -117,8 +117,6 @@ def waze(data):
         '''
         if data['queryResult']['intent']['displayName'] == 'waze.any':
             data_format['header'][3] = 1100
-        if data['queryResult']['intent']['displayName'] == 'waze.navigation_all':
-            data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.favourite':
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.stop':
@@ -136,6 +134,8 @@ def waze(data):
 
     try:
         if data['queryResult']['allRequiredParamsPresent']:
+            if data['queryResult']['intent']['displayName'] == 'waze.navigation':
+                data_format['header'][3] = 1100
             if data['queryResult']['intent']['displayName'] == 'waze.report_police':
                 data_format['header'][3] = GLOBAL_VAR
             if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
