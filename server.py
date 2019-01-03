@@ -8,6 +8,11 @@ import logging
 import time
 from main import manager
 
+"""
+TODO: logger module to clean logger code for each file
+logging level
+asyncoronize
+"""
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -28,6 +33,9 @@ async def ws_server(ws, path):
             await ws.send(out_data)
         
         except websockets.exceptions.ConnectionClosed:
+            '''
+            TODO: Logging.info
+            '''
             print('{}: user disconnected'.format(int(time.time())))
             break
             

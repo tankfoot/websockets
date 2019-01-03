@@ -4,11 +4,10 @@ from subprocess import getoutput
 import base64
 
 
-
 class DialogflowApi:
-    '''
+    """
     Interface to dialogflow apiv2 request
-    '''
+    """
 
     def __init__(self, session_id='123'):
         self._auth_token = getoutput("gcloud auth application-default print-access-token")

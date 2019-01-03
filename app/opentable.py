@@ -11,6 +11,10 @@ data_format = {
                 }
 }
 
+level_map = {
+    'opentable.main': 2000
+}
+
 
 def opentable(data):
     data_json = json.loads(data)

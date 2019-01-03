@@ -1,10 +1,10 @@
-import os
 import requests
 import json
 
+
 class DialogflowApi:
     '''
-    Interface to dialogflow api request
+    Interface to dialogflow apiv1 request
     '''
 
     def __init__(self, developer_token=None, client_token=None):

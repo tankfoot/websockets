@@ -2,6 +2,11 @@ import json
 from subprocess import getoutput
 
 
+agent_list = {
+    'Voiceplay': 'con'
+}
+
+
 def manager(data):
     """
     :type data: String
@@ -50,6 +55,6 @@ def manager(data):
             raise ImportError('Import container fail')
 
     else:
-        print('level Error')
+        print('level not implemented yet')
         result = data
     return result

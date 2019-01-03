@@ -13,6 +13,18 @@ data_format = {
 }
 
 GLOBAL_VAR = 1000
+
+level_map = {
+    'waze.main': 1000,
+    'waze.report': 1020,
+    'waze.navigation': 1100,
+    'waze.addstop': 1200
+
+
+}
+"""
+TODO: logger file to clean code
+"""
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -21,6 +33,10 @@ dffh = logging.FileHandler('dflog/waze-df-log')
 dffh.setFormatter(formatter)
 logger.addHandler(dffh)
 
+
+"""
+TODO: Maintain the list in a new module inside Waze
+"""
 stopwords = {'themselves', 't', 'why', 'o', 'into', 'to', 'her', "should've",
              'when', 'ours', 're', 'other', 'doesn', "hadn't", 'ourselves',
              'its', 'it', 'are', 'because', 'more', "you've", 'be', 'your',
@@ -77,6 +93,9 @@ def waze(data):
         data_format['data']['speech'] = 'No Talk back implemented'
 
     try:
+        '''
+        TODO: Create a helper function to handle all report request 
+        '''
         if data['queryResult']['intent']['displayName'] == 'waze.report':
             data_format['header'][3] = 1020
             GLOBAL_VAR = data_format['header'][2]
@@ -92,6 +111,10 @@ def waze(data):
             data_format['header'][3] = 1020
             if data_format['header'][2] != 1020:
                 GLOBAL_VAR = data_format['header'][2]
+
+        '''
+        TODO: Create a list of Dialogflow intents will go to navigation page
+        '''
         if data['queryResult']['intent']['displayName'] == 'waze.any':
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.navigation_all':
@@ -100,6 +123,7 @@ def waze(data):
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.stop':
             data_format['header'][3] = 1000
+
         if data['queryResult']['intent']['displayName'] == 'waze.addstop':
             if data_json['header'][2] == 1200:
                 data_format['data']['speech'] = 'Sorry, Waze can only add one stop.'
@@ -122,6 +146,9 @@ def waze(data):
         print('Required Params not shown')
         pass
 
+    """
+    Remove stop words to let Waze search keywords
+    """
     try:
         entity_all = data['queryResult']['parameters']
         data_format['data']['entity'] = {}

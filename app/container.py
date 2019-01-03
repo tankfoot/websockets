@@ -10,10 +10,23 @@ data_format = {
                 }
 }
 
+level_map = {
+    'container.navigation': 1000,
+    'container.opentable': 2000,
+    'container.phone': 3000,
+    'container.phone.done': 3100,
+    'container.text.done': 4100,
+    'container.text': 4000,
+    'container.music': 5000
+}
+
 
 def container(data):
     data_json = json.loads(data)
     print(data)
+    '''
+    TODO: Error handling
+    '''
     try:
         query = data_json['data']['query']
         data_format['header'][0] = data_json['header'][0]
@@ -27,6 +40,9 @@ def container(data):
     response = c.text_query(query)
     data = response.json()
 
+    '''
+    TODO: text pre process if not recognize
+    '''
     data_format['data']['speech'] = data['queryResult']['fulfillmentText']
     data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
 
