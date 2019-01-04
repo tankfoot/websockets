@@ -39,7 +39,7 @@ async def ws_server(ws, path):
             print('{}: user disconnected'.format(int(time.time())))
             break
             
-start_server = websockets.serve(ws_server, 'localhost', 8765, timeout=1000)
+start_server = websockets.serve(ws_server, 'localhost', 8765)
 print('Start listening:')
 
 asyncio.get_event_loop().run_until_complete(start_server)
