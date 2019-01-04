@@ -22,6 +22,7 @@ level_map = {
 
 
 }
+
 """
 TODO: logger file to clean code
 """
@@ -111,6 +112,10 @@ def waze(data):
             data_format['header'][3] = 1020
             if data_format['header'][2] != 1020:
                 GLOBAL_VAR = data_format['header'][2]
+        if data['queryResult']['intent']['displayName'] == 'waze.report_camera':
+            data_format['header'][3] = 1020
+            if data_format['header'][2] != 1020:
+                GLOBAL_VAR = data_format['header'][2]
 
         '''
         TODO: Create a list of Dialogflow intents will go to navigation page
@@ -141,6 +146,8 @@ def waze(data):
             if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
                 data_format['header'][3] = GLOBAL_VAR
             if data['queryResult']['intent']['displayName'] == 'waze.report_crash':
+                data_format['header'][3] = GLOBAL_VAR
+            if data['queryResult']['intent']['displayName'] == 'waze.report_camera':
                 data_format['header'][3] = GLOBAL_VAR
     except KeyError:
         print('Required Params not shown')
