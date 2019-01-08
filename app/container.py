@@ -55,8 +55,6 @@ def container(data):
             data_format['header'][3] = 3000
         if data['queryResult']['intent']['displayName'] == 'container.text':
             data_format['header'][3] = 4000
-        if data['queryResult']['intent']['displayName'] == 'container.music':
-            data_format['header'][3] = 5000
     except KeyError:
         print('intent Key Error')
 
@@ -66,6 +64,12 @@ def container(data):
                 data_format['header'][3] = 3100
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 data_format['header'][3] = 4100
+            if data['queryResult']['intent']['displayName'] == 'container.music' and \
+                    data['queryResult']['parameters']['music-app'] == 'Spotify':
+                data_format['header'][3] = 5000
+            if data['queryResult']['intent']['displayName'] == 'container.music' and \
+                    data['queryResult']['parameters']['music-app'] == 'Pandora':
+                data_format['header'][3] = 6000
     except KeyError:
         pass
     data_format['data']['entity'] = data['queryResult']['parameters']
