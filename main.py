@@ -14,7 +14,9 @@ def manager(data):
     """
     data_json = json.loads(data)
 
-    if data_json['header'][1] == 0:
+    if data_json['header'][1] == 0 or \
+            data_json['header'][1] == 5 or \
+            data_json['header'][1] == 6:
         try:
             from app.container import container
             getoutput("gcloud config set project container-a3c3c")
