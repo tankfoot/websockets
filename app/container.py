@@ -47,8 +47,6 @@ def container(data):
     data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
 
     try:
-        if data['queryResult']['intent']['displayName'] == 'container.navigation':
-            data_format['header'][3] = 1000
         if data['queryResult']['intent']['displayName'] == 'container.opentable':
             data_format['header'][3] = 2000
         if data['queryResult']['intent']['displayName'] == 'container.phone':
@@ -70,6 +68,12 @@ def container(data):
             if data['queryResult']['intent']['displayName'] == 'container.music' and \
                     data['queryResult']['parameters']['music-app'] == 'Pandora':
                 data_format['header'][3] = 6000
+            if data['queryResult']['intent']['displayName'] == 'container.navigation' and \
+                    data['queryResult']['parameters']['nav-app'] == 'Waze':
+                data_format['header'][3] = 1000
+            if data['queryResult']['intent']['displayName'] == 'container.navigation' and \
+                    data['queryResult']['parameters']['nav-app'] == 'Google map':
+                data_format['header'][3] = 7000
     except KeyError:
         pass
     data_format['data']['entity'] = data['queryResult']['parameters']

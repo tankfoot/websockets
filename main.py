@@ -56,6 +56,14 @@ def manager(data):
         except ImportError:
             raise ImportError('Import container fail')
 
+    elif data_json['header'][1] == 7:
+        try:
+            from app.container import container
+            getoutput("gcloud config set project gmap-74a30")
+            result = container(data)
+        except ImportError:
+            raise ImportError('Import container fail')
+
     else:
         print('level not implemented yet')
         result = data
