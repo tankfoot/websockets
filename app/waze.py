@@ -126,6 +126,8 @@ def waze(data):
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.stop':
             data_format['header'][3] = 1000
+        if data['queryResult']['intent']['displayName'] == 'waze.homepage':
+            data_format['header'][3] = 100
 
         if data['queryResult']['intent']['displayName'] == 'waze.addstop':
             if data_json['header'][2] == 1200:
