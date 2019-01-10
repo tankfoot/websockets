@@ -58,4 +58,5 @@ def gmap(data):
         print('Required Params not shown')
         pass
 
+    data_format['data']['entity'] = data['queryResult']['parameters']
     return json.dumps(data_format)
