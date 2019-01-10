@@ -20,9 +20,12 @@ level_map = {
     'container.music': 5000
 }
 
+GLOBAL_VAR_PHONE = ""
+
 
 def container(data):
     data_json = json.loads(data)
+    global GLOBAL_VAR_PHONE
     print(data)
     '''
     TODO: Error handling
@@ -45,14 +48,17 @@ def container(data):
     '''
     data_format['data']['speech'] = data['queryResult']['fulfillmentText']
     data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+    data_format['data']['entity'] = data['queryResult']['parameters']
 
     try:
         if data['queryResult']['intent']['displayName'] == 'container.opentable':
             data_format['header'][3] = 2000
         if data['queryResult']['intent']['displayName'] == 'container.phone':
             data_format['header'][3] = 3000
+            GLOBAL_VAR_PHONE = data['queryResult']['parameters']
         if data['queryResult']['intent']['displayName'] == 'container.phone - yes':
             data_format['header'][3] = 3100
+            data_format['data']['entity'] = GLOBAL_VAR_PHONE
         if data['queryResult']['intent']['displayName'] == 'container.phone - no':
             data_format['header'][3] = 100
         if data['queryResult']['intent']['displayName'] == 'container.text':
@@ -78,5 +84,5 @@ def container(data):
                 data_format['header'][3] = 7000
     except KeyError:
         pass
-    data_format['data']['entity'] = data['queryResult']['parameters']
+
     return json.dumps(data_format)
