@@ -53,8 +53,8 @@ def container(data):
             data_format['header'][3] = 3000
         if data['queryResult']['intent']['displayName'] == 'container.phone - yes':
             data_format['header'][3] = 3100
-            if data['queryResult']['intent']['displayName'] == 'container.phone - no':
-                data_format['header'][3] = 100
+        if data['queryResult']['intent']['displayName'] == 'container.phone - no':
+            data_format['header'][3] = 100
         if data['queryResult']['intent']['displayName'] == 'container.text':
             data_format['header'][3] = 4000
     except KeyError:
