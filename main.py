@@ -58,9 +58,9 @@ def manager(data):
 
     elif data_json['header'][1] == 7:
         try:
-            from app.container import container
+            from app.gmap import gmap
             getoutput("gcloud config set project gmap-74a30")
-            result = container(data)
+            result = gmap(data)
         except ImportError:
             raise ImportError('Import container fail')
 

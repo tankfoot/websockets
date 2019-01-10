@@ -12,17 +12,6 @@ data_format = {
                 }
 }
 
-"""
-TODO: logger file to clean code
-"""
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-now = datetime.datetime.now()
-dffh = logging.FileHandler('dflog/waze-df-log')
-dffh.setFormatter(formatter)
-logger.addHandler(dffh)
-
 
 def gmap(data):
     data_json = json.loads(data)
@@ -37,8 +26,8 @@ def gmap(data):
     except KeyError:
         print('in_data: KeyError')
 
-    w = DialogflowApi(session_id=data_json['header'][0])
-    response = w.text_query(query)
+    g = DialogflowApi(session_id=data_json['header'][0])
+    response = g.text_query(query)
     data = response.json()
 
     try:
@@ -53,14 +42,16 @@ def gmap(data):
         '''
         if data['queryResult']['intent']['displayName'] == 'gmap.stop':
             data_format['header'][3] = 7000
-
+        if data['queryResult']['intent']['displayName'] == 'gmap.nav.fav':
+            data_format['header'][3] = 7100
+        if data['queryResult']['intent']['displayName'] == 'gmap.homepage':
+            data_format['header'][3] = 100
     except KeyError:
         print('intent Key Error')
 
-
     try:
         if data['queryResult']['allRequiredParamsPresent']:
-            if data['queryResult']['intent']['displayName'] == 'waze.navigation':
+            if data['queryResult']['intent']['displayName'] == 'gmap.nav':
                 data_format['header'][3] = 7100
 
     except KeyError:
