@@ -23,6 +23,10 @@ level_map = {
 GLOBAL_VAR_PHONE = ""
 
 
+def phone_format(n):
+    return format(int(n[:-1]), ",").replace(",", "-") + n[-1]
+
+
 def container(data):
     data_json = json.loads(data)
     global GLOBAL_VAR_PHONE
@@ -63,11 +67,18 @@ def container(data):
             data_format['header'][3] = 100
         if data['queryResult']['intent']['displayName'] == 'container.text':
             data_format['header'][3] = 4000
+        if data['queryResult']['intent']['displayName'] == 'container.homepage':
+            data_format['header'][3] = 100
     except KeyError:
         print('intent Key Error')
 
     try:
         if data['queryResult']['allRequiredParamsPresent']:
+            if data['queryResult']['intent']['displayName'] == 'container.phone':
+                data_format['header'][3] = 3000
+                GLOBAL_VAR_PHONE = data['queryResult']['parameters']
+                data_format['data']['speech'] = 'Okay is your phone number {}'.format(
+                    phone_format(data['queryResult']['parameters']['phone-number']))
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 data_format['header'][3] = 4100
             if data['queryResult']['intent']['displayName'] == 'container.music' and \
