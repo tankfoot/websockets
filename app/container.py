@@ -21,6 +21,7 @@ level_map = {
 }
 
 GLOBAL_VAR_PHONE = ""
+GLOBAL_VAR_TEXT = ""
 
 
 def phone_format(n):
@@ -30,6 +31,7 @@ def phone_format(n):
 def container(data):
     data_json = json.loads(data)
     global GLOBAL_VAR_PHONE
+    global GLOBAL_VAR_TEXT
     print(data)
     '''
     TODO: Error handling
@@ -67,6 +69,10 @@ def container(data):
             data_format['header'][3] = 100
         if data['queryResult']['intent']['displayName'] == 'container.text':
             data_format['header'][3] = 4000
+            GLOBAL_VAR_TEXT = data['queryResult']['parameters']
+        if data['queryResult']['intent']['displayName'] == 'container.text - send':
+            data_format['header'][3] = 4100
+            data_format['data']['entity'] = GLOBAL_VAR_TEXT
         if data['queryResult']['intent']['displayName'] == 'container.homepage':
             data_format['header'][3] = 100
     except KeyError:
@@ -79,8 +85,7 @@ def container(data):
                 GLOBAL_VAR_PHONE = data['queryResult']['parameters']
                 data_format['data']['speech'] = 'Okay is your phone number {}'.format(
                     phone_format(data['queryResult']['parameters']['phone-number']))
-            if data['queryResult']['intent']['displayName'] == 'container.text':
-                data_format['header'][3] = 4100
+
             if data['queryResult']['intent']['displayName'] == 'container.music' and \
                     data['queryResult']['parameters']['music-app'] == 'Spotify':
                 data_format['header'][3] = 5000
