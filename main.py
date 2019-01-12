@@ -62,7 +62,7 @@ def manager(data):
             getoutput("gcloud config set project gmap-74a30")
             result = gmap(data)
         except ImportError:
-            raise ImportError('Import container fail')
+            raise ImportError('Import gmap fail')
 
     else:
         print('level not implemented yet')

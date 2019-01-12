@@ -46,7 +46,7 @@ class DialogflowApi:
     '''JSON Requests and Response'''
     def _json_get(self, endpoint):
         response = requests.get(endpoint, headers=self._dev_header)
-        logger.debug('Response from {}: {}'.format(endpoint, response))
+#        logger.debug('Response from {}: {}'.format(endpoint, response))
         return response.json()
 
     def _json_post(self, endpoint, data):
