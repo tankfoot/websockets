@@ -16,6 +16,9 @@ data_format = {
 GLOBAL_VAR = 1000
 GLOBAL_OPENTABLE = 0
 GLOBAL_MUSIC = 0
+GLOBAL_PHONE = 0
+GLOBAL_TEXT = 0
+GLOBAL_RESPONSE = ''
 
 level_map = {
     'waze.main': 1000,
@@ -77,7 +80,10 @@ def waze(d):
     data_json = json.loads(d)
     global GLOBAL_VAR
     global GLOBAL_OPENTABLE
+    global GLOBAL_PHONE
     global GLOBAL_MUSIC
+    global GLOBAL_RESPONSE
+    global GLOBAL_TEXT
     try:
         query = data_json['data']['query']
         data_format['header'][0] = data_json['header'][0]
@@ -123,17 +129,48 @@ def waze(d):
 
         if data['queryResult']['intent']['displayName'] == 'Default Fallback Intent':
             t = getoutput('gcloud config set project container-a3c3c')
-            c = DialogflowApi(session_id='123')
+            c = DialogflowApi(session_id=data_json['header'][0])
             response = c.text_query(query)
             data2 = response.json()
-            print(data2)
+
             if data2['queryResult']['intent']['displayName'] == 'container.opentable':
                 data_format['data']['speech'] = 'Do you want to switch to OpenTable?'
                 GLOBAL_OPENTABLE = 1
+                GLOBAL_RESPONSE = data2['queryResult']['fulfillmentText']
+            if data2['queryResult']['intent']['displayName'] == 'container.phone':
+                data_format['data']['speech'] = 'Do you want to switch to phone call?'
+                GLOBAL_RESPONSE = data2['queryResult']['fulfillmentText']
+                GLOBAL_PHONE = 1
+            if data2['queryResult']['intent']['displayName'] == 'container.text':
+                data_format['data']['speech'] = 'Do you want to switch to text message?'
+                GLOBAL_RESPONSE = data2['queryResult']['fulfillmentText']
+                GLOBAL_TEXT = 1
 
         if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
             data_format['header'][3] = 2000
-            data_format['data']['speech'] = 'Okay, OpenTable'
+            data_format['data']['speech'] = GLOBAL_RESPONSE
+            GLOBAL_OPENTABLE == 0
+
+        if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
+            data_format['data']['speech'] = 'Sure, Stay Waze'
+            GLOBAL_OPENTABLE == 0
+
+        if GLOBAL_PHONE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
+            data_format['header'][3] = 3000
+            data_format['data']['speech'] = GLOBAL_RESPONSE
+            GLOBAL_PHONE == 0
+
+        if GLOBAL_TEXT == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
+            data_format['data']['speech'] = 'Sure, Stay Waze'
+            GLOBAL_PHONE == 0
+
+        if GLOBAL_TEXT == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
+            data_format['header'][3] = 4000
+            data_format['data']['speech'] = GLOBAL_RESPONSE
+            GLOBAL_OPENTABLE == 0
+
+        if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
+            data_format['data']['speech'] = 'Sure, Stay Waze'
             GLOBAL_OPENTABLE == 0
 
         '''
@@ -162,11 +199,6 @@ def waze(d):
         if data['queryResult']['allRequiredParamsPresent']:
             if data['queryResult']['intent']['displayName'] == 'waze.navigation':
                 data_format['header'][3] = 1100
-            if data['queryResult']['intent']['displayName'] == 'waze.music':
-                if data['queryResult']['parameters']['music-app'] == 'Pandora':
-                    data_format['header'][3] = 6000
-                if data['queryResult']['parameters']['music-app'] == 'Spotify':
-                    data_format['header'][3] = 5000
             if data['queryResult']['intent']['displayName'] == 'waze.report_police':
                 data_format['header'][3] = GLOBAL_VAR
             if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':

@@ -38,5 +38,7 @@ def opentable(data):
     except KeyError:
         data_format['data']['speech'] = 'KeyError'
 
+    if data['queryResult']['intent']['displayName'] == 'opentable.homepage':
+        data_format['header'][3] = 100
     data_format['data']['entity'] = data['queryResult']['parameters']
     return json.dumps(data_format)

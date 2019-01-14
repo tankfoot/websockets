@@ -31,7 +31,13 @@ class DialogflowApi:
         return '{}projects/{}/agent/sessions/{}:detectIntent'.format(self._base_url, self._project_id, self._session_id)
 
     @property
-    def _delete_url(self):
+    def _create_contexts_url(self):
+        if self._project_id is None:
+            raise ValueError('No gcloud project opened.')
+        return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id)
+
+    @property
+    def _delete_contexts_url(self):
         if self._project_id is None:
             raise ValueError('No gcloud project opened.')
         return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id)
@@ -68,5 +74,12 @@ class DialogflowApi:
 
     def delete_context(self):
         data = {}
-        response = requests.delete(self._delete_url, data=json.dumps(data))
+        response = requests.delete(self._delete_contexts_url, data=json.dumps(data))
+        return response
+
+    def create_context(self, context_name):
+        data = {
+            "name": context_name
+        }
+        response = requests.post(self._create_contexts_url, data=json.dumps(data))
         return response
