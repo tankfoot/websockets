@@ -2,6 +2,7 @@ import time
 import json
 import logging
 import datetime
+from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 data_format = {
@@ -13,6 +14,8 @@ data_format = {
 }
 
 GLOBAL_VAR = 1000
+GLOBAL_OPENTABLE = 0
+GLOBAL_MUSIC = 0
 
 level_map = {
     'waze.main': 1000,
@@ -70,10 +73,11 @@ def remove_stopwords(sentence):
     return filtered_sentence
 
 
-def waze(data):
-    data_json = json.loads(data)
+def waze(d):
+    data_json = json.loads(d)
     global GLOBAL_VAR
-    print(data)
+    global GLOBAL_OPENTABLE
+    global GLOBAL_MUSIC
     try:
         query = data_json['data']['query']
         data_format['header'][0] = data_json['header'][0]
@@ -117,6 +121,21 @@ def waze(data):
             if data_format['header'][2] != 1020:
                 GLOBAL_VAR = data_format['header'][2]
 
+        if data['queryResult']['intent']['displayName'] == 'Default Fallback Intent':
+            t = getoutput('gcloud config set project container-a3c3c')
+            c = DialogflowApi(session_id='123')
+            response = c.text_query(query)
+            data2 = response.json()
+            print(data2)
+            if data2['queryResult']['intent']['displayName'] == 'container.opentable':
+                data_format['data']['speech'] = 'Do you want to switch to OpenTable?'
+                GLOBAL_OPENTABLE = 1
+
+        if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
+            data_format['header'][3] = 2000
+            data_format['data']['speech'] = 'Okay, OpenTable'
+            GLOBAL_OPENTABLE == 0
+
         '''
         TODO: Create a list of Dialogflow intents will go to navigation page
         '''
@@ -143,6 +162,11 @@ def waze(data):
         if data['queryResult']['allRequiredParamsPresent']:
             if data['queryResult']['intent']['displayName'] == 'waze.navigation':
                 data_format['header'][3] = 1100
+            if data['queryResult']['intent']['displayName'] == 'waze.music':
+                if data['queryResult']['parameters']['music-app'] == 'Pandora':
+                    data_format['header'][3] = 6000
+                if data['queryResult']['parameters']['music-app'] == 'Spotify':
+                    data_format['header'][3] = 5000
             if data['queryResult']['intent']['displayName'] == 'waze.report_police':
                 data_format['header'][3] = GLOBAL_VAR
             if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':

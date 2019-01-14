@@ -18,9 +18,9 @@ def manager(data):
             data_json['header'][1] == 5 or \
             data_json['header'][1] == 6:
         try:
-            from app.container import container
-            getoutput("gcloud config set project container-a3c3c")
-            result = container(data)
+            from app.container import Container
+            a = Container(data)
+            result = a.get_dest_lvl()
         except ImportError:
             raise ImportError('Import container fail')
 
@@ -42,17 +42,17 @@ def manager(data):
 
     elif data_json['header'][1] == 3:
         try:
-            from app.container import container
-            getoutput("gcloud config set project container-a3c3c")
-            result = container(data)
+            from app.container import Container
+            a = Container(data)
+            result = a.get_dest_lvl()
         except ImportError:
             raise ImportError('Import container fail')
 
     elif data_json['header'][1] == 4:
         try:
-            from app.container import container
-            getoutput("gcloud config set project container-a3c3c")
-            result = container(data)
+            from app.container import Container
+            a = Container(data)
+            result = a.get_dest_lvl()
         except ImportError:
             raise ImportError('Import container fail')
 
