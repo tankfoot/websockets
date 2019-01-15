@@ -145,34 +145,46 @@ def waze(d):
                 data_format['data']['speech'] = 'Do you want to switch to text message?'
                 GLOBAL_RESPONSE = data2['queryResult']['fulfillmentText']
                 GLOBAL_TEXT = 1
+            if data2['queryResult']['intent']['displayName'] == 'container.music':
+                data_format['data']['speech'] = 'Do you want to switch to Music?'
+                GLOBAL_RESPONSE = data2['queryResult']['fulfillmentText']
+                GLOBAL_MUSIC = 1
 
         if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
             data_format['header'][3] = 2000
             data_format['data']['speech'] = GLOBAL_RESPONSE
-            GLOBAL_OPENTABLE == 0
+            GLOBAL_OPENTABLE = 0
 
         if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
             data_format['data']['speech'] = 'Sure, Stay Waze'
-            GLOBAL_OPENTABLE == 0
+            GLOBAL_OPENTABLE = 0
 
         if GLOBAL_PHONE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
             data_format['header'][3] = 3000
             data_format['data']['speech'] = GLOBAL_RESPONSE
-            GLOBAL_PHONE == 0
+            GLOBAL_PHONE = 0
 
-        if GLOBAL_TEXT == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
+        if GLOBAL_PHONE == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
             data_format['data']['speech'] = 'Sure, Stay Waze'
-            GLOBAL_PHONE == 0
+            GLOBAL_PHONE = 0
 
         if GLOBAL_TEXT == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
             data_format['header'][3] = 4000
             data_format['data']['speech'] = GLOBAL_RESPONSE
-            GLOBAL_OPENTABLE == 0
+            GLOBAL_TEXT = 0
 
-        if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
+        if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
             data_format['data']['speech'] = 'Sure, Stay Waze'
-            GLOBAL_OPENTABLE == 0
+            GLOBAL_TEXT = 0
 
+        if GLOBAL_MUSIC == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
+            data_format['header'][3] = 100
+            data_format['data']['speech'] = GLOBAL_RESPONSE
+            GLOBAL_MUSIC = 0
+
+        if GLOBAL_MUSIC == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
+            data_format['data']['speech'] = 'Sure, Stay Waze'
+            GLOBAL_MUSIC = 0
         '''
         TODO: Create a list of Dialogflow intents will go to navigation page
         '''
