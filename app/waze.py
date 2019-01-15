@@ -180,7 +180,7 @@ def waze(d):
             data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.favourite':
             data_format['header'][3] = 1100
-        if data['queryResult']['intent']['displayName'] == 'waze.stop':
+        if data['queryResult']['intent']['displayName'] == 'waze.stop - yes':
             data_format['header'][3] = 1000
         if data['queryResult']['intent']['displayName'] == 'waze.homepage':
             data_format['header'][3] = 100
