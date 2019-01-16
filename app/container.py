@@ -78,6 +78,8 @@ class Container:
                 if data['queryResult']['intent']['displayName'] == 'container.navigation' and \
                         data['queryResult']['parameters']['nav-app'] == 'Google map':
                     d = 7000
+                    if data['queryResult']['parameters']['any']:
+                        d = 7100
         except KeyError:
             pass
 

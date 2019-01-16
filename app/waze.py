@@ -185,6 +185,7 @@ def waze(d):
         if GLOBAL_MUSIC == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
             data_format['data']['speech'] = 'Sure, Stay Waze'
             GLOBAL_MUSIC = 0
+
         '''
         TODO: Create a list of Dialogflow intents will go to navigation page
         '''
