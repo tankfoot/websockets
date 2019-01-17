@@ -75,6 +75,11 @@ class Container:
                 if data['queryResult']['intent']['displayName'] == 'container.navigation' and \
                         data['queryResult']['parameters']['nav-app'] == 'Waze':
                     d = 1000
+                    if data['queryResult']['parameters']['any']:
+                        d = 1100
+                        from .waze import remove_stopwords
+                        self._entity = {'search': remove_stopwords(data['queryResult']['parameters']['any'])}
+
                 if data['queryResult']['intent']['displayName'] == 'container.navigation' and \
                         data['queryResult']['parameters']['nav-app'] == 'Google map':
                     d = 7000
