@@ -49,7 +49,7 @@ class Container:
                 self._entity = {'phone-number': data['queryResult']['fulfillmentText']}
                 self._speech = 'Okay'
             if data['queryResult']['intent']['displayName'] == 'container.phone - no':
-                d = 100
+                d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
             if data['queryResult']['intent']['displayName'] == 'container.text - send':
