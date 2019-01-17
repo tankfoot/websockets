@@ -76,7 +76,7 @@ class Container:
                         data['queryResult']['parameters']['nav-app'] == 'Waze':
                     d = 1000
                     if data['queryResult']['parameters']['any']:
-                        d = 1000           #1100 when ready
+                        d = 1100
                         from .waze import remove_stopwords
                         self._entity = {'search': remove_stopwords(data['queryResult']['parameters']['any'])}
 
@@ -84,7 +84,7 @@ class Container:
                         data['queryResult']['parameters']['nav-app'] == 'Google map':
                     d = 7000
                     if data['queryResult']['parameters']['any']:
-                        d = 7000        #7100 when ready
+                        d = 7100
         except KeyError:
             pass
 
