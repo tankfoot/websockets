@@ -40,7 +40,7 @@ def gmap(data):
         '''
         TODO: Create a helper function to handle all report request 
         '''
-        if data['queryResult']['intent']['displayName'] == 'gmap.stop':
+        if data['queryResult']['intent']['displayName'] == 'gmap.stop - yes':
             data_format['header'][3] = 7000
         if data['queryResult']['intent']['displayName'] == 'gmap.nav.fav':
             data_format['header'][3] = 7100
