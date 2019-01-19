@@ -16,7 +16,7 @@ asyncoronize
 """
 
 logger = logging.getLogger(__name__)
-setup_logging(default_path='log/logging.json')
+setup_logging(default_path='utils/logging.json')
 
 
 async def ws_server(ws, path):
