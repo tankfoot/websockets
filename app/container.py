@@ -1,7 +1,11 @@
 import json
 import time
+from utils.log_utils import setup_logging
+import logging
 from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
+
+logger = logging.getLogger(__name__)
 
 
 class Container:
@@ -33,6 +37,8 @@ class Container:
         c = DialogflowApi(session_id=self._header[0])
         response = c.text_query(self._query)
         data = response.json()
+        setup_logging(default_path='log/df-logging.json')
+        logging.info(data)
 
         self._speech = data['queryResult']['fulfillmentText']
         self._header[3] = int(time.time())
