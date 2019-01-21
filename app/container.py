@@ -32,7 +32,6 @@ class Container:
         return self._header.insert(3, dest)
 
     def get_dest_lvl(self):
-        d = 100
         self.in_data_helper()
         c = DialogflowApi(session_id=self._header[0])
         response = c.text_query(self._query)
@@ -41,6 +40,7 @@ class Container:
         #dflogger.info(data)
 
         self._speech = data['queryResult']['fulfillmentText']
+        d = self._header[2]
         self._header[3] = int(time.time())
         self._header[5] = len(data['queryResult']['fulfillmentText'])
         self._entity = data['queryResult']['parameters']
