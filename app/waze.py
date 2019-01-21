@@ -1,7 +1,6 @@
 import time
 import json
 import logging
-from utils.log_utils import setup_logging
 from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
@@ -28,8 +27,6 @@ level_map = {
 
 
 }
-
-logger = logging.getLogger(__name__)
 
 """
 TODO: Maintain the list in a new module inside Waze
@@ -86,8 +83,6 @@ def waze(d):
     w = DialogflowApi(session_id=data_json['header'][0])
     response = w.text_query(query)
     data = response.json()
-    setup_logging(default_path='utils/df-logging.json')
-    logger.info(data)
 
     try:
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
