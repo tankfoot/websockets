@@ -27,7 +27,6 @@ async def ws_server(ws, path):
             in_data = await ws.recv()
             logging.info(in_data)
             out_data = manager(in_data)
-            setup_logging(default_path='utils/logging.json')
             logger.info(out_data)
             await ws.send(out_data)
         
