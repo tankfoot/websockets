@@ -7,6 +7,9 @@ from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 #dflogger = logging.getLogger(__name__)
 
+MIC = True
+TEMP = ''
+
 
 class Container:
 
@@ -32,6 +35,8 @@ class Container:
         return self._header.insert(3, dest)
 
     def get_dest_lvl(self):
+        global MIC
+        global TEMP
         self.in_data_helper()
         c = DialogflowApi(session_id=self._header[0])
         response = c.text_query(self._query)
@@ -58,6 +63,8 @@ class Container:
                 d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
+            if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
+                d = 100
             if data['queryResult']['intent']['displayName'] == 'container.text - send':
                 d = 4100
                 t = data['queryResult']['fulfillmentText'].split(' ')
@@ -65,6 +72,9 @@ class Container:
                 self._speech = 'Okay, send the message'
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
+            if data['queryResult']['intent']['displayName'] == 'container.micoff':
+                MIC = False
+                TEMP = self.out_data_helper()
             if data['queryResult']['allRequiredParamsPresent']:
                 if data['queryResult']['intent']['displayName'] == 'container.phone':
                     d = 3000
@@ -95,24 +105,6 @@ class Container:
             pass
 
         self.insert_destination(d)
-        return self.out_data_helper()
-
-    def level_check(self):
-        c = DialogflowApi(session_id=123)
-        response = c.text_query(self._query)
-        data = response.json()
-
-        try:
-            if data['queryResult']['intent']['displayName'] == 'container.opentable':
-                self._speech = 'You want to switch to OpenTable app?'
-            if data['queryResult']['intent']['displayName'] == 'container.phone':
-                self._speech = 'You want to switch to phone call?'
-            if data['queryResult']['intent']['displayName'] == 'container.text':
-                self._speech = 'You want to switch to text message?'
-
-        except KeyError:
-            pass
-
         return self.out_data_helper()
 
     def out_data_helper(self):
