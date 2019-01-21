@@ -61,7 +61,7 @@ class Container:
             if data['queryResult']['intent']['displayName'] == 'container.text - send':
                 d = 4100
                 t = data['queryResult']['fulfillmentText'].split(' ')
-                self._entity = {'phone-number': t[0], 'any': t[1]}
+                self._entity = {'phone-number': t[0], 'any': ' '.join(t[1:])}
                 self._speech = 'Okay, send the message'
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
