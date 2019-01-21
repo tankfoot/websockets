@@ -1,7 +1,7 @@
 import time
 import json
 import logging
-import datetime
+from utils.log_utils import setup_logging
 from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
@@ -29,17 +29,7 @@ level_map = {
 
 }
 
-"""
-TODO: logger file to clean code
-"""
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-now = datetime.datetime.now()
-dffh = logging.FileHandler('dflog/waze-df-log')
-dffh.setFormatter(formatter)
-logger.addHandler(dffh)
-
 
 """
 TODO: Maintain the list in a new module inside Waze
@@ -96,6 +86,8 @@ def waze(d):
     w = DialogflowApi(session_id=data_json['header'][0])
     response = w.text_query(query)
     data = response.json()
+    setup_logging(default_path='utils/df-logging.json')
+    logger.info(data)
 
     try:
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
@@ -132,6 +124,7 @@ def waze(d):
             c = DialogflowApi(session_id=data_json['header'][0])
             response = c.text_query(query)
             data2 = response.json()
+            logging.info(data2)
 
             if data2['queryResult']['intent']['displayName'] == 'container.opentable':
                 data_format['data']['speech'] = 'Do you want to switch to OpenTable?'

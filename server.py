@@ -5,6 +5,7 @@
 import asyncio
 import websockets
 import logging
+from utils.log_utils import setup_logging
 import time
 from main import manager
 
@@ -13,23 +14,21 @@ TODO: logger module to clean logger code for each file
 logging level
 asyncoronize
 """
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-fh = logging.FileHandler('log/manager.log')
-fh.setFormatter(formatter)
-logger.addHandler(fh)
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+setup_logging(default_path='utils/logging.json')
 
 
 async def ws_server(ws, path):
-
     while True:
         try:
             in_data = await ws.recv()
-            logger.info(in_data)
+            logging.info(in_data)
             out_data = manager(in_data)
+            setup_logging(default_path='utils/logging.json')
             logger.info(out_data)
-            print(out_data)
             await ws.send(out_data)
         
         except websockets.exceptions.ConnectionClosed:
