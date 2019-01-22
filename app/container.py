@@ -7,8 +7,7 @@ from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 #dflogger = logging.getLogger(__name__)
 
-MIC = True
-TEMP = ''
+MIC = {}
 
 
 class Container:
@@ -73,8 +72,7 @@ class Container:
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
             if data['queryResult']['intent']['displayName'] == 'container.micoff':
-                MIC = False
-                TEMP = self.out_data_helper()
+                MIC[self._header[0]] = self.out_data_helper()
             if data['queryResult']['allRequiredParamsPresent']:
                 if data['queryResult']['intent']['displayName'] == 'container.phone':
                     d = 3000
