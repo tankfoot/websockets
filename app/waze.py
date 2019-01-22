@@ -119,7 +119,7 @@ def waze(d):
             c = DialogflowApi(session_id=data_json['header'][0])
             response = c.text_query(query)
             data2 = response.json()
-            logging.info(data2)
+            #logging.info(data2)
 
             if data2['queryResult']['intent']['displayName'] == 'container.opentable':
                 data_format['data']['speech'] = 'Do you want to switch to OpenTable?'
