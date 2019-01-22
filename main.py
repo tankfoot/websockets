@@ -3,11 +3,6 @@ from subprocess import getoutput
 from app import container
 
 
-agent_list = {
-    'Voiceplay': 'con'
-}
-
-
 def manager(data):
     """
     :type data: String
@@ -15,7 +10,7 @@ def manager(data):
     """
     data_json = json.loads(data)
 
-    if container.MIC:
+    if data_json['header'][0] not in container.MIC:
         if data_json['header'][1] == 0 or \
                 data_json['header'][1] == 5 or \
                 data_json['header'][1] == 6:
@@ -72,10 +67,10 @@ def manager(data):
     else:
         command = ['start mic', 'start microphone']
         if data_json['data']['query'] in command:
-            j = json.loads(container.TEMP)
+            j = json.loads(container.MIC[data_json['header'][0]])
             j['data']['speech'] = 'Welcome back'
             result = json.dumps(j)
-            container.MIC = True
+            del container.MIC[j['header'][0]]
         else:
             result = ''
     return result
