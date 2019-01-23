@@ -195,7 +195,7 @@ def waze(d):
             GLOBAL_MUSIC = 0
 
         if GLOBAL_MIC == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
-            data_format['header'][3] = 420
+            data_format['header'][3] = 400
             data_format['data']['speech'] = 'Okay, Mic off'
             from .container import MIC
             MIC[data_format['header'][0]] = json.dumps(data_format)
