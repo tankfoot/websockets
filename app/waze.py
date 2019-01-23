@@ -63,6 +63,21 @@ def remove_stopwords(sentence):
     return filtered_sentence
 
 
+def entity_formatter():
+    favourite = ['home', 'work']
+    try:
+        if data_format['data']['entity']['any'] in favourite:
+            data_format['data']['entity']['favourite'] = data_format['data']['entity']['any']
+            del data_format['data']['entity']['any']
+        else:
+            data_format['data']['entity']['search'] = remove_stopwords(data_format['data']['entity']['any'])
+            del data_format['data']['entity']['any']
+    except KeyError:
+        print('No Entity detected')
+
+    return
+
+
 def waze(d):
     data_json = json.loads(d)
     global GLOBAL_VAR
@@ -87,6 +102,7 @@ def waze(d):
     try:
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
         data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+        data_format['data']['entity'] = data['queryResult']['parameters']
     except KeyError:
         data_format['data']['speech'] = 'No Talk back implemented'
 
@@ -115,7 +131,7 @@ def waze(d):
                 GLOBAL_VAR = data_format['header'][2]
 
         if data['queryResult']['intent']['displayName'] == 'Default Fallback Intent':
-            t = getoutput('gcloud config set project container-a3c3c')
+            getoutput('gcloud config set project container-a3c3c')
             c = DialogflowApi(session_id=data_json['header'][0])
             response = c.text_query(query)
             data2 = response.json()
@@ -177,12 +193,10 @@ def waze(d):
         '''
         TODO: Create a list of Dialogflow intents will go to navigation page
         '''
-        if data['queryResult']['intent']['displayName'] == 'waze.any':
-            data_format['header'][3] = 1100
-        if data['queryResult']['intent']['displayName'] == 'waze.favourite':
-            data_format['header'][3] = 1100
         if data['queryResult']['intent']['displayName'] == 'waze.stop - yes':
             data_format['header'][3] = 1000
+            data_format['data']['entity'] = {'stop_navigation': True}
+            print(json.dumps(data_format))
         if data['queryResult']['intent']['displayName'] == 'waze.homepage':
             data_format['header'][3] = 100
 
@@ -200,6 +214,7 @@ def waze(d):
         if data['queryResult']['allRequiredParamsPresent']:
             if data['queryResult']['intent']['displayName'] == 'waze.navigation':
                 data_format['header'][3] = 1100
+                entity_formatter()
             if data['queryResult']['intent']['displayName'] == 'waze.report_police':
                 data_format['header'][3] = GLOBAL_VAR
             if data['queryResult']['intent']['displayName'] == 'waze.report_traffic':
@@ -211,21 +226,5 @@ def waze(d):
     except KeyError:
         print('Required Params not shown')
         pass
-
-    """
-    Remove stop words to let Waze search keywords
-    """
-    try:
-        entity_all = data['queryResult']['parameters']
-        data_format['data']['entity'] = {}
-        for k, v in entity_all.items():
-            if v:
-                data_format['data']['entity'][k] = v
-                if k == 'any':
-                    data_format['data']['entity']['search'] = remove_stopwords(data_format['data']['entity']['any'])
-                    del data_format['data']['entity']['any']
-
-    except KeyError:
-        print('No Entity detected')
 
     return json.dumps(data_format)

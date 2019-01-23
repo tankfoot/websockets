@@ -65,9 +65,10 @@ def manager(data):
             print('level not implemented yet')
             result = data
     else:
-        command = ['start mic', 'start microphone']
+        command = ['start mic', 'start microphone', 'turn on mic', 'turn on microphone']
         if data_json['data']['query'] in command:
             j = json.loads(container.MIC[data_json['header'][0]])
+            j['header'].insert(3, 410)
             j['data']['speech'] = 'Welcome back'
             result = json.dumps(j)
             del container.MIC[j['header'][0]]

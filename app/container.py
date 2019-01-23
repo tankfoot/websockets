@@ -22,7 +22,10 @@ class Container:
 
     def in_data_helper(self):
         j = json.loads(self._data)
-        self._query = j['data']['query']
+        try:
+            self._query = j['data']['query']
+        except KeyError:
+            logging.DEBUG('No query Key found in data input')
         self._header = j['header']
         return
 
@@ -35,7 +38,6 @@ class Container:
 
     def get_dest_lvl(self):
         global MIC
-        global TEMP
         self.in_data_helper()
         c = DialogflowApi(session_id=self._header[0])
         response = c.text_query(self._query)
@@ -71,8 +73,9 @@ class Container:
                 self._speech = 'Okay, send the message'
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
-            if data['queryResult']['intent']['displayName'] == 'container.micoff':
+            if data['queryResult']['intent']['displayName'] == 'container.micoff - yes':
                 MIC[self._header[0]] = self.out_data_helper()
+                d = 400
             if data['queryResult']['allRequiredParamsPresent']:
                 if data['queryResult']['intent']['displayName'] == 'container.phone':
                     d = 3000
