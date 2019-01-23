@@ -65,7 +65,7 @@ class Container:
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
-                d = 100
+                d = 420
             if data['queryResult']['intent']['displayName'] == 'container.text - send':
                 d = 4100
                 t = data['queryResult']['fulfillmentText'].split(' ')
