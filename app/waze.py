@@ -211,7 +211,7 @@ def waze(d):
         if data['queryResult']['intent']['displayName'] == 'waze.stop - yes':
             data_format['header'][3] = 1000
             data_format['data']['entity'] = {'stop_navigation': 'yes'}
-            print(json.dumps(data_format))
+
         if data['queryResult']['intent']['displayName'] == 'waze.homepage':
             data_format['header'][3] = 100
 

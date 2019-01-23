@@ -44,6 +44,8 @@ def gmap(data):
             data_format['header'][3] = 7100
         if data['queryResult']['intent']['displayName'] == 'gmap.homepage':
             data_format['header'][3] = 100
+        if data['queryResult']['intent']['displayName'] == 'gmap.stopmusic':
+            data_format['header'][3] = 420
     except KeyError:
         print('intent Key Error')
 
