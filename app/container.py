@@ -25,7 +25,7 @@ class Container:
         if 'query' in j['data']:
             self._query = j['data']['query']
         else:
-            self._query = 'Hi'
+            self._query = ''
         self._header = j['header']
         return
 
@@ -42,6 +42,10 @@ class Container:
         c = DialogflowApi(session_id=self._header[0])
         response = c.text_query(self._query)
         data = response.json()
+        print(data)
+        if 'error' in data:
+            print('Dialogflow request fail')
+            return ''
         #setup_logging(default_path='log/df-logging.json')
         #dflogger.info(data)
 

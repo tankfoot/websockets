@@ -27,6 +27,7 @@ def gmap(data):
     g = DialogflowApi(session_id=data_json['header'][0])
     response = g.text_query(query)
     data = response.json()
+    print(data)
 
     try:
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
