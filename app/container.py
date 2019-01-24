@@ -22,10 +22,10 @@ class Container:
 
     def in_data_helper(self):
         j = json.loads(self._data)
-        try:
+        if 'query' in j['data']:
             self._query = j['data']['query']
-        except KeyError:
-            logging.DEBUG('No query Key found in data input')
+        else:
+            self._query = 'Hi'
         self._header = j['header']
         return
 

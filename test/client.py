@@ -10,8 +10,7 @@ import time
 quest = {
             'header': [1111, 0, 1000, int(time.time()), 3, 0],
             'data': {
-                'query': None,
-                'entity': None
+                'info': None,
             }
         }
 
@@ -23,7 +22,7 @@ async def hello():
         while True:
             quest['header'][1] = int(input("app level:"))
             quest['header'][2] = int(input("page level:"))
-            quest['data']['query'] = input("Query:")
+            quest['data']['info'] = input("Query:")
 
             await websocket.send(json.dumps(quest))
 
