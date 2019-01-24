@@ -89,10 +89,10 @@ class Container:
 
                 if data['queryResult']['intent']['displayName'] == 'container.music' and \
                         data['queryResult']['parameters']['music-app'] == 'Spotify':
-                    d = 5000
+                    d = 5100
                 if data['queryResult']['intent']['displayName'] == 'container.music' and \
                         data['queryResult']['parameters']['music-app'] == 'Pandora':
-                    d = 6000
+                    d = 6100
                 if data['queryResult']['intent']['displayName'] == 'container.navigation' and \
                         data['queryResult']['parameters']['nav-app'] == 'Waze':
                     d = 1000
