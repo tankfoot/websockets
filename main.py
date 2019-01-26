@@ -74,10 +74,10 @@ def manager(data):
     else:
         command = ['start mic', 'start microphone', 'turn on mic', 'turn on microphone',
                    'start the microphone', 'star microphone']
-        if 'query' not in data_json['data']['query']:
+        if 'query' not in data_json['data']:
             j = json.loads(container.MIC[data_json['header'][0]])
             del container.MIC[j['header'][0]]
-            
+
         if data_json['data']['query'] in command:
             j = json.loads(container.MIC[data_json['header'][0]])
             j['header'].insert(3, 410)
