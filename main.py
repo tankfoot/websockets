@@ -2,6 +2,13 @@ import json
 from subprocess import getoutput
 from app import container
 
+gcloudProjectID = {
+    'Container': 'container-a3c3c',
+    'Waze': 'maps-75922',
+    'GoogleMap': 'gmap-74a30',
+    'OpenTable': 'open-table-2'
+}
+
 
 def manager(data):
     """
@@ -24,7 +31,7 @@ def manager(data):
         elif data_json['header'][1] == 1:
             try:
                 from app.waze import waze
-                getoutput("gcloud config set project maps-75922")
+                getoutput("gcloud config set project {}".format(gcloudProjectID['Waze']))
                 result = waze(data)
             except ImportError:
                 raise ImportError('Import Waze fail')
@@ -32,7 +39,7 @@ def manager(data):
         elif data_json['header'][1] == 2:
             try:
                 from app.opentable import opentable
-                getoutput("gcloud config set project open-table-2")
+                getoutput("gcloud config set project {}".format(gcloudProjectID['OpenTable']))
                 result = opentable(data)
             except ImportError:
                 raise ImportError('Import OpenTable fail')
@@ -56,7 +63,7 @@ def manager(data):
         elif data_json['header'][1] == 7:
             try:
                 from app.gmap import gmap
-                getoutput("gcloud config set project gmap-74a30")
+                getoutput("gcloud config set project {}".format(gcloudProjectID['GoogleMap']))
                 result = gmap(data)
             except ImportError:
                 raise ImportError('Import gmap fail')
@@ -65,7 +72,12 @@ def manager(data):
             print('level not implemented yet')
             result = data
     else:
-        command = ['start mic', 'start microphone', 'turn on mic', 'turn on microphone']
+        command = ['start mic', 'start microphone', 'turn on mic', 'turn on microphone',
+                   'start the microphone', 'star microphone']
+        if 'query' not in data_json['data']['query']:
+            j = json.loads(container.MIC[data_json['header'][0]])
+            del container.MIC[j['header'][0]]
+            
         if data_json['data']['query'] in command:
             j = json.loads(container.MIC[data_json['header'][0]])
             j['header'].insert(3, 410)
