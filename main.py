@@ -18,6 +18,9 @@ def manager(data):
     data_json = json.loads(data)
 
     if data_json['header'][0] not in container.MIC:
+        if 'query' not in data_json['data']:
+            return ''
+
         if data_json['header'][1] == 0 or \
                 data_json['header'][1] == 5 or \
                 data_json['header'][1] == 6:
