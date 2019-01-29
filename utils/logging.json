@@ -15,6 +15,13 @@
             "stream": "ext://sys.stdout"
         },
 
+        "debug_file_handler": {
+            "class": "logging.FileHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+            "filename": "log/dialogflow.log"
+
+        },
         "info_file_handler": {
             "class": "logging.FileHandler",
             "level": "INFO",
@@ -43,6 +50,6 @@
 
     "root": {
         "level": "DEBUG",
-        "handlers": ["console", "info_file_handler", "error_file_handler"]
+        "handlers": ["console", "info_file_handler", "debug_file_handler", "error_file_handler"]
     }
 }

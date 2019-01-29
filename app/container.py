@@ -1,11 +1,12 @@
 import json
 import time
 from utils.log_utils import setup_logging
+import logging.config
 import logging
 from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
-#dflogger = logging.getLogger(__name__)
+dflogger = logging.getLogger(__name__)
 
 MIC = {}
 
@@ -46,8 +47,8 @@ class Container:
         if 'error' in data:
             print('Dialogflow request fail')
             return ''
-        #setup_logging(default_path='log/df-logging.json')
-        #dflogger.info(data)
+
+        dflogger.debug(data)
 
         self._speech = data['queryResult']['fulfillmentText']
         d = self._header[2]
@@ -77,7 +78,7 @@ class Container:
                 self._speech = 'Okay, send the message'
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
-            if data['queryResult']['intent']['displayName'] == 'container.micoff - yes':
+            if data['queryResult']['intent']['displayName'] == 'container.micoff':
                 MIC[self._header[0]] = self.out_data_helper()
                 d = 400
             if data['queryResult']['allRequiredParamsPresent']:
