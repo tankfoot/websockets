@@ -17,8 +17,8 @@ asyncoronize
 """
 
 logger = logging.getLogger(__name__)
-logging.getLogger("requests").setLevel(logging.DEBUG)
-logging.getLogger("urllib3").setLevel(logging.DEBUG)
+logging.getLogger("requests").setLevel(logging.ERROR)
+logging.getLogger("urllib3").setLevel(logging.ERROR)
 setup_logging(default_path='utils/logging.json')
 
 connected = set()
