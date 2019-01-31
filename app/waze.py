@@ -154,6 +154,10 @@ def waze(d):
                 data_format['header'][3] = 420
                 data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
 
+            if data2['queryResult']['intent']['displayName'] == 'container.reminders':
+                data_format['header'][3] = 100
+                data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
+
             if data2['queryResult']['intent']['displayName'] == 'container.micoff':
                 data_format['header'][3] = 400
                 from .container import MIC
@@ -195,17 +199,6 @@ def waze(d):
         if GLOBAL_MUSIC == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
             data_format['data']['speech'] = 'Sure, Stay Waze'
             GLOBAL_MUSIC = 0
-
-        # if GLOBAL_MIC == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':
-        #     data_format['header'][3] = 400
-        #     data_format['data']['speech'] = 'Okay, Mic off'
-        #     from .container import MIC
-        #     MIC[data_format['header'][0]] = json.dumps(data_format)
-        #     GLOBAL_MIC = 0
-        #
-        # if GLOBAL_MIC == 1 and data['queryResult']['intent']['displayName'] == 'waze.no':
-        #     data_format['data']['speech'] = 'Sure'
-        #     GLOBAL_MIC = 0
 
         '''
         TODO: Create a list of Dialogflow intents will go to navigation page

@@ -50,11 +50,14 @@ class Container:
 
         dflogger.debug(data)
 
-        self._speech = data['queryResult']['fulfillmentText']
-        d = self._header[2]
-        self._header[3] = int(time.time())
-        self._header[5] = len(data['queryResult']['fulfillmentText'])
-        self._entity = data['queryResult']['parameters']
+        try:
+            self._speech = data['queryResult']['fulfillmentText']
+            d = self._header[2]
+            self._header[3] = int(time.time())
+            self._header[5] = len(data['queryResult']['fulfillmentText'])
+            self._entity = data['queryResult']['parameters']
+        except KeyError:
+            print('Dialogflow API has some problem')
 
         try:
             if data['queryResult']['intent']['displayName'] == 'container.opentable':
