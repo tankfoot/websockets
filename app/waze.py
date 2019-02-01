@@ -146,10 +146,21 @@ def waze(d):
                 data_format['data']['speech'] = 'Do you want to switch to text message?'
                 GLOBAL_RESPONSE = data2['queryResult']['fulfillmentText']
                 GLOBAL_TEXT = 1
+
             if data2['queryResult']['intent']['displayName'] == 'container.music':
-                data_format['data']['speech'] = 'Do you want to switch to Music?'
-                GLOBAL_RESPONSE = data2['queryResult']['fulfillmentText']
-                GLOBAL_MUSIC = 1
+                data_format['header'][3] = 100
+                data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
+
+            if data2['queryResult']['allRequiredParamsPresent']:
+                if data2['queryResult']['intent']['displayName'] == 'container.music' and \
+                        data2['queryResult']['parameters']['music-app'] == 'Spotify':
+                    data_format['header'][3] = 5100
+                    data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
+                if data2['queryResult']['intent']['displayName'] == 'container.music' and \
+                        data2['queryResult']['parameters']['music-app'] == 'Pandora':
+                    data_format['header'][3] = 6100
+                    data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
+
             if data2['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 data_format['header'][3] = 420
                 data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
