@@ -82,7 +82,7 @@ def manager(data):
             del container.MIC[data_json['header'][0]]
             return ''
 
-        if data_json['data']['query'] in command:
+        if 'microphone' in data_json['data']['query']:
             j = json.loads(container.MIC[data_json['header'][0]])
             j['header'].insert(3, 410)
             j['data']['speech'] = 'Welcome back'

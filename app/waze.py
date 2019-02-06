@@ -68,11 +68,18 @@ def remove_stopwords(sentence):
 
 def entity_formatter():
     favourite = ['home', 'work']
+    fallback = ['cancel', 'stop', 'cancel navigation', 'stop navigation']
     try:
         if data_format['data']['entity']['any'] in favourite:
+            data_format['header'][3] = 1100
             data_format['data']['entity']['favourite'] = data_format['data']['entity']['any']
             del data_format['data']['entity']['any']
+        elif data_format['data']['entity']['any'] in fallback:
+            data_format['header'][3] = 1000
+            del data_format['data']['entity']['any']
+            data_format['data']['speech'] = "Cancelled"
         else:
+            data_format['header'][3] = 1100
             data_format['data']['entity']['search'] = remove_stopwords(data_format['data']['entity']['any'])
             del data_format['data']['entity']['any']
     except KeyError:
@@ -239,7 +246,6 @@ def waze(d):
     try:
         if data['queryResult']['allRequiredParamsPresent']:
             if data['queryResult']['intent']['displayName'] == 'waze.navigation':
-                data_format['header'][3] = 1100
                 entity_formatter()
             if data['queryResult']['intent']['displayName'] == 'waze.report_police':
                 data_format['header'][3] = GLOBAL_VAR
