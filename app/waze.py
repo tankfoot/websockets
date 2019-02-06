@@ -4,6 +4,8 @@ import logging
 from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
+dflogger = logging.getLogger(__name__)
+
 data_format = {
                 'header': [0, 0, 0, 0, int(time.time()), 3, 0],
                 'data': {
@@ -96,6 +98,8 @@ def waze(d):
     response = w.text_query(query)
     data = response.json()
 
+    dflogger.debug(data)
+
     try:
         data_format['data']['speech'] = data['queryResult']['fulfillmentText']
         data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
@@ -132,7 +136,7 @@ def waze(d):
             c = DialogflowApi(session_id=data_json['header'][0])
             response = c.text_query(query)
             data2 = response.json()
-            #logging.info(data2)
+            dflogger.debug(data2)
 
             if data2['queryResult']['intent']['displayName'] == 'container.opentable':
                 data_format['data']['speech'] = 'Do you want to switch to OpenTable?'
