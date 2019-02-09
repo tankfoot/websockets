@@ -75,8 +75,6 @@ def manager(data):
             print('level not implemented yet')
             result = data
     else:
-        command = ['start mic', 'start microphone', 'turn on mic', 'turn on microphone',
-                   'start the microphone', 'star microphone']
 
         if 'query' not in data_json['data']:
             del container.MIC[data_json['header'][0]]

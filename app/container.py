@@ -37,6 +37,15 @@ class Container:
     def insert_destination(self, dest):
         return self._header.insert(3, dest)
 
+    @classmethod
+    def valid_phone_number(cls, number):
+        if number:
+            if len(number) != 10:
+                return False
+            if not str.isalnum(number):
+                return False
+        return True
+
     def get_dest_lvl(self):
         global MIC
         self.in_data_helper()
@@ -72,9 +81,14 @@ class Container:
                 d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
+                if not self.valid_phone_number(data['queryResult']['parameters']['phone-number']):
+                    self._speech = 'phone number invalid, what is your phone number?'
+                    c.delete_context('container_text_dialog_params_any')
+                    c.create_context('container_text_dialog_params_phone-number')
+
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
-            if data['queryResult']['intent']['displayName'] == 'container.text - send':
+            if data['queryResult']['intent']['displayName'] == 'container.text - yes':
                 d = 4100
                 t = data['queryResult']['fulfillmentText'].split(' ')
                 self._entity = {'phone-number': t[0], 'any': ' '.join(t[1:])}

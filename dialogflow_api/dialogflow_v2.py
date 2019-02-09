@@ -37,10 +37,10 @@ class DialogflowApi:
         return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id)
 
     @property
-    def _delete_contexts_url(self):
+    def _delete_contexts_url(self, n):
         if self._project_id is None:
             raise ValueError('No gcloud project opened.')
-        return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id)
+        return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id, n)
 
     '''Query'''
     def text_query(self, query):
@@ -72,14 +72,19 @@ class DialogflowApi:
         response = requests.post(self._query_url, headers=self._header, data=json.dumps(data))
         return response
 
-    def delete_context(self):
+    def delete_context(self, n):
         data = {}
-        response = requests.delete(self._delete_contexts_url, data=json.dumps(data))
+        url = '{}projects/{}/agent/sessions/{}/contexts/{}'.format(self._base_url, self._project_id, self._session_id, n)
+        response = requests.delete(url, headers=self._header, data=json.dumps(data))
+        print('DELETE:')
+        print(response.json())
         return response
 
     def create_context(self, context_name):
         data = {
             "name": context_name
         }
-        response = requests.post(self._create_contexts_url, data=json.dumps(data))
+        response = requests.post(self._create_contexts_url, headers=self._header, data=json.dumps(data))
+        print('CREATE:')
+        print(response.json())
         return response
