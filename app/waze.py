@@ -236,8 +236,8 @@ def waze(d):
             if data_json['header'][2] == 1200:
                 data_format['data']['speech'] = 'Sorry, Waze can only add one stop.'
                 w.delete_context()
-            data_format['header'][3] = 1010
             entity_formatter()
+            data_format['header'][3] = 1010
         if data['queryResult']['intent']['displayName'] == 'waze.choose':
             data_format['header'][3] = 1100
     except KeyError:
