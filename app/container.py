@@ -20,6 +20,7 @@ class Container:
         self._header = ''
         self._speech = 'Default Container Message'
         self._entity = ''
+        self._phonenumber = ''
 
     def in_data_helper(self):
         j = json.loads(self._data)
@@ -74,10 +75,9 @@ class Container:
                 d = 4000
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
-            if data['queryResult']['intent']['displayName'] == 'container.text - send':
+            if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
                 d = 4100
-                t = data['queryResult']['fulfillmentText'].split(' ')
-                self._entity = {'phone-number': t[0], 'any': ' '.join(t[1:])}
+                self._entity = {'phone-number': self._phonenumber, 'any': data['queryResult']['fulfillmentText']}
                 self._speech = 'Okay, send the message'
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
@@ -90,6 +90,10 @@ class Container:
                     self._entity = data['queryResult']['parameters']
                     self._speech = 'Okay is your phone number {}'.format(
                         self.phone_format(data['queryResult']['parameters']['phone-number']))
+
+                if data['queryResult']['intent']['displayName'] == 'container.text':
+                    self._entity = data['queryResult']['parameters']
+                    self._phonenumber = data['queryResult']['parameters']
 
                 if data['queryResult']['intent']['displayName'] == 'container.music' and \
                         data['queryResult']['parameters']['music-app'] == 'Spotify':
