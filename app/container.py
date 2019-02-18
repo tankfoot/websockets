@@ -50,7 +50,10 @@ class Container:
         global MIC
         self.in_data_helper()
         c = DialogflowApi(session_id=self._header[0])
+        start = time.time()
         response = c.text_query(self._query)
+        end = time.time()
+        dflogger.debug('response time: {}'.format(end - start))
         data = response.json()
         print(data)
         if 'error' in data:
