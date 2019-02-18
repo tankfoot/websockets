@@ -1,7 +1,5 @@
 import json
 import time
-from utils.log_utils import setup_logging
-import logging.config
 import logging
 from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
@@ -20,7 +18,6 @@ class Container:
         self._header = ''
         self._speech = 'Default Container Message'
         self._entity = ''
-        self._phonenumber = ''
 
     def in_data_helper(self):
         j = json.loads(self._data)
@@ -92,10 +89,6 @@ class Container:
                     self._entity = data['queryResult']['parameters']
                     self._speech = 'Okay is your phone number {}'.format(
                         self.phone_format(data['queryResult']['parameters']['phone-number']))
-
-                if data['queryResult']['intent']['displayName'] == 'container.text':
-                    self._entity = data['queryResult']['parameters']
-                    self._phonenumber = data['queryResult']['parameters']
 
                 if data['queryResult']['intent']['displayName'] == 'container.music' and \
                         data['queryResult']['parameters']['music-app'] == 'Spotify':
