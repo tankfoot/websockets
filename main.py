@@ -9,6 +9,8 @@ gcloudProjectID = {
     'OpenTable': 'opentable-cf3e6'
 }
 
+MIC = {}
+
 
 def manager(data):
     """
