@@ -5,9 +5,10 @@
 import asyncio
 import websockets
 import logging
-import os
+import json
 from utils.log_utils import setup_logging
 import time
+from main import state_init
 from main import manager
 
 """
@@ -29,10 +30,12 @@ async def ws_server(ws, path):
     connected.add(ws)
     print('current: ')
     print(connected)
+
     while True:
         try:
             in_data = await ws.recv()
             logging.info(in_data)
+            state_init(in_data)
             out_data = manager(in_data)
             logger.info(out_data)
             await ws.send(out_data)

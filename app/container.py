@@ -6,8 +6,6 @@ from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 dflogger = logging.getLogger(__name__)
 
-MIC = {}
-
 
 class Container:
 
@@ -36,7 +34,6 @@ class Container:
         return self._header.insert(3, dest)
 
     def get_dest_lvl(self):
-        global MIC
         self.in_data_helper()
         c = DialogflowApi(session_id=self._header[0])
         response = c.text_query(self._query)
@@ -80,7 +77,9 @@ class Container:
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
             if data['queryResult']['intent']['displayName'] == 'container.micoff':
-                MIC[self._header[0]] = self.out_data_helper()
+                from main import MIC
+                MIC[self._header[0]]['mic_off'] = True
+                MIC[self._header[0]]['state'] = self.out_data_helper()
                 d = 400
 
             if data['queryResult']['allRequiredParamsPresent']:
