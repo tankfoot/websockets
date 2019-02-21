@@ -65,6 +65,9 @@ def manager(data):
                 raise ImportError('Import container fail')
 
         elif data_json['header'][1] == 4:
+            print('Now in text message mode')
+            print(MIC)
+            #if MIC[data_json['header'][0]][]
             try:
                 from app.container import Container
                 a = Container(data)

@@ -137,7 +137,7 @@ def waze(d):
                 GLOBAL_VAR = data_format['header'][2]
 
         if data['queryResult']['intent']['displayName'] == 'Default Fallback Intent':
-            getoutput('gcloud config set project container-a3c3c')
+            getoutput('gcloud config set project container-2b060')
             c = DialogflowApi(session_id=data_json['header'][0])
             response = c.text_query(query)
             data2 = response.json()
