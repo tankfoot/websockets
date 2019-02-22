@@ -1,13 +1,22 @@
 import json
 from subprocess import getoutput
-from app import container
 
 gcloudProjectID = {
-    'Container': 'container-a3c3c',
-    'Waze': 'maps-75922',
-    'GoogleMap': 'gmap-74a30',
-    'OpenTable': 'open-table-2'
+    'Container': 'container-2b060',
+    'Waze': 'waze-11f7f',
+    'GoogleMap': 'gmap-3ffaa',
+    'OpenTable': 'opentable-cf3e6'
 }
+
+MIC = {}
+
+
+def state_init(data):
+    init_data = json.loads(data)
+    if init_data['header'][0] not in MIC:
+        MIC[init_data['header'][0]] = {'mic_off': False}
+    else:
+        pass
 
 
 def manager(data):
@@ -17,7 +26,7 @@ def manager(data):
     """
     data_json = json.loads(data)
 
-    if data_json['header'][0] not in container.MIC:
+    if not MIC[data_json['header'][0]]['mic_off']:
         if 'query' not in data_json['data']:
             return ''
 
@@ -56,12 +65,20 @@ def manager(data):
                 raise ImportError('Import container fail')
 
         elif data_json['header'][1] == 4:
+            print('Now in text message mode')
+            print(MIC)
+
             try:
-                from app.container import Container
-                a = Container(data)
-                result = a.get_dest_lvl()
+                from app.text_message import text_message
+                result = text_message(data)
             except ImportError:
-                raise ImportError('Import container fail')
+                raise ImportError('Import text_message fail')
+            # try:
+            #     from app.container import Container
+            #     a = Container(data)
+            #     result = a.get_dest_lvl()
+            # except ImportError:
+            #     raise ImportError('Import container fail')
 
         elif data_json['header'][1] == 7:
             try:
@@ -76,16 +93,18 @@ def manager(data):
             result = data
     else:
 
+        print(MIC)
+        '''Detect the first time user as well as websockets reconnect'''
         if 'query' not in data_json['data']:
-            del container.MIC[data_json['header'][0]]
+            del MIC[data_json['header'][0]]
             return ''
 
         if 'microphone' in data_json['data']['query']:
-            j = json.loads(container.MIC[data_json['header'][0]])
+            j = json.loads(MIC[data_json['header'][0]]['state'])
             j['header'].insert(3, 410)
             j['data']['speech'] = 'Welcome back'
             result = json.dumps(j)
-            del container.MIC[j['header'][0]]
+            del MIC[j['header'][0]]
         else:
             result = ''
     return result

@@ -20,7 +20,6 @@ GLOBAL_MUSIC = 0
 GLOBAL_PHONE = 0
 GLOBAL_TEXT = 0
 GLOBAL_RESPONSE = ''
-GLOBAL_MIC = 0
 
 level_map = {
     'waze.main': 1000,
@@ -91,7 +90,6 @@ def entity_formatter():
 def waze(d):
     data_json = json.loads(d)
     global GLOBAL_VAR, GLOBAL_OPENTABLE, GLOBAL_PHONE, GLOBAL_MUSIC, GLOBAL_RESPONSE, GLOBAL_TEXT
-    global GLOBAL_MIC
     try:
         query = data_json['data']['query']
         data_format['header'][0] = data_json['header'][0]
@@ -139,7 +137,7 @@ def waze(d):
                 GLOBAL_VAR = data_format['header'][2]
 
         if data['queryResult']['intent']['displayName'] == 'Default Fallback Intent':
-            getoutput('gcloud config set project container-a3c3c')
+            getoutput('gcloud config set project container-2b060')
             c = DialogflowApi(session_id=data_json['header'][0])
             response = c.text_query(query)
             data2 = response.json()
@@ -182,8 +180,9 @@ def waze(d):
 
             if data2['queryResult']['intent']['displayName'] == 'container.micoff':
                 data_format['header'][3] = 400
-                from .container import MIC
-                MIC[data_format['header'][0]] = json.dumps(data_format)
+                from main import MIC
+                MIC[data_format['header'][0]]['mic_off'] = True
+                MIC[data_format['header'][0]]['state'] = json.dumps(data_format)
                 data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
 
         if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':

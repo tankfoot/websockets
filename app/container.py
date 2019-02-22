@@ -1,20 +1,17 @@
 import json
 import time
-from utils.log_utils import setup_logging
-import logging.config
 import logging
 from subprocess import getoutput
+from main import MIC
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 dflogger = logging.getLogger(__name__)
-
-MIC = {}
 
 
 class Container:
 
     def __init__(self, data):
-        self._gcloud = getoutput("gcloud config set project container-a3c3c")
+        self._gcloud = getoutput("gcloud config set project container-2b060")
         self._data = data
         self._query = ''
         self._header = ''
@@ -47,7 +44,6 @@ class Container:
         return True
 
     def get_dest_lvl(self):
-        global MIC
         self.in_data_helper()
         c = DialogflowApi(session_id=self._header[0])
         start = time.time()
@@ -84,23 +80,21 @@ class Container:
                 d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
-                if not self.valid_phone_number(data['queryResult']['parameters']['phone-number']):
-                    self._speech = 'phone number invalid, what is your phone number?'
-                    c.delete_context('container_text_dialog_params_any')
-                    c.create_context('container_text_dialog_params_phone-number')
-
+                MIC[self._header[0]]['context'] = 'phone_number'
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
-            if data['queryResult']['intent']['displayName'] == 'container.text - yes':
+            if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
                 d = 4100
                 t = data['queryResult']['fulfillmentText'].split(' ')
                 self._entity = {'phone-number': t[0], 'any': ' '.join(t[1:])}
-                self._speech = 'Okay, send the message'
+                self._speech = 'Okay, message sent'
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
             if data['queryResult']['intent']['displayName'] == 'container.micoff':
-                MIC[self._header[0]] = self.out_data_helper()
+                MIC[self._header[0]]['mic_off'] = True
+                MIC[self._header[0]]['state'] = self.out_data_helper()
                 d = 400
+
             if data['queryResult']['allRequiredParamsPresent']:
                 if data['queryResult']['intent']['displayName'] == 'container.phone':
                     d = 3000
