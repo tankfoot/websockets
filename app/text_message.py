@@ -35,7 +35,7 @@ def text_message(data):
     query = in_data['data']['query']
 
     if 'context' not in MIC[in_data['header'][0]]:
-        if query in homepage:
+        if 'home' in query:
             data_format['header'][3] = 100
             data_format['data']['entity'] = {}
             data_format['data']['speech'] = 'Okay, go back to homepage'
@@ -45,6 +45,11 @@ def text_message(data):
             return json.dumps(data_format)
 
     elif MIC[in_data['header'][0]]['context'] == 'phone_number':
+            if query in cancel:
+                data_format['data']['speech'] = 'okay, cancel sending message'
+                data_format['header'][3] = 100
+                del (MIC[in_data['header'][0]]['context'])
+                return json.dumps(data_format)
             if not valid_phone_number(query):
                 data_format['data']['speech'] = 'number not valid, what is the phone number?'
             else:
@@ -63,6 +68,7 @@ def text_message(data):
             MIC[in_data['header'][0]]['context'] = 'phone_number'
             return json.dumps(data_format)
         elif query in cancel:
+            data_format['header'][3] = 100
             data_format['data']['speech'] = 'okay, cancel sending message'
             del (MIC[in_data['header'][0]]['context'])
             return json.dumps(data_format)
@@ -76,9 +82,9 @@ def text_message(data):
 
     elif MIC[in_data['header'][0]]['context'] == 'message_confirm':
         if query in yes:
-            data_format['data']['speech'] = 'send the message'
+            data_format['data']['speech'] = 'Okay, send the message'
             del(MIC[in_data['header'][0]]['context'])
-            data_format['header'][3] = 4200
+            data_format['header'][3] = 4100
             return json.dumps(data_format)
         elif query in no:
             data_format['data']['speech'] = 'what is your message'
