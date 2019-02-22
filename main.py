@@ -67,13 +67,18 @@ def manager(data):
         elif data_json['header'][1] == 4:
             print('Now in text message mode')
             print(MIC)
-            #if MIC[data_json['header'][0]][]
+
             try:
-                from app.container import Container
-                a = Container(data)
-                result = a.get_dest_lvl()
+                from app.text_message import text_message
+                result = text_message(data)
             except ImportError:
-                raise ImportError('Import container fail')
+                raise ImportError('Import text_message fail')
+            # try:
+            #     from app.container import Container
+            #     a = Container(data)
+            #     result = a.get_dest_lvl()
+            # except ImportError:
+            #     raise ImportError('Import container fail')
 
         elif data_json['header'][1] == 7:
             try:

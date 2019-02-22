@@ -68,7 +68,7 @@ class Container:
                 d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
-                MIC[self._header[0]]['text'] = self._entity
+                MIC[self._header[0]]['context'] = 'phone_number'
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
             if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
