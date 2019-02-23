@@ -70,7 +70,8 @@ def text_message(data):
             return json.dumps(data_format)
         else:
             data_format['data']['speech'] = 'Is your phone number {}'\
-                .format(MIC[in_data['header'][0]]['context'][''])
+                .format(data_format['data']['entity']['phone-number'])
+            return json.dumps(data_format)
     elif MIC[in_data['header'][0]]['context'] == 'message':
         data_format['data']['speech'] = 'Is your message {}'.format(query)
         MIC[in_data['header'][0]]['context'] = 'message_confirm'
