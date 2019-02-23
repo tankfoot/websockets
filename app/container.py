@@ -11,7 +11,7 @@ dflogger = logging.getLogger(__name__)
 class Container:
 
     def __init__(self, data):
-        self._gcloud = getoutput("gcloud config set project container-2b060")
+        self._gcloud = getoutput("gcloud config set project container-a3c3c")
         self._data = data
         self._query = ''
         self._header = ''

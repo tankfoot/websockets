@@ -35,14 +35,10 @@ def text_message(data):
     query = in_data['data']['query']
 
     if 'context' not in MIC[in_data['header'][0]]:
-        if 'home' in query:
-            data_format['header'][3] = 100
-            data_format['data']['entity'] = {}
-            data_format['data']['speech'] = 'Okay, go back to homepage'
-            return json.dumps(data_format)
-        else:
-            data_format['data']['speech'] = 'Sorry, I don\'t understand'
-            return json.dumps(data_format)
+        from app.container import Container
+        a = Container(data)
+        result = a.get_dest_lvl()
+        return result
 
     elif MIC[in_data['header'][0]]['context'] == 'phone_number':
             if query in cancel:
@@ -73,7 +69,8 @@ def text_message(data):
             del (MIC[in_data['header'][0]]['context'])
             return json.dumps(data_format)
         else:
-            data_format['data']['speech'] = 'Is your phone number {}'.format()
+            data_format['data']['speech'] = 'Is your phone number {}'\
+                .format(MIC[in_data['header'][0]]['context'][''])
     elif MIC[in_data['header'][0]]['context'] == 'message':
         data_format['data']['speech'] = 'Is your message {}'.format(query)
         MIC[in_data['header'][0]]['context'] = 'message_confirm'

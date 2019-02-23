@@ -2,10 +2,10 @@ import json
 from subprocess import getoutput
 
 gcloudProjectID = {
-    'Container': 'container-2b060',
-    'Waze': 'waze-11f7f',
-    'GoogleMap': 'gmap-3ffaa',
-    'OpenTable': 'opentable-cf3e6'
+    'Container': 'container-a3c3c',
+    'Waze': 'maps-75922',
+    'GoogleMap': 'gmap-74a30',
+    'OpenTable': 'open-table-2'
 }
 
 MIC = {}
