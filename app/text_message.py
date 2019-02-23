@@ -12,8 +12,8 @@ data_format = {
 }
 
 logger = logging.getLogger(__name__)
-yes = ['yes', 'correct', 'right']
-no = ['no', 'wrong']
+yes = ['yes', 'correct', 'right', 'sure', 'okay', 'yeah', 'confirm']
+no = ['no', 'wrong', 'nah', 'never', 'nope', 'not']
 cancel = ['cancel']
 homepage = ['homepage', 'home']
 
@@ -41,7 +41,7 @@ def text_message(data):
         return result
 
     elif MIC[in_data['header'][0]]['context'] == 'phone_number':
-            if query in cancel:
+            if 'cancel' in query:
                 data_format['data']['speech'] = 'okay, cancel sending message'
                 data_format['header'][3] = 100
                 del (MIC[in_data['header'][0]]['context'])
@@ -63,7 +63,7 @@ def text_message(data):
             data_format['data']['speech'] = 'what is your phone number?'
             MIC[in_data['header'][0]]['context'] = 'phone_number'
             return json.dumps(data_format)
-        elif query in cancel:
+        elif 'cancel' in query:
             data_format['header'][3] = 100
             data_format['data']['speech'] = 'okay, cancel sending message'
             del (MIC[in_data['header'][0]]['context'])
@@ -88,7 +88,7 @@ def text_message(data):
             data_format['data']['speech'] = 'what is your message'
             MIC[in_data['header'][0]]['context'] = 'message'
             return json.dumps(data_format)
-        elif query in cancel:
+        elif 'cancel' in query:
             data_format['data']['speech'] = 'okay, cancel sending message'
             del (MIC[in_data['header'][0]]['context'])
             return json.dumps(data_format)
