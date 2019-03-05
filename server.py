@@ -87,6 +87,7 @@ async def ws_server(ws, path):
 
                 start = time.time()
                 res = print_response(responses)
+
                 if res:
                     out['data']['query'] = res
                     del out['header'][6]
@@ -94,8 +95,11 @@ async def ws_server(ws, path):
                     print(out)
                     state_init(json.dumps(out))
                     out_data = manager(json.dumps(out))
+                    await ws.send(out_data)
+
                 else:
                     pass
+                
                 stop = time.time()
 
                 with open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.pcm", mode='bx') as f:
@@ -106,7 +110,7 @@ async def ws_server(ws, path):
                 #out['data']['result'] = res
 
                 print("response time: {}".format(round(stop - start, 5)))
-                await ws.send(out_data)
+
 
     except websockets.exceptions.ConnectionClosed:
         '''
