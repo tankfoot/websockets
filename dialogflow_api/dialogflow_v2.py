@@ -37,7 +37,7 @@ class DialogflowApi:
         return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id)
 
     @property
-    def _delete_contexts_url(self, n):
+    def _delete_contexts_url(self):
         if self._project_id is None:
             raise ValueError('No gcloud project opened.')
         return '{}projects/{}/agent/sessions/{}/contexts'.format(self._base_url, self._project_id, self._session_id, n)
