@@ -72,52 +72,54 @@ def print_response(r):
 async def ws_server(ws, path):
 
     stream = []
-    try:
-        async for message in ws:
-            d = json.loads(message)
-            if 'audio' in d['data']:
-                stream.append(base64.b64decode(d['data']['audio']))
-            else:
-                state_init(message)
-                manager(message)
-                break
-
-            if d['header'][6] == 0:
-                out = d
-                print(out)
-                responses = speech_api(stream)
-
-                start = time.time()
-                res = print_response(responses)
-
-                if res:
-                    out['data']['query'] = res
-                    del out['header'][6]
-                    del out['data']['audio']
-                    print(out)
-                    state_init(json.dumps(out))
-                    out_data = manager(json.dumps(out))
-                    print(out_data)
-                    await ws.send(out_data)
-
+    while True:
+        try:
+            async for message in ws:
+                d = json.loads(message)
+                if 'audio' in d['data']:
+                    stream.append(base64.b64decode(d['data']['audio']))
                 else:
-                    pass
+                    state_init(message)
+                    manager(message)
+                    break
 
-                stop = time.time()
+                if d['header'][6] == 0:
+                    out = d
+                    print(out)
+                    responses = speech_api(stream)
 
-                with open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.pcm", mode='bx') as f:
-                    for chunk in stream:
-                        f.write(chunk)
+                    start = time.time()
+                    res = print_response(responses)
 
-                stream = []
+                    if res:
+                        out['data']['query'] = res
+                        del out['header'][6]
+                        del out['data']['audio']
+                        print(out)
+                        state_init(json.dumps(out))
+                        out_data = manager(json.dumps(out))
+                        print(out_data)
+                        await ws.send(out_data)
 
-                print("response time: {}".format(round(stop - start, 5)))
+                    else:
+                        pass
 
-    except websockets.exceptions.ConnectionClosed:
-        '''
-        TODO: Logging.info
-        '''
-        print('user disconnected')
+                    stop = time.time()
+
+                    with open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.pcm", mode='bx') as f:
+                        for chunk in stream:
+                            f.write(chunk)
+
+                    stream = []
+
+                    print("response time: {}".format(round(stop - start, 5)))
+
+        except websockets.exceptions.ConnectionClosed:
+            '''
+            TODO: Logging.info
+            '''
+            print('user disconnected')
+            break
 
             
 start_server = websockets.serve(ws_server, 'localhost', 3456)
