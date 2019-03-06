@@ -9,7 +9,7 @@ import time
 import base64
 
 quest = {
-            'header': [1111, 0, 100, int(time.time()), 3, 0, 1],
+            'header': [1111, 1, 1000, int(time.time()), 3, 0, 1],
             'data': {
                 'audio': None
             }
@@ -18,7 +18,7 @@ quest = {
 
 async def hello():
     async with websockets.connect(
-            'ws://localhost:8765') as websocket:
+            'ws://localhost:3456') as websocket:
 
         start = time.time()
         with open("data/test.wav", "rb") as speech:

@@ -78,8 +78,8 @@ async def ws_server(ws, path):
             if 'audio' in d['data']:
                 stream.append(base64.b64decode(d['data']['audio']))
             else:
-                pass
-                #print(message)
+                manager(message)
+                break
 
             if d['header'][6] == 0:
                 out = d
@@ -99,7 +99,7 @@ async def ws_server(ws, path):
 
                 else:
                     pass
-                
+
                 stop = time.time()
 
                 with open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.pcm", mode='bx') as f:
@@ -107,10 +107,8 @@ async def ws_server(ws, path):
                         f.write(chunk)
 
                 stream = []
-                #out['data']['result'] = res
 
                 print("response time: {}".format(round(stop - start, 5)))
-
 
     except websockets.exceptions.ConnectionClosed:
         '''
