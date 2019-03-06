@@ -107,11 +107,11 @@ async def ws_server(ws, path):
 
                     stop = time.time()
 
-                    f = wave.open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.wav", mode='wb')
-                    f.setnchannels(1)
-                    f.setsampwidth(2)
-                    f.setframerate(16000)
-                    f.writeframes(b''.join(stream))
+                    with wave.open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.wav", mode='wb') as f:
+                        f.setnchannels(1)
+                        f.setsampwidth(2)
+                        f.setframerate(16000)
+                        f.writeframes(b''.join(stream))
 
                     stream = []
 
