@@ -84,6 +84,7 @@ async def ws_server(ws, path):
 
             if d['header'][6] == 0:
                 out = d
+                print(out)
                 responses = speech_api(stream)
 
                 start = time.time()
@@ -96,6 +97,7 @@ async def ws_server(ws, path):
                     print(out)
                     state_init(json.dumps(out))
                     out_data = manager(json.dumps(out))
+                    print(out_data)
                     await ws.send(out_data)
 
                 else:
