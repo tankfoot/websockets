@@ -10,6 +10,7 @@ from utils.log_utils import setup_logging
 import time
 import datetime
 import base64
+import wave
 from google.cloud import speech
 from google.cloud.speech import enums
 from google.cloud.speech import types
@@ -106,9 +107,11 @@ async def ws_server(ws, path):
 
                     stop = time.time()
 
-                    with open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.pcm", mode='bx') as f:
-                        for chunk in stream:
-                            f.write(chunk)
+                    f = wave.open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.wav", mode='wb')
+                    f.setnchannels(1)
+                    f.setsampwidth(2)
+                    f.setframerate(16000)
+                    f.writeframes(b''.join(stream))
 
                     stream = []
 
