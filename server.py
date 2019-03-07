@@ -86,11 +86,13 @@ async def ws_server(ws, path):
 
                 if d['header'][6] == 0:
                     out = d
-                    print(out)
+                    print('start1: {}'.format(time.time()))
                     responses = speech_api(stream)
+                    print('start2: {}'.format(time.time()))
 
-                    start = time.time()
                     res = print_response(responses)
+
+                    print('start3: {}'.format(time.time()))
 
                     if res:
                         out['data']['query'] = res
@@ -98,14 +100,16 @@ async def ws_server(ws, path):
                         del out['data']['audio']
                         print(out)
                         state_init(json.dumps(out))
+                        print('start4: {}'.format(time.time()))
                         out_data = manager(json.dumps(out))
+                        print('start5: {}'.format(time.time()))
                         print(out_data)
                         await ws.send(out_data)
 
                     else:
                         pass
 
-                    stop = time.time()
+                    print('Stop: {}'.format(time.time()))
 
                     with wave.open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.wav", mode='wb') as f:
                         f.setnchannels(1)
@@ -114,8 +118,6 @@ async def ws_server(ws, path):
                         f.writeframes(b''.join(stream))
 
                     stream = []
-
-                    print("response time: {}".format(round(stop - start, 5)))
 
         except websockets.exceptions.ConnectionClosed:
             '''
