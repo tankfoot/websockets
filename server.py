@@ -78,7 +78,7 @@ def speech_api_buffer(buffer):
         sample_rate_hertz=16000,
         language_code='en-US')
 
-    responses = client.streaming_recognize(config, audio)
+    responses = client.recognize(config, audio)
 
     return responses
 
@@ -110,7 +110,7 @@ async def ws_server(ws, path):
                     print('start2: {}'.format(time.time()))
 
                     res = print_response_buffer(responses)
-
+                    print(res)
                     print('start3: {}'.format(time.time()))
 
                     if res:
