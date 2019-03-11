@@ -108,16 +108,14 @@ async def ws_server(ws, path):
                     print('start1: {}'.format(time.time()))
                     responses = speech_api_buffer(stream)
                     print('start2: {}'.format(time.time()))
-
                     res = print_response_buffer(responses)
-                    print(res)
                     print('start3: {}'.format(time.time()))
 
                     if res:
                         out['data']['query'] = res
                         del out['header'][6]
                         del out['data']['audio']
-                        print(out)
+                        print('input for State Manager: {}'.format(out))
                         state_init(json.dumps(out))
                         print('start4: {}'.format(time.time()))
                         out_data = manager(json.dumps(out))
