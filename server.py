@@ -105,6 +105,7 @@ async def ws_server(ws, path):
 
                 if d['header'][6] == 0:
                     out = d
+                    print('Length of data: {}'.format(len(stream)))
                     print('start1: {}'.format(time.time()))
                     responses = speech_api_buffer(stream)
                     print('start2: {}'.format(time.time()))
