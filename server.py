@@ -27,6 +27,7 @@ asyncoronize
 logger = logging.getLogger(__name__)
 logging.getLogger("requests").setLevel(logging.ERROR)
 logging.getLogger("urllib3").setLevel(logging.ERROR)
+logging.getLogger("websockets").setLevel(logging.ERROR)
 setup_logging(default_path='utils/logging.json')
 
 connected = set()
@@ -105,6 +106,7 @@ async def ws_server(ws, path):
 
                 if d['header'][6] == 0:
                     out = d
+                    print(out)
                     print('Length of data: {}'.format(len(stream)))
                     print('start1: {}'.format(time.time()))
                     responses = speech_api_buffer(stream)
