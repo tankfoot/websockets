@@ -71,7 +71,7 @@ def speech_api_buffer(buffer):
 
     client = speech.SpeechClient()
 
-    audio = types.RecongnitionAudio(content=b''.join(buffer))
+    audio = types.RecognitionAudio(content=b''.join(buffer))
 
     config = types.RecognitionConfig(
         encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
