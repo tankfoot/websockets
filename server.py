@@ -32,7 +32,7 @@ setup_logging(default_path='utils/logging.json')
 connected = set()
 
 
-def speech_api(stream):
+def speech_api_stream(stream):
 
     client = speech.SpeechClient()
 
@@ -54,11 +54,8 @@ def speech_api(stream):
     return responses
 
 
-def print_response(r):
+def print_response_stream(r):
     for response in r:
-        # Once the transcription has settled, the first result will contain the
-        # is_final result. The other results will be for subsequent portions of
-        # the audio.
         for result in response.results:
             #print('Finished: {}'.format(result.is_final))
             #print('Stability: {}'.format(result.stability))
@@ -68,6 +65,28 @@ def print_response(r):
                 #print('Confidence: {}'.format(alternative.confidence))
                 #print(u'Transcript: {}'.format(alternative.transcript))
                 return alternative.transcript
+
+
+def speech_api_buffer(buffer):
+
+    client = speech.SpeechClient()
+
+    audio = types.RecongnitionAudio(content=b''.join(buffer))
+
+    config = types.RecognitionConfig(
+        encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
+        sample_rate_hertz=16000,
+        language_code='en-US')
+
+    responses = client.streaming_recognize(config, audio)
+
+    return responses
+
+
+def print_response_buffer(r):
+    for result in r.results:
+        print('Transcript: {}'.format(result.alternatives[0].transcript))
+        return result.alternatives[0].transcript
 
 
 async def ws_server(ws, path):
@@ -87,10 +106,10 @@ async def ws_server(ws, path):
                 if d['header'][6] == 0:
                     out = d
                     print('start1: {}'.format(time.time()))
-                    responses = speech_api(stream)
+                    responses = speech_api_buffer(stream)
                     print('start2: {}'.format(time.time()))
 
-                    res = print_response(responses)
+                    res = print_response_buffer(responses)
 
                     print('start3: {}'.format(time.time()))
 
