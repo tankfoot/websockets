@@ -18,7 +18,7 @@ quest = {
 
 async def hello():
     async with websockets.connect(
-            'ws://localhost:3456') as websocket:
+            'ws://142.93.91.246/ws_asr/') as websocket:
 
         start = time.time()
         with open("data/test.wav", "rb") as speech:

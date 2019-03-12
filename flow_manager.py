@@ -8,6 +8,7 @@ token_list = {
               'confirm_page': '0e4800ee137944d7a196997baae98102'
               }
 
+
 def flow_control(dataJson):
     dataStr = json.loads(dataJson)
     a = DialogflowApi(client_token = token_list[dataStr['currentPage']])
@@ -16,6 +17,7 @@ def flow_control(dataJson):
 #    action = data['result']['fulfillment']['speech']
 
     return df_response
+
 
 def response_handler(dataJson):
     dataStr = json.loads(dataJson)

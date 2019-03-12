@@ -106,13 +106,11 @@ async def ws_server(ws, path):
 
                 if d['header'][6] == 0:
                     out = d
-                    print(out)
-                    print('Length of data: {}'.format(len(stream)))
-                    print('start1: {}'.format(time.time()))
+                    start1 = time.time()
                     responses = speech_api_buffer(stream)
-                    print('start2: {}'.format(time.time()))
                     res = print_response_buffer(responses)
-                    print('start3: {}'.format(time.time()))
+                    start2 = time.time()
+                    print('ASR delay: {}'.format(round((start2 - start1), 4)))
 
                     if res:
                         out['data']['query'] = res
@@ -120,16 +118,15 @@ async def ws_server(ws, path):
                         del out['data']['audio']
                         print('input for State Manager: {}'.format(out))
                         state_init(json.dumps(out))
-                        print('start4: {}'.format(time.time()))
+                        start3 = time.time()
                         out_data = manager(json.dumps(out))
-                        print('start5: {}'.format(time.time()))
+                        start4 = time.time()
+                        print('Dialogflow delay: {}'.format(round((start4 - start3), 4)))
                         print(out_data)
                         await ws.send(out_data)
 
                     else:
                         pass
-
-                    print('Stop: {}'.format(time.time()))
 
                     with wave.open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.wav", mode='wb') as f:
                         f.setnchannels(1)
