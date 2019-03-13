@@ -31,10 +31,10 @@ def opentable(data):
     print(data)
     try:
         query = data_json['data']['query']
-        data_format['header'][0] = data_json['header'][0]
-        data_format['header'][1] = data_json['header'][1]
-        data_format['header'][2] = data_json['header'][2]
-        data_format['header'][3] = data_json['header'][2]
+        # data_format['header'][0] = data_json['header'][0]
+        # data_format['header'][1] = data_json['header'][1]
+        # data_format['header'][2] = data_json['header'][2]
+        # data_format['header'][3] = data_json['header'][2]
     except KeyError:
         query = 'hi'
         print('in_data: KeyError')
@@ -47,7 +47,7 @@ def opentable(data):
     r = a.post_query(query)
     response = r.json()
 
-    data_format['UserId'] = data_json['UserId']
+    data_format['UserId'] = data_json['header'][0]
     data_format['Speech'] = response['result']['fulfillment']['speech']
     if 'parameters' in response['result']:
         data_format['Entity'] = response['result']['parameters']
