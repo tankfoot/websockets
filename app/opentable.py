@@ -43,34 +43,36 @@ def opentable(data):
     #response = w.text_query(query)
     #data = response.json()
 
-    a = DialogflowApi()
-    r = a.post_query(query)
-    response = r.json()
+##########OLD
+    # a = DialogflowApi()
+    # r = a.post_query(query)
+    # response = r.json()
+    #
+    # data_format['UserId'] = data_json['header'][0]
+    # data_format['Speech'] = response['result']['fulfillment']['speech']
+    # if 'parameters' in response['result']:
+    #     data_format['Entity'] = response['result']['parameters']
+    # else:
+    #     data_format['Entity'] = ""
+    # if 'intentName' in response['result']['metadata']:
+    #     data_format['IntentName'] = response['result']['metadata']['intentName']
+    # else:
+    #     data_format['IntentName'] = None
+    #
+    # for item in response['result']['contexts']:
+    #     if 'name' in item:
+    #         data_format['Context'] = response['result']['contexts'][0]['name']
+    #         break
+    # else:
+    #     data_format['Context'] = None
+    #
+    # data_format['Time'] = response['timestamp']
+    # if 'intentId' in response['result']['metadata']:
+    #     data_format['IntentId'] = response['result']['metadata']['intentId']
+    # else:
+    #     data_format['IntentId'] = None
 
-    data_format['UserId'] = data_json['header'][0]
-    data_format['Speech'] = response['result']['fulfillment']['speech']
-    if 'parameters' in response['result']:
-        data_format['Entity'] = response['result']['parameters']
-    else:
-        data_format['Entity'] = ""
-    if 'intentName' in response['result']['metadata']:
-        data_format['IntentName'] = response['result']['metadata']['intentName']
-    else:
-        data_format['IntentName'] = None
-
-    for item in response['result']['contexts']:
-        if 'name' in item:
-            data_format['Context'] = response['result']['contexts'][0]['name']
-            break
-    else:
-        data_format['Context'] = None
-
-    data_format['Time'] = response['timestamp']
-    if 'intentId' in response['result']['metadata']:
-        data_format['IntentId'] = response['result']['metadata']['intentId']
-    else:
-        data_format['IntentId'] = None
-
+############OLD
     # try:
     #     data_format['data']['speech'] = data['queryResult']['fulfillmentText']
     #     data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
@@ -80,4 +82,4 @@ def opentable(data):
     # if data['queryResult']['intent']['displayName'] == 'opentable.homepage':
     #     data_format['header'][3] = 100
     # data_format['data']['entity'] = data['queryResult']['parameters']
-    return json.dumps(data_format)
+    return data
