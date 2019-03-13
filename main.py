@@ -16,8 +16,7 @@ def state_init(data):
     init_data = json.loads(data)
     if init_data['header'][0] not in MIC:
         MIC[init_data['header'][0]] = {'mic_off': False}
-        df_session = DialogflowApi(session_id=init_data['header'][0])
-        MIC[init_data['header'][0]] = {'df_v2': df_session}
+        MIC[init_data['header'][0]]['df_v2'] = DialogflowApi(session_id=init_data['header'][0])
     else:
         pass
 

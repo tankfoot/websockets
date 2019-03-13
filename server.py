@@ -100,6 +100,7 @@ async def ws_server(ws, path):
                 if 'audio' in d['data']:
                     stream.append(base64.b64decode(d['data']['audio']))
                 else:
+                    print('First: {}'.format(message))
                     state_init(message)
                     manager(message)
                     break
