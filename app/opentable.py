@@ -1,14 +1,24 @@
 import time
 import json
-from dialogflow_api.dialogflow_v2 import DialogflowApi
+#from dialogflow_api.dialogflow_v2 import DialogflowApi
+from dialogflow_api.dialogflow_v1 import DialogflowApi
 
+# data_format = {
+#                 'header': [0, 0, 0, 0, int(time.time()), 3, 0],
+#                 'data': {
+#                         'speech': None,
+#                         'entity': {}
+#                 }
+# }
 
 data_format = {
-                'header': [0, 0, 0, 0, int(time.time()), 3, 0],
-                'data': {
-                        'speech': None,
-                        'entity': {}
-                }
+                'UserId': None,
+                'Time': None,
+                'IntentId': None,
+                'IntentName': None,
+                'Context': None,
+                'Speech': None,
+                'Entity': None
 }
 
 level_map = {
@@ -26,19 +36,48 @@ def opentable(data):
         data_format['header'][2] = data_json['header'][2]
         data_format['header'][3] = data_json['header'][2]
     except KeyError:
+        query = 'hi'
         print('in_data: KeyError')
 
-    w = DialogflowApi(session_id=data_json['header'][0])
-    response = w.text_query(query)
-    data = response.json()
+    #w = DialogflowApi(session_id=data_json['header'][0])
+    #response = w.text_query(query)
+    #data = response.json()
 
-    try:
-        data_format['data']['speech'] = data['queryResult']['fulfillmentText']
-        data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
-    except KeyError:
-        data_format['data']['speech'] = 'KeyError'
+    a = DialogflowApi()
+    r = a.post_query(query)
+    response = r.json()
 
-    if data['queryResult']['intent']['displayName'] == 'opentable.homepage':
-        data_format['header'][3] = 100
-    data_format['data']['entity'] = data['queryResult']['parameters']
-    return json.dumps(data)
+    data_format['UserId'] = data_json['UserId']
+    data_format['Speech'] = response['result']['fulfillment']['speech']
+    if 'parameters' in response['result']:
+        data_format['Entity'] = response['result']['parameters']
+    else:
+        data_format['Entity'] = ""
+    if 'intentName' in response['result']['metadata']:
+        data_format['IntentName'] = response['result']['metadata']['intentName']
+    else:
+        data_format['IntentName'] = None
+
+    for item in response['result']['contexts']:
+        if 'name' in item:
+            data_format['Context'] = response['result']['contexts'][0]['name']
+            break
+    else:
+        data_format['Context'] = None
+
+    data_format['Time'] = response['timestamp']
+    if 'intentId' in response['result']['metadata']:
+        data_format['IntentId'] = response['result']['metadata']['intentId']
+    else:
+        data_format['IntentId'] = None
+
+    # try:
+    #     data_format['data']['speech'] = data['queryResult']['fulfillmentText']
+    #     data_format['header'][6] = len(data['queryResult']['fulfillmentText'])
+    # except KeyError:
+    #     data_format['data']['speech'] = 'KeyError'
+
+    # if data['queryResult']['intent']['displayName'] == 'opentable.homepage':
+    #     data_format['header'][3] = 100
+    # data_format['data']['entity'] = data['queryResult']['parameters']
+    return json.dumps(data_format)
