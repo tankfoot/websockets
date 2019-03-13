@@ -47,7 +47,7 @@ class Container:
         self.in_data_helper()
         start = time.time()
         try:
-            response = MIC[self._header[0]].text_query(self._query)
+            response = MIC[self._header[0]]['df_v2'].text_query(self._query)
         except KeyError:
             print("Session not registered")
             return 'Session fail'
