@@ -1,5 +1,6 @@
 import json
 from subprocess import getoutput
+from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 gcloudProjectID = {
     'Container': 'container-a3c3c',
@@ -15,6 +16,8 @@ def state_init(data):
     init_data = json.loads(data)
     if init_data['header'][0] not in MIC:
         MIC[init_data['header'][0]] = {'mic_off': False}
+        df_session = DialogflowApi(session_id=init_data['header'][0])
+        MIC[init_data['header'][0]] = {'df_v2': df_session}
     else:
         pass
 

@@ -3,7 +3,7 @@ import time
 import logging
 from subprocess import getoutput
 from main import MIC
-from dialogflow_api.dialogflow_v2 import DialogflowApi
+#from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 dflogger = logging.getLogger(__name__)
 
@@ -45,9 +45,13 @@ class Container:
 
     def get_dest_lvl(self):
         self.in_data_helper()
-        c = DialogflowApi(session_id=self._header[0])
         start = time.time()
-        response = c.text_query(self._query)
+        try:
+            response = MIC[self._header[0]].text_query(self._query)
+        except KeyError:
+            print("Session not registered")
+            return 'Session fail'
+
         end = time.time()
         dflogger.debug('response time: {}'.format(end - start))
         data = response.json()
