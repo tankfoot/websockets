@@ -17,6 +17,7 @@ def state_init(data):
     if init_data['header'][0] not in MIC:
         MIC[init_data['header'][0]] = {'mic_off': False}
         MIC[init_data['header'][0]]['df_v2'] = DialogflowApi(session_id=init_data['header'][0])
+        getoutput("gcloud config set project container-a3c3c")
     else:
         pass
 
@@ -38,6 +39,7 @@ def manager(data):
             try:
                 from app.container import Container
                 getoutput("gcloud config set project container-a3c3c")
+                print('In container path')
                 a = Container(data)
                 result = a.get_dest_lvl()
             except ImportError:
