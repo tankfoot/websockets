@@ -2,7 +2,7 @@ import time
 import json
 import logging
 from subprocess import getoutput
-from dialogflow_api.dialogflow_v2 import DialogflowApi
+#from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 dflogger = logging.getLogger(__name__)
 
@@ -88,6 +88,7 @@ def entity_formatter():
 
 
 def waze(d):
+    from main import MIC
     data_json = json.loads(d)
     global GLOBAL_VAR, GLOBAL_OPENTABLE, GLOBAL_PHONE, GLOBAL_MUSIC, GLOBAL_RESPONSE, GLOBAL_TEXT
     try:
@@ -99,8 +100,7 @@ def waze(d):
     except KeyError:
         print('in_data: KeyError')
 
-    w = DialogflowApi(session_id=data_json['header'][0])
-    response = w.text_query(query)
+    response = MIC[data_format['header'][0]]['df_v2'].text_query(query)
     data = response.json()
 
     dflogger.debug(data)
@@ -138,8 +138,7 @@ def waze(d):
 
         if data['queryResult']['intent']['displayName'] == 'Default Fallback Intent':
             getoutput('gcloud config set project container-a3c3c')
-            c = DialogflowApi(session_id=data_json['header'][0])
-            response = c.text_query(query)
+            response = MIC[data_format['header'][0]]['df_v2'].text_query(query)
             data2 = response.json()
             dflogger.debug(data2)
 

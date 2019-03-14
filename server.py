@@ -108,8 +108,8 @@ async def ws_server(ws, path):
                 if d['header'][6] == 0:
                     out = d
                     start1 = time.time()
-                    responses = speech_api_buffer(stream)
-                    res = print_response_buffer(responses)
+                    responses = speech_api_stream(stream)
+                    res = print_response_stream(responses)
                     start2 = time.time()
                     print('ASR delay: {}'.format(round((start2 - start1), 4)))
 

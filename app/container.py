@@ -3,7 +3,6 @@ import time
 import logging
 from subprocess import getoutput
 from main import MIC
-#from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 dflogger = logging.getLogger(__name__)
 
