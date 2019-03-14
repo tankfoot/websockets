@@ -12,7 +12,7 @@ data_format = {
 }
 
 logger = logging.getLogger(__name__)
-yes = ['yes', 'correct', 'right', 'sure', 'okay', 'yeah', 'confirm']
+yes = ['yes', 'correct', 'right', 'sure', 'okay', 'yeah', 'confirm', 'yes correct']
 no = ['no', 'wrong', 'nah', 'never', 'nope', 'not']
 cancel = ['cancel']
 homepage = ['homepage', 'home']

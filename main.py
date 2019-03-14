@@ -1,5 +1,6 @@
 import json
 from subprocess import getoutput
+import logging
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 
 gcloudProjectID = {
@@ -14,6 +15,8 @@ MIC = {}
 
 def state_init(data):
     init_data = json.loads(data)
+    logging.info(data)
+    logging.info('Status: {}'.format(MIC))
     if init_data['header'][0] not in MIC:
         MIC[init_data['header'][0]] = {'mic_off': False}
         MIC[init_data['header'][0]]['df_v2'] = DialogflowApi(session_id=init_data['header'][0])
@@ -39,8 +42,7 @@ def manager(data):
             try:
                 from app.container import Container
                 getoutput("gcloud config set project container-a3c3c")
-                print('In container path')
-                print(MIC)
+                print('Container: {}'.format(MIC))
                 a = Container(data)
                 result = a.get_dest_lvl()
             except ImportError:
@@ -50,6 +52,7 @@ def manager(data):
             try:
                 from app.waze import waze
                 getoutput("gcloud config set project {}".format(gcloudProjectID['Waze']))
+                print('Waze: {}'.format(MIC))
                 result = waze(data)
             except ImportError:
                 raise ImportError('Import Waze fail')
@@ -71,8 +74,7 @@ def manager(data):
                 raise ImportError('Import container fail')
 
         elif data_json['header'][1] == 4:
-            print('Now in text message mode')
-            print(MIC)
+            print('Text message: {}'.format(MIC))
 
             try:
                 from app.text_message import text_message
