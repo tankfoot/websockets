@@ -37,6 +37,7 @@ def manager(data):
                 data_json['header'][1] == 6:
             try:
                 from app.container import Container
+                getoutput("gcloud config set project container-a3c3c")
                 a = Container(data)
                 result = a.get_dest_lvl()
             except ImportError:

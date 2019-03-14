@@ -45,7 +45,6 @@ class Container:
     def get_dest_lvl(self):
         self.in_data_helper()
         start = time.time()
-        getoutput("gcloud config set project container-a3c3c")
         try:
             response = MIC[self._header[0]]['df_v2'].text_query(self._query)
         except KeyError:
