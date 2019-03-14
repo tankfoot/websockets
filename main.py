@@ -40,6 +40,7 @@ def manager(data):
                 from app.container import Container
                 getoutput("gcloud config set project container-a3c3c")
                 print('In container path')
+                print(MIC)
                 a = Container(data)
                 result = a.get_dest_lvl()
             except ImportError:
