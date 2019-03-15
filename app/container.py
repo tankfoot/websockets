@@ -83,11 +83,14 @@ class Container:
                 MIC[self._header[0]]['context'] = 'phone_number'
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
-            if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
-                d = 4100
-                t = data['queryResult']['fulfillmentText'].split(' ')
-                self._entity = {'phone-number': t[0], 'any': ' '.join(t[1:])}
-                self._speech = 'Okay, message sent'
+
+            #Dialog Solution for text message
+            # if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
+            #     d = 4100
+            #     t = data['queryResult']['fulfillmentText'].split(' ')
+            #     self._entity = {'phone-number': t[0], 'any': ' '.join(t[1:])}
+            #     self._speech = 'Okay, message sent'
+
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
             if data['queryResult']['intent']['displayName'] == 'container.micoff':

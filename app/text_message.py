@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 yes = ['yes', 'correct', 'right', 'sure', 'okay', 'yeah', 'confirm']
 no = ['no', 'wrong', 'nah', 'never', 'nope', 'not']
 cancel = ['cancel']
-homepage = ['homepage', 'home']
+homepage = ['homepage', 'home', 'go back to homepage']
 
 
 def valid_phone_number(number):
@@ -47,7 +47,7 @@ def text_message(data):
                 del (MIC[in_data['header'][0]]['context'])
                 return json.dumps(data_format)
             if not valid_phone_number(query):
-                data_format['data']['speech'] = 'number not valid, what is the phone number?'
+                data_format['data']['speech'] = 'Sorry, what is the phone number?'
             else:
                 data_format['data']['speech'] = 'Is your phone number {}'\
                     .format(query)
