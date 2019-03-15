@@ -116,13 +116,13 @@ async def ws_server(ws, path):
                         out['data']['query'] = res
                         del out['header'][6]
                         del out['data']['audio']
-                        print('input for State Manager: {}'.format(out))
+                        logging.info('input for State Manager: {}'.format(out))
                         state_init(json.dumps(out))
                         start3 = time.time()
                         out_data = manager(json.dumps(out))
                         start4 = time.time()
                         print('Dialogflow delay: {}'.format(round((start4 - start3), 4)))
-                        print(out_data)
+                        logging.info(out_data)
                         await ws.send(out_data)
 
                     else:
