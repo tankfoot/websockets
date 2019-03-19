@@ -32,7 +32,8 @@ def manager(data):
 
         if data_json['header'][1] == 0 or \
                 data_json['header'][1] == 5 or \
-                data_json['header'][1] == 6:
+                data_json['header'][1] == 6 or \
+                data_json['header'][1] == 8:
             try:
                 from app.container import Container
                 a = Container(data)

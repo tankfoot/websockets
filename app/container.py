@@ -70,6 +70,8 @@ class Container:
         try:
             if data['queryResult']['intent']['displayName'] == 'container.opentable':
                 d = 2000
+            if data['queryResult']['intent']['displayName'] == 'container.reminders':
+                d = 8000
             if data['queryResult']['intent']['displayName'] == 'container.phone':
                 d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.phone - yes':
@@ -124,6 +126,9 @@ class Container:
                     d = 7000
                     if data['queryResult']['parameters']['any']:
                         d = 7100
+
+                if data['queryResult']['intent']['displayName'] == 'container.reminders':
+                    d = 8100
         except KeyError:
             pass
 
