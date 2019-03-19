@@ -6,11 +6,13 @@ import asyncio
 import websockets
 import logging
 import json
+import os
 from utils.log_utils import setup_logging
 import time
 import datetime
 import base64
 import wave
+from dialogflow_api.dialogflow_v2 import DialogflowApi
 from google.cloud import speech
 from google.cloud.speech import enums
 from google.cloud.speech import types
@@ -31,6 +33,8 @@ logging.getLogger("websockets").setLevel(logging.ERROR)
 setup_logging(default_path='utils/logging.json')
 
 connected = set()
+USER = {1111: {'buffer': []}
+        }
 
 
 def speech_api_stream(stream):
@@ -90,25 +94,34 @@ def print_response_buffer(r):
         return result.alternatives[0].transcript
 
 
+def register(data):
+    init_data = json.loads(data)
+    USER[init_data['header'][0]]['info'] = data
+    USER[init_data['header'][0]]['mic_off'] = False
+    a = DialogflowApi(session_id=init_data['header'][0])
+    USER[init_data['header'][0]]['df_v2'] = a
+    USER[init_data['header'][0]]['buffer'] = []
+    if not os.path.exists('output/{}'.format(init_data['header'][0])):
+        os.makedirs('output/{}'.format(init_data['header'][0]))
+    print('register finish')
+
+
 async def ws_server(ws, path):
 
-    stream = []
     while True:
         try:
             async for message in ws:
                 d = json.loads(message)
                 if 'audio' in d['data']:
-                    stream.append(base64.b64decode(d['data']['audio']))
+                    USER[d['header'][0]]['buffer'].append(base64.b64decode(d['data']['audio']))
                 else:
-                    print('First: {}'.format(message))
-                    state_init(message)
-                    manager(message)
+                    register(message)
                     break
 
                 if d['header'][6] == 0:
                     out = d
                     start1 = time.time()
-                    responses = speech_api_stream(stream)
+                    responses = speech_api_stream(USER[d['header'][0]]['buffer'])
                     res = print_response_stream(responses)
                     start2 = time.time()
                     print('ASR delay: {}'.format(round((start2 - start1), 4)))
@@ -129,13 +142,12 @@ async def ws_server(ws, path):
                     else:
                         pass
 
-                    with wave.open(f"output/{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.wav", mode='wb') as f:
+                    with wave.open(f"output/{d['header'][0]}/{res}.wav", mode='wb') as f:
                         f.setnchannels(1)
                         f.setsampwidth(2)
                         f.setframerate(16000)
-                        f.writeframes(b''.join(stream))
-
-                    stream = []
+                        f.writeframes(b''.join(USER[d['header'][0]]['buffer']))
+                        USER[d['header'][0]]['buffer'] = []
 
         except websockets.exceptions.ConnectionClosed:
             '''

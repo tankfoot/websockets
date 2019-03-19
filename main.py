@@ -15,7 +15,6 @@ MIC = {}
 
 def state_init(data):
     init_data = json.loads(data)
-    #logging.info(data)
     logging.info('Status: {}'.format(MIC))
     if init_data['header'][0] not in MIC:
         MIC[init_data['header'][0]] = {'mic_off': False}
