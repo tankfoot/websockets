@@ -1,6 +1,6 @@
 import json
 import time
-from main import MIC
+from registered import USER
 import logging
 
 data_format = {
@@ -34,17 +34,17 @@ def text_message(data):
     data_format['header'].insert(3, in_data['header'][2])
     query = in_data['data']['query']
 
-    if 'context' not in MIC[in_data['header'][0]]:
+    if 'context' not in USER[in_data['header'][0]]:
         from app.container import Container
         a = Container(data)
         result = a.get_dest_lvl()
         return result
 
-    elif MIC[in_data['header'][0]]['context'] == 'phone_number':
+    elif USER[in_data['header'][0]]['context'] == 'phone_number':
             if 'cancel' in query:
                 data_format['data']['speech'] = 'okay, cancel sending message'
                 data_format['header'][3] = 100
-                del (MIC[in_data['header'][0]]['context'])
+                del (USER[in_data['header'][0]]['context'])
                 return json.dumps(data_format)
             if not valid_phone_number(query):
                 data_format['data']['speech'] = 'number not valid, what is the phone number?'
@@ -52,45 +52,45 @@ def text_message(data):
                 data_format['data']['speech'] = 'Is your phone number {}'\
                     .format(query)
                 data_format['data']['entity']['phone-number'] = query
-                MIC[in_data['header'][0]]['context'] = 'phone_number_confirm'
+                USER[in_data['header'][0]]['context'] = 'phone_number_confirm'
             return json.dumps(data_format)
-    elif MIC[in_data['header'][0]]['context'] == 'phone_number_confirm':
+    elif USER[in_data['header'][0]]['context'] == 'phone_number_confirm':
         if query in yes:
             data_format['data']['speech'] = 'what is your message?'
-            MIC[in_data['header'][0]]['context'] = 'message'
+            USER[in_data['header'][0]]['context'] = 'message'
             return json.dumps(data_format)
         elif query in no:
             data_format['data']['speech'] = 'what is your phone number?'
-            MIC[in_data['header'][0]]['context'] = 'phone_number'
+            USER[in_data['header'][0]]['context'] = 'phone_number'
             return json.dumps(data_format)
         elif 'cancel' in query:
             data_format['header'][3] = 100
             data_format['data']['speech'] = 'okay, cancel sending message'
-            del (MIC[in_data['header'][0]]['context'])
+            del (USER[in_data['header'][0]]['context'])
             return json.dumps(data_format)
         else:
             data_format['data']['speech'] = 'Is your phone number {}'\
                 .format(data_format['data']['entity']['phone-number'])
             return json.dumps(data_format)
-    elif MIC[in_data['header'][0]]['context'] == 'message':
+    elif USER[in_data['header'][0]]['context'] == 'message':
         data_format['data']['speech'] = 'Is your message {}'.format(query)
-        MIC[in_data['header'][0]]['context'] = 'message_confirm'
+        USER[in_data['header'][0]]['context'] = 'message_confirm'
         data_format['data']['entity']['any'] = query
         return json.dumps(data_format)
 
-    elif MIC[in_data['header'][0]]['context'] == 'message_confirm':
+    elif USER[in_data['header'][0]]['context'] == 'message_confirm':
         if query in yes:
             data_format['data']['speech'] = 'Okay, send the message'
-            del(MIC[in_data['header'][0]]['context'])
+            del(USER[in_data['header'][0]]['context'])
             data_format['header'][3] = 4100
             return json.dumps(data_format)
         elif query in no:
             data_format['data']['speech'] = 'what is your message'
-            MIC[in_data['header'][0]]['context'] = 'message'
+            USER[in_data['header'][0]]['context'] = 'message'
             return json.dumps(data_format)
         elif 'cancel' in query:
             data_format['data']['speech'] = 'okay, cancel sending message'
-            del (MIC[in_data['header'][0]]['context'])
+            del (USER[in_data['header'][0]]['context'])
             return json.dumps(data_format)
     else:
         return json.dumps(data_format)
