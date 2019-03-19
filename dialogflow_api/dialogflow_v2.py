@@ -9,7 +9,7 @@ class DialogflowApi:
     Interface to dialogflow apiv2 request
     """
 
-    def __init__(self, session_id='123'):
+    def __init__(self, session_id='1111'):
         self._auth_token = getoutput("gcloud auth application-default print-access-token")
         self._project_id = getoutput("gcloud config get-value project")
         self._base_url = 'https://dialogflow.googleapis.com/v2/'

@@ -63,6 +63,7 @@ def manager(data):
             return ''
 
         if data_json['header'][1] == 0 or \
+                data_json['header'][1] == 3 or \
                 data_json['header'][1] == 5 or \
                 data_json['header'][1] == 6:
             try:
