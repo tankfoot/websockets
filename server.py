@@ -96,7 +96,7 @@ def print_response_buffer(r):
 
 def register(data):
     init_data = json.loads(data)
-    USER[init_data['header'][0]]['info'] = data
+    USER[init_data['header'][0]] = {'info': data}
     USER[init_data['header'][0]]['mic_off'] = False
     a = DialogflowApi(session_id=init_data['header'][0])
     USER[init_data['header'][0]]['df_v2'] = a
