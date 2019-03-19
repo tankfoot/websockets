@@ -180,9 +180,9 @@ def waze(d):
 
             if data2['queryResult']['intent']['displayName'] == 'container.micoff':
                 data_format['header'][3] = 400
-                from main import MIC
-                MIC[data_format['header'][0]]['mic_off'] = True
-                MIC[data_format['header'][0]]['state'] = json.dumps(data_format)
+                from server import USER
+                USER[data_format['header'][0]]['mic_off'] = True
+                USER[data_format['header'][0]]['state'] = json.dumps(data_format)
                 data_format['data']['speech'] = data2['queryResult']['fulfillmentText']
 
         if GLOBAL_OPENTABLE == 1 and data['queryResult']['intent']['displayName'] == 'waze.yes':

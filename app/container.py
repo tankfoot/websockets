@@ -2,8 +2,8 @@ import json
 import time
 import logging
 from subprocess import getoutput
-from main import MIC
-
+from dialogflow_api.dialogflow_v2 import DialogflowApi
+from registered import USER
 dflogger = logging.getLogger(__name__)
 
 
@@ -45,11 +45,14 @@ class Container:
     def get_dest_lvl(self):
         self.in_data_helper()
         start = time.time()
-        try:
-            response = MIC[self._header[0]]['df_v2'].text_query(self._query)
-        except KeyError:
-            print("Session not registered")
-            return 'Session fail'
+
+        a = DialogflowApi()
+        response = a.text_query(self._query)
+        # try:
+        #     response = USER[self._header[0]]['df_v2'].text_query(self._query)
+        # except KeyError:
+        #     print("Session not registered")
+        #     return 'Session fail'
 
         end = time.time()
         dflogger.debug('response time: {}'.format(end - start))
@@ -83,7 +86,7 @@ class Container:
                 d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
-                MIC[self._header[0]]['context'] = 'phone_number'
+                USER[self._header[0]]['context'] = 'phone_number'
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
             if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
@@ -94,8 +97,8 @@ class Container:
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
             if data['queryResult']['intent']['displayName'] == 'container.micoff':
-                MIC[self._header[0]]['mic_off'] = True
-                MIC[self._header[0]]['state'] = self.out_data_helper()
+                USER[self._header[0]]['mic_off'] = True
+                USER[self._header[0]]['state'] = self.out_data_helper()
                 d = 400
 
             if data['queryResult']['allRequiredParamsPresent']:
