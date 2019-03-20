@@ -60,7 +60,9 @@ class Container:
         print(data)
         if 'error' in data:
             print('Dialogflow request fail')
-            return ''
+            USER[self._header[0]]['df_v2'] = DialogflowApi(session_id=self._header[0])
+            self._speech = 'Hello, this is VoicePlay'
+            return self.out_data_helper()
 
         dflogger.debug(data)
 
