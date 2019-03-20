@@ -27,7 +27,6 @@ level_map = {
     'waze.navigation': 1100,
     'waze.addstop': 1200
 
-
 }
 
 """

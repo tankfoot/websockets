@@ -86,7 +86,7 @@ def manager(data):
         elif data_json['header'][1] == 2:
             try:
                 from app.opentable import opentable
-                getoutput("gcloud config set project {}".format(gcloudProjectID['OpenTable']))
+                #getoutput("gcloud config set project {}".format(gcloudProjectID['OpenTable']))
                 result = opentable(data)
             except ImportError:
                 raise ImportError('Import OpenTable fail')
