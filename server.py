@@ -150,7 +150,10 @@ async def ws_server(ws, path):
             async for message in ws:
                 d = json.loads(message)
                 if 'audio' in d['data']:
-                    USER[d['header'][0]]['buffer'].append(base64.b64decode(d['data']['audio']))
+                    try:
+                        USER[d['header'][0]]['buffer'].append(base64.b64decode(d['data']['audio']))
+                    except KeyError:
+                        register(message)
                 else:
                     register(message)
                     break
