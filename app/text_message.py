@@ -92,6 +92,9 @@ def text_message(data):
             data_format['data']['speech'] = 'okay, cancel sending message'
             del (USER[in_data['header'][0]]['context'])
             return json.dumps(data_format)
+        else:
+            data_format['data']['speech'] = 'Is your message {}'.format(query)
+            return json.dumps(data_format)
     else:
         return json.dumps(data_format)
 
