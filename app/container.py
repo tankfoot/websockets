@@ -46,13 +46,13 @@ class Container:
         self.in_data_helper()
         start = time.time()
 
-        # a = DialogflowApi()
-        # response = a.text_query(self._query)
-        try:
-            response = USER[self._header[0]]['df_v2'].text_query(self._query)
-        except KeyError:
-            print("Session not registered")
-            return 'Session fail'
+        a = DialogflowApi()
+        response = a.text_query(self._query)
+        # try:
+        #     response = USER[self._header[0]]['df_v2'].text_query(self._query)
+        # except KeyError:
+        #     print("Session not registered")
+        #     return 'Session fail'
 
         end = time.time()
         dflogger.debug('response time: {}'.format(end - start))

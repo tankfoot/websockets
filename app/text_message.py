@@ -39,6 +39,7 @@ def text_message(data):
         t = Container(data)
         print('No context here! {}'.format(data))
         result = t.get_dest_lvl()
+        print('No context here! {}'.format(result))
         return result
 
     elif USER[in_data['header'][0]]['context'] == 'phone_number':
