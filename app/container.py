@@ -89,6 +89,20 @@ class Container:
             if data['queryResult']['intent']['displayName'] == 'container.text':
                 d = 4000
                 USER[self._header[0]]['context'] = 'phone_number'
+
+            if 'phone-number' in data['queryResult']['parameters']:
+                from app.text_message import valid_phone_number
+                if not valid_phone_number(data['queryResult']['parameters']['phone-number']):
+                    self._speech = 'Number not valid, what is your phone number?'
+                    USER[self._header[0]]['context'] = 'phone_number'
+                else:
+                    self._speech = 'Is your number {}'.\
+                        format(data['queryResult']['parameters']['phone-number'])
+                    USER[self._header[0]]['context'] = 'phone_number_confirm'
+            else:
+                d = 4000
+                USER[self._header[0]]['context'] = 'phone_number'
+
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
             if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
