@@ -35,8 +35,9 @@ def text_message(data):
     query = in_data['data']['query']
 
     if 'context' not in USER[in_data['header'][0]]:
-
-        result = USER[in_data['header'][0]]['df_v2'].get_dest_lvl()
+        from app.container import Container
+        a = Container(data)
+        result = a.get_dest_lvl()
         return result
 
     elif USER[in_data['header'][0]]['context'] == 'phone_number':
