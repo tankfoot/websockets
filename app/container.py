@@ -90,7 +90,7 @@ class Container:
                 d = 4000
                 USER[self._header[0]]['context'] = 'phone_number'
 
-            if 'phone-number' in data['queryResult']['parameters']:
+            if data['queryResult']['parameters']['phone-number']:
                 from app.text_message import valid_phone_number
                 if not valid_phone_number(data['queryResult']['parameters']['phone-number']):
                     self._speech = 'Number not valid, what is your phone number?'
