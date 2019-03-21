@@ -98,6 +98,8 @@ class Container:
                 else:
                     self._speech = 'Is your number {}'.\
                         format(data['queryResult']['parameters']['phone-number'])
+                    from app.text_message import data_format
+                    data_format['data']['entity']['phone-number'] = data['queryResult']['parameters']['phone-number']
                     USER[self._header[0]]['context'] = 'phone_number_confirm'
             else:
                 d = 4000
