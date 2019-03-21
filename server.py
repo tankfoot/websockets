@@ -91,12 +91,10 @@ def manager(data):
             except ImportError:
                 raise ImportError('Import OpenTable fail')
 
-        elif data_json['header'][1] == 4 or \
-                data_json['header'][2] == 4100:
+        elif data_json['header'][1] == 4:
 
             try:
                 from app.text_message import text_message
-                print('current state: {}'.format(USER))
                 result = text_message(data)
             except ImportError:
                 raise ImportError('Import text_message fail')
