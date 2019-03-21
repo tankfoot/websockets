@@ -114,6 +114,7 @@ class Container:
                 self._speech = 'Okay, message sent'
             if data['queryResult']['intent']['displayName'] == 'container.homepage':
                 d = 100
+                print('HomePage!')
             if data['queryResult']['intent']['displayName'] == 'container.micoff':
                 USER[self._header[0]]['mic_off'] = True
                 USER[self._header[0]]['state'] = self.out_data_helper()
