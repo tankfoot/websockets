@@ -91,18 +91,11 @@ def manager(data):
             except ImportError:
                 raise ImportError('Import OpenTable fail')
 
-        elif data_json['header'][1] == 3:
-            try:
-                from app.container import Container
-                a = Container(data)
-                result = a.get_dest_lvl()
-            except ImportError:
-                raise ImportError('Import container fail')
-
         elif data_json['header'][1] == 4:
 
             try:
                 from app.text_message import text_message
+                print('current state: {}'.format(USER))
                 result = text_message(data)
             except ImportError:
                 raise ImportError('Import text_message fail')
