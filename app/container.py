@@ -103,6 +103,7 @@ class Container:
                         data_format['data']['entity']['phone-number'] = data['queryResult']['parameters'][
                             'phone-number']
                         USER[self._header[0]]['context'] = 'phone_number_confirm'
+                        d = 4000
                 else:
                     d = 4000
                     USER[self._header[0]]['context'] = 'phone_number'
