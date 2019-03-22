@@ -57,7 +57,6 @@ class Container:
         end = time.time()
         dflogger.debug('response time: {}'.format(end - start))
         data = response.json()
-        print(data)
         if 'error' in data:
             print('Dialogflow request fail')
             USER[self._header[0]]['df_v2'] = DialogflowApi(session_id=self._header[0])
@@ -76,6 +75,8 @@ class Container:
             print('Dialogflow API has some problem')
 
         try:
+            if data['queryResult']['intent']['displayName'] == 'container.homepage':
+                d = 100
             if data['queryResult']['intent']['displayName'] == 'container.opentable':
                 d = 2000
             if data['queryResult']['intent']['displayName'] == 'container.phone':
@@ -87,34 +88,25 @@ class Container:
             if data['queryResult']['intent']['displayName'] == 'container.phone - no':
                 d = 3000
             if data['queryResult']['intent']['displayName'] == 'container.text':
-                d = 4000
-                USER[self._header[0]]['context'] = 'phone_number'
-
-            if data['queryResult']['parameters']['phone-number']:
-                from app.text_message import valid_phone_number
-                if not valid_phone_number(data['queryResult']['parameters']['phone-number']):
-                    self._speech = 'Number not valid, what is your phone number?'
-                    USER[self._header[0]]['context'] = 'phone_number'
+                if data['queryResult']['parameters']['phone-number']:
+                    from app.text_message import valid_phone_number
+                    if not valid_phone_number(data['queryResult']['parameters']['phone-number']):
+                        self._speech = 'Number not valid, what is your phone number?'
+                        USER[self._header[0]]['context'] = 'phone_number'
+                    else:
+                        self._speech = 'Is your number {}'. \
+                            format(data['queryResult']['parameters']['phone-number'])
+                        from app.text_message import data_format
+                        data_format['data']['entity']['phone-number'] = data['queryResult']['parameters'][
+                            'phone-number']
+                        USER[self._header[0]]['context'] = 'phone_number_confirm'
                 else:
-                    self._speech = 'Is your number {}'.\
-                        format(data['queryResult']['parameters']['phone-number'])
-                    from app.text_message import data_format
-                    data_format['data']['entity']['phone-number'] = data['queryResult']['parameters']['phone-number']
-                    USER[self._header[0]]['context'] = 'phone_number_confirm'
-            else:
-                d = 4000
-                USER[self._header[0]]['context'] = 'phone_number'
+                    d = 4000
+                    USER[self._header[0]]['context'] = 'phone_number'
 
             if data['queryResult']['intent']['displayName'] == 'container.stopmusic':
                 d = 420
-            if data['queryResult']['intent']['displayName'] == 'container.text - yes - custom - yes':
-                d = 4100
-                t = data['queryResult']['fulfillmentText'].split(' ')
-                self._entity = {'phone-number': t[0], 'any': ' '.join(t[1:])}
-                self._speech = 'Okay, message sent'
-            if data['queryResult']['intent']['displayName'] == 'container.homepage':
-                d = 100
-                print('HomePage!')
+
             if data['queryResult']['intent']['displayName'] == 'container.micoff':
                 USER[self._header[0]]['mic_off'] = True
                 USER[self._header[0]]['state'] = self.out_data_helper()
