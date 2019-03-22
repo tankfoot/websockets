@@ -4,6 +4,7 @@ import logging
 from subprocess import getoutput
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 from registered import USER
+
 dflogger = logging.getLogger(__name__)
 
 
