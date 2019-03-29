@@ -12,6 +12,7 @@ from subprocess import getoutput
 import time
 import base64
 import wave
+import datetime
 from dialogflow_api.dialogflow_v2 import DialogflowApi
 from google_asr.streaming import speech_api_stream
 from google_asr.streaming import print_response_stream
@@ -173,12 +174,18 @@ async def ws_server(ws, path):
                     else:
                         pass
 
-                    with wave.open(f"output/{d['header'][0]}/{res}.wav", mode='wb') as f:
-                        f.setnchannels(1)
-                        f.setsampwidth(2)
-                        f.setframerate(16000)
-                        f.writeframes(b''.join(USER[d['header'][0]]['buffer']))
+                    try:
+                        with wave.open(f"output/{d['header'][0]}/"
+                                       f"{datetime.datetime.now():%Y-%m-%dT%H%M%S}_{res}.wav",
+                                       mode='wb') as f:
+                            f.setnchannels(1)
+                            f.setsampwidth(2)
+                            f.setframerate(16000)
+                            f.writeframes(b''.join(USER[d['header'][0]]['buffer']))
+                            USER[d['header'][0]]['buffer'] = []
+                    except FileNotFoundError:
                         USER[d['header'][0]]['buffer'] = []
+                        pass
 
         except websockets.exceptions.ConnectionClosed:
             '''
