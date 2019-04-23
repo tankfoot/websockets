@@ -17,7 +17,7 @@ quest = {
 
 async def hello():
     async with websockets.connect(
-            'ws://localhost:8765') as websocket:
+            'ws://54.218.175.199:8080/chipotle') as websocket:
 
         while True:
             quest['header'][1] = int(input("app level:"))

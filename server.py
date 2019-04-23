@@ -164,6 +164,7 @@ async def ws_server(ws, path):
                         del out['header'][6]
                         del out['data']['audio']
                         logging.info(out)
+                        logging.info(time.time())
                         start3 = time.time()
                         out_data = manager(json.dumps(out))
                         start4 = time.time()
