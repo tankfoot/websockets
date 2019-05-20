@@ -14,13 +14,6 @@ quest = {
             }
         }
 
-response = {
-            'header': [1111, 0, 1000, int(time.time()), 3, 0],
-            'data': {
-                'response': None,
-            }
-        }
-
 
 async def hello():
     async with websockets.connect(
@@ -29,12 +22,14 @@ async def hello():
         while True:
             quest['data']['query'] = input("Query:")
             await websocket.send(json.dumps(quest))
+            print(quest)
             greeting = await websocket.recv()
             print(f"< {greeting}")
 
-            response['header'][2] = int(input("page level:"))
-            response['data']['response'] = input("Response:")
-            await websocket.send(json.dumps(response))
+            quest['header'][2] = int(input("page level:"))
+            quest['data']['query'] = input("Response:")
+            print(quest)
+            await websocket.send(json.dumps(quest))
             greeting = await websocket.recv()
             print(f"< {greeting}")
 
